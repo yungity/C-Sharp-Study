@@ -104,6 +104,12 @@ namespace Constructor
 - Class 이름 앞에 ~를 붙인 형태
 - 생성자와 달리, 매개변수도 없고, 한정자(ex. Public..)도 사용하지 않음
 - Overroading도 불가능하며 직접 호출도 불가
-- 그럼 언제 호출? -> CLR의 Garbage Collector가 객체가 소멸되는 시점을 판단해서 종료자를 호출! 
+- 그럼 언제 호출? -> CLR의 Garbage Collector가 객체가 소멸되는 시점을 판단해서 종료자를 호출!
+- Garbage Collector가 알아서 객체를 소멸 해주기 때문에 종료자를 굳이 사용하지 않는 것을 권장 
+
+***
+
+## What is Static?
+- C#에서의 static은 Field와 Method가 Class의 Instance가 아닌, Class 자체에 소속되도록 지정하는 한정자 
 
 
