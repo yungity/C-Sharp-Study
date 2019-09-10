@@ -1,8 +1,10 @@
 
 # Chapter 3 데이터 보관하기
+***
 ## 3.3 값 형식과 참조 형식
 - 값 형식(Value Types) : 변수가 값을 담는 데이터 형식
 - 참조 형식(Reference Types) : 변수가 값 대신 값이 있는 곳의 위치(참조)를 담는 데이터 형식
+
 ### 3.3.1 스택과 값 형식
 ```C#
 { //코드 블록 시작
@@ -26,7 +28,7 @@
 #### 스택Stack과 힙Heap 요약
 - 스택 :  변수의 생명 주기가 다 하면 자동으로 데이터를 제거하는 메모리 영역
 - 힙 : 더 이상 데이터를 참조하는 곳이 없을 때 CLR의 가비지 콜렉터가 데이터를 치워주는 구조의 메모리 영역
-
+***
 ## 3.4 기본 데이터 형식
 https://social.msdn.microsoft.com/Forums/ko-KR/3ac37ce3-535b-4aae-9acb-5bf0aafc9cc9/c-4459248376-4593651060535525480551032-5133347448?forum=visualcsharpko 참조
 ### 3.4.12 object 형식
@@ -107,6 +109,7 @@ float f = e.ToString();
 string g = "123456";
 int h = Convert.ToInt32(e);
 ```
+***
 ## 3.5 상수와 열거 형식
 ### 3.5.1 상수
 ```C#
@@ -146,7 +149,7 @@ enum 열거형식명 { 상수1 = 값, 상수2 = 값, 상수3 = 값3, ... }
 enum DialogResult { YES = 10, NO, CANCEL, CONFIRM = 50, OK }
 ```
 - YES : 10, NO : 11, CANCEL : 12, CONFIRM : 50, OK : 51 
-
+***
 ## 3.6 Nullable 형식
 ```C#
 데이터형식? 변수이름;
@@ -168,7 +171,7 @@ Console.WriteLine(a.Value); // 37을 출력
 - .HasValue : 해당 변수가 값을 갖고 있는지 확인함
 - .Value : 변수에 담겨 있는 값
 
-
+***
 ## 3.7 var 
 - var 키워드를 통한 약한 형식 검사 : 데이터 형식을 열거하지 않고도 컴파일러/인터프리가 알아서 형식을 지정해 줌.
 - 반드시 선언과 동시에 초기화를 해줘야 함
@@ -201,13 +204,13 @@ Type: System.Int32[], Value: System.Int32[]
 ### object와 var의 차이
 - object : CLR은 값을 박싱해서 힙에 넣어놓고 변수가 힙을 가리키게 만듦.
 - var : 컴파일 시점에 컴파일러가 변수에 적합한 데이터 형식을 파악해서 int a = 20;으로 바꿔 컴파일, int 형식 객체 a에 20을 담아 스택에 올림.
-
+***
 ## 3.8 공용 형식 시스템(Common Type System, CTS)
 - <b>.NET 프레임워크</b> 형식 체계의 표준, "모두(.NET 언어)가 함께 사용하는 데이터 형식 체계"
 - 공용 형식 시스템의 형식은 각 언어에서 코드에 그대로 사용할 수 있음.
 https://apprize.info/c/net/1.html
 <img src="https://apprize.info/c/net/net.files/image012.jpg" width = 640 height = 380></img>
-
+***
 ### 연습 문제 - 사각형의 너비와 높이를 입력받아 넓이를 계산하고 출력하는 프로그램을 완성하세요.
 ```C#
 using System;
