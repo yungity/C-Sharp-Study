@@ -208,7 +208,7 @@ Type: System.Int32[], Value: System.Int32[]
 https://apprize.info/c/net/1.html
 <img src="https://apprize.info/c/net/net.files/image012.jpg" width = 640 height = 380></img>
 
-#### 연습 문제 - 사각형의 너비와 높이를 입력받아 넓이를 계산하고 출력하는 프로그램을 완성하세요.
+### 연습 문제 - 사각형의 너비와 높이를 입력받아 넓이를 계산하고 출력하는 프로그램을 완성하세요.
 ```C#
 using System;
 
