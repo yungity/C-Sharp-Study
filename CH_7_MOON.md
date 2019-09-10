@@ -117,5 +117,9 @@ namespace Constructor
 
 ## What is Static?
 - C#에서의 static은 Field와 Method가 Class의 Instance가 아닌, Class 자체에 소속되도록 지정하는 한정자 
+- static으로 한정하지 않은 Field는 자동으로 Instance에 소속되며, static으로 한정한 Field는 Class에 소속
 
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/moon_static.png" 
+data-canonical-src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/moon_static.png" width="600" height="350" />
 
+# hi
