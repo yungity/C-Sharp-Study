@@ -64,11 +64,9 @@
 
 ## 장점
 1. 행동하는 주체와 행동이 묶여 누가 무엇을 하는지 명확
-
 2. 디버깅이 쉬움
-  : 어디서 잘못 되었는지 명확해 캐릭터에서 잘못되면 캐릭터 클래스와 관련된 것만 고침.
-  
-    캐릭터의 요구사항이 변경되면 캐릭터 클래스만 수정.
+  : - 어디서 잘못 되었는지 명확해 캐릭터에서 잘못되면 캐릭터 클래스와 관련된 것만 고침.
+  - 캐릭터의 요구사항이 변경되면 캐릭터 클래스만 수정.
     
 3. 똑같은 기능을 하는 클래스가 필요하다면 재사용이 쉬움
 
@@ -79,6 +77,7 @@
 3. __인터페이스__ : 부품과 부품이 서로 규격이 표준화 되어있기 때문에 서로 연결할 수 있듯이 장치와 장치를 연결하는 연결점
 
 ## class와 object의 활용
+![img1](./pic/yh_oop1.JPG)
 ### new로 만든 object1,2,3
 - 메모리 상에 class가 instance된 object 3개 존재 
 - 실제 세계에 존재하는 object 3개라면 변수도 그 수만큼 존재해서 object를 가리켜 줘야함. (V1, V2, V3)
@@ -86,11 +85,13 @@
 - 가리키는 변수가 없다면 object는 길을 잃고 가비지가 됨.
 __변수는 object를 가리키는 그림자__
 
-### object를 가리키는 변수를 nate = jack을 통해 nate가 jack으로 바뀐 후.
-nate의 속성을 바꾸면 (이 전에는 남아있던 jack은 변경되지 않고 nate가 변경되었는데)  nate가 가리키는 object가 jack이 가리키는 object로 되어서 nate를 변경하는 것이 jack이 가리키는 object를 변경하는 것과 같아짐.
+### object를 가리키는 변수를 Nate = Jack을 통해 Nate가 Jack으로 바뀐 후.
+Nate의 속성을 바꾸면 (이 전에는 남아있던 Jack은 변경되지 않고 Nate가 변경되었는데)  Nate가 가리키는 object가 Jack이 가리키는 object로 되어서 Nate를 변경하는 것이 Jack이 가리키는 object를 변경하는 것과 같아짐.
 
-class Animal은 new를 이용해 아무것도 존재하지 않는 공간에 새로운 Animal이 생성됨. 이를 부등호를 통해 새로 탄생된 Animal(object)l에 jack이라는 그림자를 붙여줌.
-따라서 nate = jack 을 하면 nate의 값은 jack이 가지고 있는 화살표가 되기 때문에 두개의 변수가 하나의 object를 가리키는 것이 됨.
+class Animal은 new를 이용해 아무것도 존재하지 않는 공간에 새로운 Animal이 생성됨. 이를 부등호를 통해 새로 탄생된 Animal(object)l에 Jack이라는 그림자를 붙여줌.
+따라서 Nate = Jack 을 하면 Nate의 값은 Jack이 가지고 있는 화살표가 되기 때문에 두개의 변수가 하나의 object를 가리키는 것이 됨.
+
+![img2](./pic/yh_oop2.JPG)
 
 ##   Call by reference
 : 변수는 진짜 object가 아니라 가리키는 그림자
