@@ -121,4 +121,164 @@ namespace Constructor
 
 <img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/moon_static.png" width="600" height="350" />
 
-# hi
+- static field를 사용하는 때는? 
+-> 프로그램 전체에 걸쳐 공유해야 하는 변수가 있을 때
+
+## Static Field 
+```C#
+using System;
+
+class Global
+{
+    public static int Count = 0;
+}
+
+class ClassA
+{
+    public ClassA()
+    {
+        Global.Count++;
+    }
+}
+
+class ClassB
+{
+    public ClassB()
+    {
+        Global.Count++;
+    }
+}
+
+class MainApp
+{
+    static void Main()
+    {
+        Console.WriteLine($"Global.Count : {Global.Count}");
+        
+        new ClassA();
+        new ClassA();
+        new ClassB();
+        new ClassB();
+
+        Console.WriteLine($"Global.Count : {Global.Count}");
+    }
+}
+
+```
+
+```C#
+Global.Count : 0
+Global.Count : 4
+```
+
+
+- static method는 Class의 Instance를 생성하지 않아도 호출이 가능한 Method 라는 점을 기억!
+- 그럼 Static Method의 반대는? -> Instance Method -> Class의 Instance를 생성해야만 호출이 가능
+
+***
+
+## 객체 복사 
+### 얕은 복사 & 깊은 복사
+### Shallow Copy & Deep Copy
+
+### 얕은 복사
+
+```C#
+class MyClass{
+  public int MyField1;
+  public int MyField2;
+}
+
+MyClass source = new MyClass();
+source.MyField1 = 10;
+source.MyField2 = 20;
+
+MyClass target = source;
+target.MyField2 = 30;
+
+Consol.WriteLine("{0} {1}", source.MyField1, source.MyField2);
+Consol.WriteLine("{0} {1}", target.MyField1, target.MyField2);
+  
+```
+
+```C#
+10 30 10 30
+```
+
+- 10 20 10 30 결과가 나올 것이라 생각하겠지만, 아님!
+- Class는 태생이 <b>참조 형식</b>이기 때문임!
+- 객체는 Heap 영역에 참조 형식으로 할당되기 때문에, 값이 변경되는 것
+- 이런 방식처럼, 객체를 복사할 때 참조만 살짝 복사하는 것을 <b>얕은 복사</b>라고 함
+
+
+### 깊은 복사 
+- Heap에 보관되어 있는 객체의 내용을 복사하여 별도의 Heap 공간에 복사 된 객체를 할당하는 것
+
+```C#
+using System;
+
+namespace DeepCopy
+{
+    class MyClass
+    {
+        public int MyField1;
+        public int MyField2;
+
+        public MyClass DeepCopy()
+        {
+            MyClass newCopy = new MyClass();          // 객체를 Heap에 새로 할당해서
+            newCopy.MyField1 = this.MyField1;         // 자신의 Member를 그곳에 일일이 복사
+            newCopy.MyField2 = this.MyField2;
+
+            return newCopy;
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Shallow Copy");
+
+            {
+                MyClass source = new MyClass();     
+                source.MyField1 = 10;               
+                source.MyField2 = 20;
+
+                MyClass target = source;
+                target.MyField2 = 30;
+
+                Console.WriteLine($"{source.MyField1} {source.MyField2}");
+                Console.WriteLine($"{target.MyField1} {target.MyField2}");
+            }
+
+            Console.WriteLine("Deep Copy");
+
+            {
+                MyClass source = new MyClass();
+                source.MyField1 = 10;
+                source.MyField2 = 20;
+
+                MyClass target = source.DeepCopy();
+                target.MyField2 = 30;
+
+                Console.WriteLine($"{source.MyField1} {source.MyField2}");
+                Console.WriteLine($"{target.MyField1} {target.MyField2}");
+            }
+        }
+    }
+}
+```
+
+```C#
+Shallow Copy
+10 30
+10 30
+Deep Copy
+10 20
+10 30
+```
+
+
+
+
