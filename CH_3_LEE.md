@@ -45,3 +45,51 @@ int b = (int)a;
 ```
 위 코드에서 a는 20이 박싱되어 저장되어 있는 힙을 참조하고 있다. b는 a가 참조하고 있는 메모리로부터 값을 복사하려고 하는 중이다. 이 떄 박싱되어 있는 값을 꺼내 값 형식 변수에 저장하는 과정을 **언박싱** 이라고 한다.
 
+#### 문자열을 숫자로, 숫자를 문자열로
+
+```C#
+string a = "12345";
+int b = (int)a; // b는 이제 12345? 문자열이냐?!
+```
+응 안됩니다. (int)형식 변환 연산자는 숫자 형식 데이터를 int 형식으로만 변환하는 방법(object 형식을 언박싱하는 방법)을 갖고 있지만 string 과 같은 여타 다른 형식으로 변환은 하지 못한다.
+
+> 문자열 - 숫자 형식 변환 방법
+```c#
+int a = int.Parse("12345");
+float b = float.Parse("123.45");
+```
+C#은 정수 계열 형식, 부동 소수점 형식 모두 Parse 메소드를 갖고 있다.
+
+> 숫자 - 문자열 형식 변환 방법
+```c#
+int c = 12345;
+string d = c.Tostring();
+
+float e = 123.45;
+string f = e.Tostring();
+```
+object로 부터 물려받은 Tostring()을 재정의(오버라이드)하여 사용한다.
+
+```c#
+using System;
+
+
+namespace StringNumberConversion
+{
+    class MainAPP
+    {
+        static void Main(string[] args)
+        {
+            int a = 123;
+            string b = a.ToString();
+            Console.WriteLine(b);
+
+            string c = "12345.65";
+            float d = float.Parse(c);
+            Console.WriteLine(d);
+
+
+        }
+    }
+}
+```
