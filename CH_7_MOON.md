@@ -279,6 +279,428 @@ Deep Copy
 10 30
 ```
 
+***
+
+## this 키워드
+
+- this는 객체가 자신을 지칭할 때 사용하는 키워드
+- 객체 외부에서는 객체의 Field나 Method에 접근할 때 객체의 이름을 사용
+- 객체 내부에서는 자신의 Field나 Method에 접근할 때 this 키워드를 사용
+
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/this.JPG" width=300 height=200 />
+
+- SetName()의 매개 변수도 Name이고, Employee Class의 Field도 Name 
+- 어떤 Name에 접근하는 것인지? this 키워드를 통해 이러한 모호성을 해결
+
+### this? Example
+```C#
+using System;
+
+namespace This
+{
+    class Employee
+    {
+        private string Name;
+        private string Position;
+
+        public void SetName(string Name)
+        {
+            this.Name = Name;
+        }
+
+        public string GetName()
+        {
+            return Name;
+        }
+
+        public void SetPosition(string Position)
+        {
+            this.Position = Position;
+        }
+
+        public string GetPosition()
+        {
+            return this.Position;
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Employee pooh = new Employee();
+            pooh.SetName("Pooh");
+            pooh.SetPosition("Waiter");
+            Console.WriteLine($"{pooh.GetName()} {pooh.GetPosition()}");
+
+            Employee tigger = new Employee();
+            tigger.SetName("Tigger");
+            tigger.SetPosition("Cleaner");
+            Console.WriteLine($"{tigger.GetName()} {tigger.GetPosition()}");
+        }
+    }
+}
+```
+
+```
+Pooh Waiter
+Tigger Cleaner
+```
+
+***
+
+### Constructor Overroading 생성자 오버로딩
+
+```C#
+using System;
+
+namespace ThisConstructor
+{
+    class MyClass
+    {
+        int a, b, c;
+
+        public MyClass()
+        {
+            this.a = 5425;
+            Console.WriteLine("MyClass()");
+        }
+
+        public MyClass(int b) : this()
+        {
+            this.b = b;
+            Console.WriteLine($"MyClass({b})");
+        }
+
+        public MyClass(int b, int c) : this(b)
+        {
+            this.c = c;
+            Console.WriteLine($"MyClass({b}. {c})");
+        }
+
+        public void PrintFields()
+        {
+            Console.WriteLine($"a:{a}, b:{b}, c:{c}");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            MyClass a = new MyClass();
+            a.PrintFields();
+            Console.WriteLine();
+
+            MyClass b = new MyClass(1);
+            b.PrintFields();
+            Console.WriteLine();
+
+            MyClass c = new MyClass(10, 20);
+            c.PrintFields();
+        }
+    }
+}
+```
+
+```
+MyClass()
+a:5425, b:0, c:0
+
+MyClass()
+MyClass(1)
+a:5425, b:1, c:0
+
+MyClass()
+MyClass(10)
+MyClass(10, 20)
+a:5425, b:10, c:20
+```
+
+### 객체 지향 프로그래밍의 3대 특성
+1. Encapsulation 은닉성 (= 캡슐화)
+2. Inheritance 상속성
+3. Polymorphism 다형성
+
+
+***
+
+## Access Modifier 접근 한정자
+- 감추고 싶은 것은 감추고, 보여주고 싶은 것은 보여줄 수 있도록 지정 (Encapsulation)
+- Field, Method, Property 등 모든 요소에 사용 가능
+- 예를 들어, Class에 선언되어 있는 Field와 Method 중에 어떤 것들은 사용자가 볼 수 있도록 하는 것이 있고, 아닌 것이 있음
+- 특히 Field는 상수를 제외하고 <b>무조건</b> 감추는 것이 좋음!
+
+#### 여섯 가지 접근 한정자
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/access.JPG" width=700 height=270 />
+
+#### 파생 클래스(Derived Class) 란? 
+- 기초 클래스의 모든 특성을 물려받아 새롭게 작성된 클래스
+
+### Example 1
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/access2.JPG" width=600 height=350 />
+
+#### 중요한 사실
+- 접근 한정자로 수식하지 않은 클래스의 멤버는 무조건 private로 접근 수준이 자동 설정된다는 점! 
+
+### Example 2
+```C#
+using System;
+
+namespace AccessModifier
+{
+    class WaterHeater
+    {
+        protected int temperature;    // protected로 지정
+
+        public void SetTemperature(int temperature)   // -5~42 값이 아닌 경우에 대한 예외 처리 
+        {
+            if (temperature < -5 || temperature > 42)
+            {
+                throw new Exception("Out of temperature range");
+            }
+
+            this.temperature = temperature;   // 외부에서 접근이 불가능. 이렇게 public 메소드를 통해 접근해야 함
+        }
+
+        internal void TurnOnWater( )
+        {
+            Console.WriteLine($"Turn on water : {temperature}");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                WaterHeater heater = new WaterHeater();
+                heater.SetTemperature(20);
+                heater.TurnOnWater();
+
+                heater.SetTemperature(-2);
+                heater.TurnOnWater();
+
+                heater.SetTemperature(50);      // 예외 발생 -> catch 블록으로 이동
+                heater.TurnOnWater();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }            
+        }
+    }
+}
+```
+
+***
+
+## 상속 (Inheritance) ?
+- Base Class로 부터 Field, Method, Property 같은 Member들을 그대로 물려 받은 Derived Class를 만드는 것
+- (부모 클래스 - 자식 클래스) (기반 클래스 - 파생 클래스) 라고도 함
+
+### 형태
+```C#
+class 기반 클래스
+{
+    // 멤버 선언
+}
+
+class 파생 클래스 : 기반 클래스
+{
+    // 아무 멤버를 선언하지 않아도, 기반 클래스의 모든 것을 물려 받아 갖게 됨
+    // <b>단, private로 선언된 멤버는 예외!</b>
+}
+```
+
+#### 중요한 점
+- 파생 클래스는 객체를 생성할 때 내부적으로 기반 클래스의 생성자를 호출한 뒤 자신의 생성자를 호출
+- 객체가 소멸할 때는 반대의 순서로 (파생 클래스 -> 기반 클래스) 종료자를 호출
+
+
+### Example 1
+
+```C#
+class Base
+{
+    public Base()
+    {
+        Console.WriteLine("Base()");
+    }
+    
+    ~Base()
+    {
+        Console.WriteLine("~Base()");
+    }
+}
+
+class Derived : Base
+{
+    public Derived()
+    {
+        Console.WriteLine("Derived()");
+    }
+    
+    ~Derived()
+    {
+        Console.WriteLine("~Derived()");
+    }
+}
+```
+
+```
+Base()
+Derived()
+~Derived()
+~Base()
+```
+
+#### 호출 순서
+1. 기반 클래스의 생성자 호출
+2. 파생 클래스의 생성자 호출
+3. 파생 클래스의 종료자 호출
+4. 기반 클래스의 종료자 호출
+
+
+***
+
+#### Q. 만약 기반 클래스의 생성자가 매개 변수를 입력받도록 선언되어 있다면, 파생 클래스의 인스턴스를 생성할 때 호출되는 기반 클래스의 생성자에게는 어떻게 매개 변수를 잘 전달해줄 수 있을까?
+A. base()를 이용 -> this()가 자기 자신의 생성자인것처럼, base()는 기반 클래스의 생성자임. 따라서 base()에 매개 변수를 넘겨 호출하면 우리가 원했던 것처럼 base() 생성자를 통해 Name Field를 초기화할 수 있음
+
+### Example 1 - base 키워드
+```C#
+class Base
+{
+    public void BaseMethod()
+    { /* ... */ }
+}
+
+class Derived : Base
+{
+    public void DerivedMethod()
+    {
+        base.BaseMethod();      // base 키워드를 통해 기반 클래스에 접근 가능
+    }
+}
+```
+
+
+### Example 2 - base 키워드 (매개 변수 전달)
+```C#
+class Base
+{
+    protected string Name;
+    
+    public Base(string Name)
+    { 
+        this.Name = Name;
+    }
+}
+
+class Derived : Base
+{
+    public void Derived(string Name) : base(Name)       // Base(string Name)을 호출
+    {
+        Console.WriteLine("{0}.Derived()", this.Name);      
+    }
+}
+
+```
+
+### Example 3
+```C#
+using System;
+
+namespace Inheritance
+{
+    class Base
+    {
+        protected string Name;
+        public Base(string Name)
+        { 
+            this.Name = Name;
+            Console.WriteLine($"{this.Name}.Base()");
+        }
+
+        ~Base()
+        {
+            Console.WriteLine($"{this.Name}.~Base()");
+        }
+
+        public void BaseMethod()
+        {
+            Console.WriteLine($"{Name}.BaseMethod()");
+        }     
+    }
+
+    class Derived : Base
+    {
+        public Derived(string Name) : base(Name)
+        {
+            Console.WriteLine($"{this.Name}.Derived()");
+        }
+        
+        ~Derived()
+        {
+            Console.WriteLine($"{this.Name}.~Derived()");
+        }
+
+        public void DerivedMethod()
+        {
+            Console.WriteLine($"{Name}.DerivedMethod()");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Base a = new Base("a");
+            a.BaseMethod();
+
+            Derived b = new Derived("b");
+            b.BaseMethod();
+            b.DerivedMethod();
+        }
+    }
+}
+```
+
+```
+a.Base()
+a.BaseMethod()
+b.Base()
+b.Derived()
+b.BaseMethod()
+b.DerivedMethod()
+b.~Derived()
+b.~Base()
+a.~Base()
+```
+
+#### Q. 자식이 달라고 하면 부모는 무조건 물려줘야 하나요?
+- 그렇지 않음. 의도하지 않은 상속을 막기 위해, 상속이 불가능하도록 기반 클래스에 선언할 수 있음
+- sealed 키워드 이용
+
+```C#
+sealed class Base
+{
+    // ...
+}
+
+class Derived : Base        // compile error
+{
+
+}
+
+```
+
+
+
+
+
+
 
 
 
