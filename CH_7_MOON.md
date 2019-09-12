@@ -696,10 +696,373 @@ class Derived : Base        // compile error
 
 ```
 
+***
+
+## 형변환을 위한 두 개의 연산자
+#### is 
+- 객체가 해당 형식에 해당하는지를 검사하여 그 결과를 bool 값으로 반환
+#### as 
+- 형식 변환 연산자와 같은 역할을 함 
+- 다만 형변환 연산자가 변환에 실패하는 경우 예외를 던지는 반면, as 연산자는 객체 참조를 null로 만든다는 점이 다름
+
+
+### is 연산자
+```C#
+Mammal mammal = new Dog();
+Dog dog;
+
+if (mammal is Dog)
+{
+    dog = (Dog)mammal;        // mammal 객체가 Dog 형식임을 확인했으므로 안전하게 형식 변환이 이뤄짐
+    dog.Bark();
+}
+```
+
+일반적으로 형식 변환 연산자 대신, <b>as 연산자를 사용하는 쪽이 권장</b>
+
+-> 형식 변환에 실패하더라도 예외가 일어나 갑자기 코드의 실행이 점프하는 일이 없으므로 코드를 관리하기가 더 수월하기 때문 
+
+## Type Casting
+```C#
+using System;
+
+namespace TypeCasting
+{
+    class Mammal
+    {
+        public void Nurse() 
+        { 
+            Console.WriteLine("Nurse()");
+        }
+    }
+
+    class Dog : Mammal
+    {
+        public void Bark() 
+        { 
+            Console.WriteLine("Bark()");
+        }
+    }
+
+    class Cat : Mammal
+    {
+        public void Meow()
+        {
+            Console.WriteLine("Meow()");
+        }
+    }
+
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Mammal mammal = new Dog();
+            Dog    dog;
+
+            if (mammal is Dog)
+            {
+                dog = (Dog)mammal;
+                dog.Bark();
+            }
+
+            Mammal mammal2 = new Cat();
+
+            Cat cat = mammal2 as Cat;
+            if (cat != null)
+                cat.Meow();
+
+            Cat cat2 = mammal as Cat;
+            if (cat2 != null)
+                cat2.Meow();
+            else
+                Console.WriteLine("cat2 is not a Cat");
+        }
+    }
+}
+```
+
+```
+Bark()
+Meow()
+cat2 is not a Cat
+```
+
+***
+
+## Overriding & Polymorphism (오버라이딩과 다형성)
+- 객체가 여러 형태를 가질 수 있음 -> 다형성
+- 다시 말해, 자신으로부터 상속받아 만들어진 파생 클래스를 통해 다형성을 실현한다는 의미
+
+
+```
+class ArmorSuite
+{
+    public virtual void Initialize()
+    {
+        Console.WriteLine("Armored");
+    }
+}
+```
+- 예를 들어 토니 스타크가 Initialize()라는 메소드를 갖고 있는 ArmorSuite 클래스를 만들었다고 해보자
+- 토니는 이 ArmorSuite를 업그레이드 하기로 함
+- 수중 전투용, 비행용 등의 Variation이 나올 수 있으므로, ArmorSuite를 뜯어 고치기보다 ArmorSuite를 상속하는 파생 클래스를 만들기로 함
+
+```C#
+class IromMan : ArmorSuite
+{
+    // ...
+}
+
+class WarMachine : ArmorSuite
+{
+    // ...
+}
+```
+
+- ArmorSuite의 기본 기능은 사람을 보호하는 수트를 장착하는 것
+- 하지만, 새로운 Suite에서는 새로운 기능이 필요 -> 상속 받은 Initialize()를 재정의 -> <b>Overriding</b>
+
+#### Method Overriding을 위한 한 가지 조건
+- Overriding을 할 메소드가 virtual 키워드로 한정되어 있어야 함
+- (메소드를 overriding 하고 있다는 사실을 컴파일러에게 알려야 하기 때문!)
+- 파생 클래스에선 override 키워드 사용
+
+```C#
+class IronMan : ArmorSuite
+{
+    public override void Initialize()       // Initialize Overriding
+    {
+        base.Initialize();
+        Console.WriteLine("Repulsor Rays Armed");
+    }
+}
+
+class WarMachine : ArmorSuite
+{
+    public override void Initialize()       // Initialize Overriding
+    {
+        base.Initialize();
+        Console.WriteLine("Double-Barrel Cannons Armed");
+        Console.WriteLine("Micro-Rocket Launcher Armed");
+    }
+}
+```
+
+
+#### 여기서 잠깐
+- private로 선언한 메소드는 Overriding 할 수 없음!
+- private로 선언된 멤버는 어차피 파생 클래스에서 보이지 않음
 
 
 
+## Overriding Example
+```C#
+using System;
 
+namespace Overriding
+{
+    class ArmorSuite
+    {
+        public virtual void Initialize()
+        {
+            Console.WriteLine("Armored");
+        }
+    }
+
+    class IronMan : ArmorSuite
+    {
+        public override void Initialize()
+        {
+            base.Initialize();
+            Console.WriteLine("Repulsor Rays Armed");
+        }
+    }
+
+    class WarMachine : ArmorSuite
+    {
+        public override void Initialize()
+        {
+            base.Initialize();
+            Console.WriteLine("Double-Barrel Cannons Armed");
+            Console.WriteLine("Micro-Rocket Launcher Armed");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Creating ArmorSuite...");
+            ArmorSuite armorsuite = new ArmorSuite();
+            armorsuite.Initialize();
+
+            Console.WriteLine("\nCreating IronMan...");
+            ArmorSuite ironman = new IronMan();
+            ironman.Initialize();
+
+            Console.WriteLine("\nCreating WarMaching...");
+            ArmorSuite warmachine = new WarMachine();
+            warmachine.Initialize();
+        }
+    }
+}
+```
+
+```
+Creating ArmorSuite...
+Armored
+
+Creating IronMan
+Armored
+Repulsor Rays Armed
+
+Creating WarMachine...
+Armored
+Double-Barrel Cannons Armed
+Micro-Rocket Launcher Armed
+```
+
+***
+
+## Method Hiding (메소드 숨기기)
+- CLR에게 기반 클래스에서 구현된 버전의 메소드를 감추고, 파생 클래스에서 구현된 버전만 보여주는 것
+- 파생 클래스 버전의 메소드에 <b>new 한정자</b> 사용
+
+```C#
+class Base
+{
+    public void MyMethod()
+    {
+        Console.WriteLine("Base.MyMethod()");
+    }
+}
+
+class Derived : Base
+{
+    public new void MyMethod()
+    {
+        Console.WriteLine("Derived.MyMethod()");      // Base.MyMethod()를 감추고, Derived 클래스에서 구현된 MyMethod()만 노출
+    }
+}
+```
+
+#### Method Hiding을 한 것을 호출
+```C#
+Derived derived = new Derived();
+derived.MyMethod();
+```
+
+#### 그냥 숨기고만 있을 뿐, Base 버전의 Method()도 살아 있음!
+```C#
+Base baseOrDerived = new Derived();
+baseOrDerived.MyMethod();         // base 버전의 MyMethod를 실행
+```
+
+### Method Hiding Example
+```C#
+using System;
+
+namespace MethodHiding
+{
+    class Base
+    {
+        public void MyMethod()
+        {
+            Console.WriteLine("Base.MyMethod()");
+        }
+    }
+
+    class Derived : Base
+    {
+        public new void MyMethod()
+        {
+            Console.WriteLine("Derived.MyMethod()");
+        }
+    }
+    
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Base baseObj = new Base();
+            baseObj.MyMethod();
+
+            Derived derivedObj = new Derived();
+            derivedObj.MyMethod();
+
+            Base baseOrDerived = new Derived();
+            baseOrDerived.MyMethod();
+        }
+    }
+}
+```
+
+```
+Base.MyMethod()
+Derived.MyMethod()
+Base.MyMethod()
+```
+
+***
+
+## 오버라이딩 봉인하기
+- 클래스가 상속이 되지 않도록 봉인하는 것처럼
+- 메소드도 오버라이딩 되지 않도록 봉인할 수 있음
+- sealed 한정자
+
+```C#
+class Base
+{
+    public virtual void SealMe()
+    {
+        // ...
+    }
+}
+
+class Derived : Base
+{
+    public sealed Override Void SealMe()
+    {
+        //...
+    }
+}
+```
+
+### Sealed Method Example
+```C#
+using System;
+
+class  Base
+{
+    public virtual void SealMe()
+    {
+    }
+}
+
+class Derived : Base
+{
+    public sealed override void SealMe()
+    {
+    }
+}
+
+class WantToOverride : Derived
+{
+    public override void SealMe()     // Sealed 된 Method는 Overriding이 불가!
+    {
+    }
+}
+
+class MainApp
+{
+    static void Main(string[] args)
+    {            
+    }
+}
+```
+
+- 실행 결과는 Compile Error !
 
 
 
