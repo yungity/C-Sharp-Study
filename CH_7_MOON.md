@@ -1064,6 +1064,144 @@ class MainApp
 
 - 실행 결과는 Compile Error !
 
+***
+
+## Nested Class (중첩 클래스)
+- 클래스 안에 선언되어 있는 클래스
+
+```C#
+class OuterClass
+{
+    class NestedClass     // 중첩 클래스
+    {
+    }
+}
+```
+
+- 객체를 생성하거나 객체의 메소드를 호출하는 방법도 보통의 클래스와 다르지 않음
+- 한 가지 다른 점이 있다면, <b>자신이 소속되어 있는 클래스의 멤버에 자유롭게 접근할 수 있다는 사실!</b>
+- 심지어 private 멤버에도 접근이 가능!
+
+
+
+```C#
+class OuterClass
+{
+    private int OuterMember;
+    
+    class NestedClass     // 중첩 클래스
+    {
+        public void DoSomething()
+        {
+            OuterClass outer = new OuterClass();
+            outer.OuterMember = 10;       // OuterClass의 private 멤버에 접근하여 값을 할당하거나 읽을 수 있음!
+        }
+    }
+}
+```
+
+#### 중첩 클래스는 왜 쓸까?
+- 클래스 외부에 공개하고 싶지 않은 형식을 만들고자 할 때
+- 현재 클래스의 일부분처럼 표현할 수 있는 클래스를 만들고자 할 때 
+
+- <b> 다른 클래스의 private 멤버에도 마구 접근할 수 있는 중첩 클래스는 은닉성을 무너뜨리기는 하지만, 보다 유연한 표현력을 프로그래머에게 가져다 준다는 장점이 있음!</b>
+
+
+## Nested Class Example
+```C#
+using System;
+using System.Collections.Generic;
+
+namespace NestedClass
+{
+    class Configuration
+    {
+        List<ItemValue> listConfig = new List<ItemValue>();
+
+        public void SetConfig(string item, string value)
+        {
+            ItemValue iv = new ItemValue();
+            iv.SetValue(this, item, value);
+        }
+
+        public string GetConfig(string item)
+        {
+            foreach (ItemValue iv in listConfig)
+            {
+                if (iv.GetItem() == item)
+                    return iv.GetValue();
+            }
+
+            return "";
+        }
+        
+        // 중첩 클래스 -> private로 선언 했기 때문에 Configuration 클래스 밖에선 보이지 않음
+        private class ItemValue     
+        {
+            private string item;
+            private string value;
+
+            public void SetValue(Configuration config, string item, string value)
+            {
+                this.item  = item;
+                this.value = value;
+
+                bool found = false;
+                
+                // 중첩 클래스는 상위 클래스의 멤버에 자유롭게 접근이 가능!
+                for (int i = 0; i < config.listConfig.Count; i++)   
+                {
+                    if (config.listConfig[i].item == item)
+                    {
+                        config.listConfig[i] = this;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found == false)
+                    config.listConfig.Add(this);
+            }
+
+            public string GetItem()
+            { return item; }
+            public string GetValue()
+            {   return value;   }
+        }        
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Configuration config = new Configuration();
+            config.SetConfig("Version", "V 5.0");
+            config.SetConfig("Size", "655,324 KB");
+
+            Console.WriteLine(config.GetConfig("Version"));
+            Console.WriteLine(config.GetConfig("Size"));
+
+            config.SetConfig("Version", "V 5.0.1");
+            Console.WriteLine(config.GetConfig("Version"));
+        }
+    }
+}
+
+```
+
+```
+V 5.0
+655,324 KB
+V 5.0.1
+```
+
+***
+p270
+
+
+
+
+
 
 
 
