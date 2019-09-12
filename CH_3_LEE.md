@@ -93,3 +93,41 @@ namespace StringNumberConversion
     }
 }
 ```
+
+### 열거 형식 - 여러 개의 상수를 정리합시다
+
+열거 형식은 같은 범주에 속하는 여러개의 상수를 선언 할 때 아주 유용하다.
+
+enum 열거 형식명 : 기반자료형 {상수1, 상수2, 상수3, ...}
+
+```c#
+ enum DiaglogResult {YES,NO,CANCEL,CONFIRM,OK}
+```
+열거 형식 안에 선언된 상수들이 어떤 값도 할당받지 않았다. 그러나 컴파일러가 자동으로 첫번째는 0으로 시작하여 1씩증가한 값을 할당한다.
+
+```c#
+using System;
+
+namespace Enum
+{ 
+    class MainApp
+    {
+        enum DiaglogResult { YES, NO, CANCEL, CONFIRM, OK };
+        static void Main(string[] args)
+        {
+            Console.WriteLine((int)DiaglogResult.YES);
+            Console.WriteLine((int)DiaglogResult.NO);
+            Console.WriteLine((int)DiaglogResult.CANCEL);
+            Console.WriteLine((int)DiaglogResult.CONFIRM);
+            Console.WriteLine((int)DiaglogResult.OK);
+        }
+    }
+}
+```
+를 실행하면 0,1,2,3,4 가 출력된다.
+또한 DialogResult 라는 열거 형식으로 만들어지는데, 새로운 형식이다.
+
+```c#
+DialogResult result = DialogResult.YES; // DialogResult result = 0; 과 같은 코드
+```
+
