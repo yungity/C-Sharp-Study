@@ -124,3 +124,43 @@ namespace usingout
 ### 메소드 오버로딩
 메소드 오버로딩(Metohd Overloading)이란 하나의 메소드 이름에 여러 개의 구현을 올리는 것을 뜻한다. 메소드의 이름은 하나지만, 들어오는 매개변수만을 분석하여(컴파일 과정에서) 어떤 버젼이 호출될지 찾는다. 메소드 오버로딩은 이름 짓는 고민도 줄여주며 코드를 일관성 있게 유지해준다. 일관성 있는 코드는 작성자에게도 도움을 주지만, 메소드의 사용자에게도 높은 생산성을 제공한다.(WriteLine 메소드는 19개 버전을 오버로딩하고 있는데, 19개 버전이 모두 다른 이름이였다면?..)
 
+```c#
+using System;
+using static System.Console;
+
+namespace Overloading
+{ 
+    class MainApp
+    {
+        static int Plus(int a, int b)
+        {
+            WriteLine("Calling int Plus(int,int)...");
+            return a + b;
+        }
+
+        static int Plus(int a, int b, int c)
+        {
+            WriteLine("Calling int Plus(int,int,int)...");
+            return a + b + c;
+        }
+        static double Plus(double a, double b)
+        {
+            WriteLine("Calling int Plus(double,double)...");
+            return a + b;
+        }
+
+        static double Plus(int a, double b)
+        {
+            WriteLine("Calling int Plus(int,double)...");
+            return a + b;
+        }
+        static void Main(string[] args)
+        {
+            WriteLine(Plus(1, 2));
+            WriteLine(Plus(1, 2,3));
+            WriteLine(Plus(1.0, 2.4));
+            WriteLine(Plus(1, 2.4));
+        }
+    }
+}
+```
