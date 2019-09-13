@@ -49,6 +49,9 @@ namespace Goto
 }
 ```
 
+### 메소드의 결과를 참조로 반환하기 
+
+C#에서는 참조 반환값(ref return)이라 하여 메소드의 결과를 참조로 반환하는 방법이 있다. 이렇게 하면 다른 메소드에서 변경된 애들을 main에서 그대로 사용 할 수 있다. 이렇게 참조로 반환 은 결과를 담은 지역 변수를 참조 지역 변수(ref local)이라고 한다.
 ```C#
 using System;
 
@@ -57,7 +60,7 @@ namespace RefReturn
     class Product
     {
         private int price = 100;
-        public ref int GetPrice()
+        public ref int GetPrice() // 반환 값을 ref int 로 
         {
             return ref price;
         }
@@ -69,7 +72,7 @@ namespace RefReturn
 
         static void Main(string[] args)
         {
-            Product carrot = new Product();
+            Product carrot = new Product(); // 인스턴스 선언
             ref int ref_local_price = ref carrot.GetPrice();
             int normal_local_price = carrot.GetPrice();
 
@@ -86,3 +89,38 @@ namespace RefReturn
     }
 }
 ```
+
+### 출력 전용 매개 변수
+ref 만으로 메소드로 부터 얻어 올 수있지만, C#에서는 out 키워드를 이용한 "출력 전용 매개 변수"로 더 안전하게 사용할 수 있다.
+out 키워드를 이용해서 매개 변수를 넘길 때는 메소드가 해댕 매개 변수에 결과를 저장하지 않으면 컴파일러가 에러 메시지를 출력한다.
+또한 메소드르 호출하는 쪽은 초기화를 하지 않은 지역 변수를 메소드의 out 매개 변수로 넘기는 것이 가능하다.
+
+```c#
+using System;
+
+namespace usingout
+{ 
+    class MainApp
+    {
+        static void Divide(int a, int b, out int quotient, out int remainder)
+        {
+            quotient = a / b;
+            remainder = a % b;
+        }
+
+        static void Main(string[] args)
+        {
+            int a = 20;
+            int b = 3;
+            // int c : 메소드에서 가져올꺼이므로 필요 x
+            // int d : 위와 마찬가지
+
+            Divide(a, b, out int c, out int d);
+            Console.WriteLine($"a:{a}, b:{b}, a/b:{c}, a%b:{d}");
+        }
+    }
+}
+```
+### 메소드 오버로딩
+메소드 오버로딩(Metohd Overloading)이란 하나의 메소드 이름에 여러 개의 구현을 올리는 것을 뜻한다. 메소드의 이름은 하나지만, 들어오는 매개변수만을 분석하여(컴파일 과정에서) 어떤 버젼이 호출될지 찾는다. 메소드 오버로딩은 이름 짓는 고민도 줄여주며 코드를 일관성 있게 유지해준다. 일관성 있는 코드는 작성자에게도 도움을 주지만, 메소드의 사용자에게도 높은 생산성을 제공한다.(WriteLine 메소드는 19개 버전을 오버로딩하고 있는데, 19개 버전이 모두 다른 이름이였다면?..)
+
