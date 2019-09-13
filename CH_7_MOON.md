@@ -1196,7 +1196,280 @@ V 5.0.1
 ```
 
 ***
-p270
+
+## Partial Class (분할 클래스)
+- 여러 번 나눠서 구현하는 클래스
+- 클래스의 구현이 길어질 경우, 여러 파일에 나눠서 구현이 가능
+
+```C#
+partial class MyClass
+{
+    public void Method1(){ }
+    public void Method2(){ }
+}
+
+partial class MyClass     // Class 이름 동일
+{
+    public void Method3(){ }
+}
+
+```
+
+### Partial Class Example
+```C#
+using System;
+
+namespace PartialClass
+{
+    partial class MyClass
+    {
+        public void Method1()
+        {
+            Console.WriteLine("Method1");
+        }
+
+        public void Method2()
+        {
+            Console.WriteLine("Method2");
+        }
+    }
+
+    partial class MyClass
+    {
+        public void Method3()
+        {
+            Console.WriteLine("Method3");
+        }
+
+        public void Method4()
+        {
+            Console.WriteLine("Method4");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            MyClass obj = new MyClass();
+            obj.Method1();
+            obj.Method2();
+            obj.Method3();
+            obj.Method4();
+        }
+    }
+}
+
+```
+
+```
+Method1
+Method2
+Method3
+Method4
+```
+
+***
+
+## Extension Method (확장 메소드)
+- 기존 클래스의 기능을 확장하는 기법
+- 상속과는 다름
+- <b>"기존 클래스"</b>의 기능을 확장!
+
+```C#
+namespace MyExtension
+{
+    public static class IntegerExtension
+    {
+        public static int Power(this int myInt, int exponent)
+        {
+            //
+        }
+    }
+}
+```
+
+### Extension Method Example
+```C#
+using System;
+using MyExtension;
+
+namespace MyExtension
+{
+    public static class IntegerExtension
+    {
+        public static int Square(this int myInt)
+        {
+            return myInt * myInt;
+        }
+
+        public static int Power(this int myInt, int exponent)
+        {
+            int result = myInt;
+            for (int i = 1; i < exponent; i++)
+                result = result * myInt;
+
+            return result;
+        }
+    }
+}
+
+namespace ExtensionMethod
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine($"{3}^2 : {3.Square()}");
+            Console.WriteLine($"{3}^{4} : {3.Power(4)}");
+            Console.WriteLine($"{2}^{10} : {2.Power(10)}");
+        }
+    }
+}
+```
+
+***
+
+## Structure (구조체)
+
+
+```C#
+struct MyStruct
+{
+    public int MyField1
+    public int MyField2
+    
+    public void MyMethod()
+    {
+        //...
+    }
+}
+```
+
+### C# 에서의 클래스와 구조체의 차이?
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/stc.JPG" width=500 height=200 />
+
+- 가장 중요한 차이는 클래스는 참조 형식이고, 구조체는 값 형식!
+- 인스턴스의 사용이 끝나면 즉시 메모리에서 제거된다는 점과 가비지 콜렉터를 덜 귀찮게 한다는 점에서 구조체가 이점을 가짐
+- 예를 들어, 3차원 게임을 C#으로 만든다고 할 때 화면에 나타나야 할 수 많은 좌표들(약 1만개라고 가정)의 사용이 끝나면 즉시 메모리에서 해제되는 것과 메모리에 남아서 가비지 콜렉터를 괴롭히는 것. 이 정도만 생각해도 구조체를 사용할만한 동기를 가짐!
+
+
+
+```
+MyStruct s;
+s.MyField1 = 1;
+s.MyField2 = 2;
+
+MyStruct t;
+t = s;
+s.MyField1 = 3;
+```
+
+- 구조체는 생성자를 호출할 때가 아니면 굳이 new 연산자를 사용하지 않아도 인스턴스를 만들 수 있음 
+- 구조체는 매개 변수가 없는 생성자를 선언할 수 없음
+
+### Structure Example
+```C#
+using System;
+
+namespace Structure
+{
+    struct Point3D
+    {
+        public int X;
+        public int Y;
+        public int Z;
+
+        public Point3D(int X, int Y, int Z)
+        {
+            this.X = X;
+            this.Y = Y;
+            this.Z = Z;
+        }
+
+        public override string ToString()
+        {
+            return string.Format($"{X}, {Y}, {Z}");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Point3D p3d1;
+            p3d1.X = 10;
+            p3d1.Y = 20;
+            p3d1.Z = 40;
+
+            Console.WriteLine(p3d1.ToString());
+
+            Point3D p3d2 = new Point3D(100, 200, 300);    // 물론 생성자를 이용한 인스턴스 생성도 가능
+            Point3D p3d3 = p3d2;      // 구조체의 인스턴스를 다른 인스턴스에 할당하면 깊은 복사가 이뤄짐
+            p3d3.Z = 400;
+
+            Console.WriteLine(p3d2.ToString());
+            Console.WriteLine(p3d3.ToString());
+        }
+    }
+}
+
+```
+
+```
+10, 20, 40
+100, 200, 300
+100, 200, 400
+```
+
+
+***
+
+## Tuple (튜플)
+- 여러 필드를 담을 수 있는 구조체
+- 앞선 구조체와는 달리, 튜플은 형식의 이름을 가지지 않음
+- 그래서 튜플은 응용 프로그램 전체에서 사용할 형식을 선언할 때가 아닌, 임시적으로 사용할 복합 데이터 형식을 선언할 때 적합!
+- 튜플은 구조체이므로, 값 형식
+- 값 형식은 생성된 지역을 벗어나면 스택에서 소멸되기 때문에 프로그램에 장기적인 부담을 주지 않는다는 장점이 있음
+
+### Tuple Example
+```C#
+using System;
+
+namespace Tuple
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            // 명명되지 않은 튜플
+            var a = ("슈퍼맨", 9999);
+            Console.WriteLine($"{a.Item1}, {a.Item2}");
+            
+            // 명명된 튜플
+            var b = (Name: "박상현", Age: 17);
+            Console.WriteLine($"{b.Name}, {b.Age}");
+
+            // 분해
+            var (name, age) = b; // (var name, var age) = b;
+            Console.WriteLine($"{name}, {age}");
+
+            // 명명된 튜플 = 명명되지 않은 튜플
+            b = a; 
+            Console.WriteLine($"{b.Name}, {b.Age}");
+        }
+    }
+}
+
+```
+
+```
+슈퍼맨, 9999
+박상현, 17
+박상현, 17
+슈퍼맨, 9999
+```
+
 
 
 
