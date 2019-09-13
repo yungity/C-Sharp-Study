@@ -258,4 +258,42 @@ namespace OptionalParameter
 }
 ```
 > 메소드 오버로딩 vs 선택적 매게 변수
+논리는 동일하되 매개 변수가 다른 경우는 선택적 매개 변수를 사용하고, 매개 변수에 따라 논리도 함께 달라지는 경우에는 오버로딩을 사용하는 식으로 코딩할때 메뉴얼을 정해놔야 한다.
 
+### 로컬 함수
+로컬 함수(Local Function)는 메소드 안에서 선언되고, 선언된 메소드 안에서만 사용되는 특별한 함수이다. 클래스의 멤버가 아니기 때문에 메소드가 아니라
+함수(Function)라고 부른다. 선언 방법은 메소드와 다르지 않지만, 로컬 함수는 자신이 존재하는 지역에 선언되어 있는 변수를 사용할 수 있다.
+로컬 함수는 메소드 밖에서는 다시 쓸일이 없는 반복적인 작업을 하나의 이름으로 묶어 놓는데 제격이다. 
+
+```c#
+using System;
+using static System.Console;
+
+namespace LocalFunction
+{
+    class MainApp
+    {
+        static string ToLowerString(String input)
+        {
+            var arr = input.ToCharArray();
+            for(int i =0;i<arr.Length;i++)
+            {
+                arr[i] = ToLowerChar(i);
+            }
+            char ToLowerChar(int i)
+            {
+                if (arr[i] < 65 || arr[i] > 90) // A~Z 의 ASCII 값 :65~90
+                    return arr[i];
+                else // a~z ASCII 값 : 97~122
+                    return (char)(arr[i] + 32); // ToLowerString 메소드의 지역변수인 arr 사용
+            }
+            return new string(arr);
+        }
+        static void Main(string[] args)
+        {
+            WriteLine(ToLowerString("hello!"));
+            WriteLine(ToLowerString("Good Mornig."));
+        }
+    }
+}
+```
