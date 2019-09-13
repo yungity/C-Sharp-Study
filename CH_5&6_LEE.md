@@ -164,3 +164,44 @@ namespace Overloading
     }
 }
 ```
+
+### 가변길이 매개 변수
+가변길이 매개 변수란, 그 개수가 유연하게 변할 수 있는 매개 변수를 말한다. 메소드 오버로딩과의 차이는, 메소드 오버로딩은 변수의 수 뿐만 아니라 형식이 다른 경우에도 사용 할 수있다는 점이다. 하지만 가변길이 매개 변수는 형식이 같으나 매개 변수의 개수만 유연하게 달라지는 경우만 가능하다.
+즉 매개 변수의 개수가 유안하게 정해져 있다면, 메소드 오버로딩이 적절하다. 형식은 같으나 매개 변수의 개수만 유연하게 달라지는 경우는 가변길이 매개
+변수가 적합하다.
+
+가변길이 매개변수는 params 키워드와 배열을 이용하여 선언한다.
+
+```c#
+using System;
+using static System.Console;
+
+namespace UsingParams
+{ 
+    class MainApp
+    {
+       static int Sum(params int[] args)
+        {
+            Write("summing...");
+            int sum = 0;
+
+            for(int i=0;i<args.Length;i++)
+            {
+                if(i>0)
+                {
+                    Write(", ");
+                }
+                Write(args[i]);
+                sum += args[i];
+            }
+            WriteLine();
+            return sum;
+        }
+        static void Main(string[] args)
+        {
+            int sum = Sum(3, 4, 5, 6, 7, 8, 9, 10, 11, 13);
+            WriteLine($"Sum : {sum}");
+        }
+    }
+}
+```
