@@ -205,3 +205,57 @@ namespace UsingParams
     }
 }
 ```
+
+## 명명된 매개 변수
+
+메소드의 매개변수가 다양할때, 어느 매개변수에 할당 할 것인지를 지정하는 방법이다. 일반적으로 입력된 순서로 할당하지만, 복잡해지면 메소드를 호출할때
+매개 변수의 이름 뒤에 콜론(:)을 붙이고 그 뒤에 할당할 데이터를 넣어주면 된다.
+
+```c#
+using System;
+using static System.Console;
+
+namespace NamedParameter
+{
+    class MainApp
+    {
+        static void PrintProfile(string name, string phone)
+        {
+            WriteLine($"Name:{name}, Phone:{phone}");
+        }
+        static void Main(string[] args)
+        {
+            PrintProfile(name: "박찬호", phone: "010-123-1234");
+            PrintProfile(name: "이동석", phone: "010-2210-1212");
+        }
+    }
+}
+```
+
+### 선택적 매개 변수
+매개 변수도 초기화하듯 메소드를 선언 할 수 있다. **선택적 매개 변수는 항상 필수 매개 변수 뒤에 와야 한다.**
+선택적 매개 변수는 메소드의 사용자에게 사용하지 않는 매개 변수를 염두에 두지 않도록 편의를 제공하지만, 또 한편으로는 모호함이라는 스트레스를 준다. 어느 코드에 데이터를 할당했는지 분간이 잘 안될 때도 있다. 이런 경우 명명된 매개 변수를 사용하면 문제 해결을 할 수 있다.
+
+
+```c#
+using System;
+using static System.Console;
+
+namespace OptionalParameter
+{
+    class MainApp
+    {
+        static void PrintProfile(string name, string phone = "") // phone =""으로 초기화 해서 사용한다.
+        {
+            WriteLine($"Name:{name}, Phone:{phone}");
+        }
+        static void Main(string[] args)
+        {
+            PrintProfile(name: "박찬호", phone: "010-123-1234");
+            PrintProfile(name: "이동석");
+        }
+    }
+}
+```
+> 메소드 오버로딩 vs 선택적 매게 변수
+
