@@ -23,8 +23,8 @@ namespace CopyingArray
     {
         static void CopyArray<T>(T[] source, T[] target)
         // "T"는 형식(Type)을 뜻하며, <T>을 넣어주면 T는 "형식 매개 변수(Type Parameter)"가 된다.
-        // CopyArray()를 호출할 때 <>사이에 T대신 형식의 이름을 입력해주면 컴파일러는 메소드의 나머지 부분에 대해서도        
-        // T를 형식 매개변수 값으로 치환 해준다.
+        // CopyArray()를 호출할 때 <>사이에 T대신 형식의 이름을 입력해주면 컴파일러는 메소드의 나머지 부분에        
+        //  대해서도 T를 형식 매개변수 값으로 치환 해준다.
         {
             for(int i=0;i<source.Length;i++)
             {
@@ -130,5 +130,86 @@ namespace CopyingArray
     {
         Source.CopyTo(Array, 0);
     }
-    ```
-상위 코드에서 사용되던 형식 매개 변수 U로부터 상속받는 형식으로 제약 조건을 주는 예이다. 다음 코드의 CopyArray<T>()는 소속 클래스인 BaseArray<U>의 형식 매개변수 U로부터 T가 상속받아야 할 것을 강제한다.
+```
+
+상위 코드에서 사용되던 형식 매개 변수 U로부터 상속받는 형식으로 제약 조건을 주는 예이다. 
+다음 코드의 CopyArray<T>()는 소속 클래스인 BaseArray<U>의 형식 매개변수 U로부터 T가 상속받아야 할 것을 강제한다.
+
+### 일반화 컬렉션
+지금까지 사용한 컬렉션 클래스들은 모두 Object 형식으로 기반으로 하였기에, 어떤 형식이든 간에 Object 형식을
+상속받고 있으므로 Object 형식으로 형식 변환이 가능하다.
+
+#### System.Collections.Generic 
+일반화 컬렉션들을 모아놓은 네임스페이스이다. 일반화 컬렉션은 object 형식 기반의 컬렉션이 갖고 있던 문제를(형식 변환의 비용) 일반화에 기반해서
+만들기 때문에 컴파일할 때 컬렉션에서 사용할 형식이 결정되고, 쓸데없는 형식 변환을 일으키지 않는다. 또한 잘못된 형식의 객체를 담게 될 위험도 피할
+수 있다.
+
+### List<T>
+List<T>클래스는 비일반화 클래스인 ArrayList와 같은 기능을 하며 사용법도 동일하다. 차이점은 List<T>클래스는 인스턴스를 만들때 형식 매개 변수로 입력한 형식 외에는 입력을 허용하지 않는다.
+
+```c#
+using System;
+using System.Collections.Generic;
+
+namespace UsingGenericList
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            List<int> list = new List<int>();
+            for(int i =0;i<5;i++)
+            {
+                list.Add(i);
+            }
+
+            foreach(int element in list)
+            {
+                Console.Write($"{element}");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+```
+
+### Queue<T>
+Queue<T>  클래스는 형식 매개 변수를 요구하는 점만 다르고, 비일반화 클래스인 Queue와 같은 기능을 하며 사용법도 동일하다.
+  
+```c#
+ static void Main(string[] args)
+        {
+            Queue<int>que = new Queue<int>();
+            
+            que.Enqueue(1); // Queue에 입력하고
+            que.Enqueue(2);
+            que.Enqueue(3);
+            que.Enqueue(4);
+            que.Enqueue(5);
+
+            while (que.Count > 0)
+                Console.WriteLine(que.Dequeue()); // FIFO방식으로 출력한다.
+        }
+```
+ 
+### Stack<T>
+Queue<T>와 동일하다.
+  
+### Dictionary<TKey,TValue>
+Dictionary<TKey,TValue>는 Hashtable의 일반화 버전이다. TKey는 Key,TValue는 Value를 위한 형식이다.
+
+```c#
+        static void Main(string[] args)
+        {
+            Dictionary<string,string> dic = new Dictionary<string,string>();
+            dic["하나"] = "one";
+            dic["둘"] = "two"; 
+            dic["셋"] = "three";
+
+            WriteLine(dic["하나"]);
+            WriteLine(dic["둘"]);
+            WriteLine(dic["셋"]);
+        }
+ ```
+ 
+ ### foreach를 사용할 수 있는 일반화 클래스
