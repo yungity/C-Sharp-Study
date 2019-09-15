@@ -131,7 +131,5 @@ namespace Enum
 DialogResult result = DialogResult.YES; // DialogResult result = 0; 과 같은 코드
 ```
 
-### 컬렉션
-컬렉션(Collection)이란 같은 성격을 띄는 데이터의 모음을 담는 **자료구조** 이다. 배열또한 컬렉션의 일부이다.
 
 
