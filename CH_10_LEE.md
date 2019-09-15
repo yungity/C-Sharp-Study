@@ -272,7 +272,13 @@ Hashtable ht = new Hashtable()
 인덱서(indexer)는 인덱스(index)를 이용해서 객체 내의 데이터에 접근하게 해주는 프로퍼티라고 생각하면 된다. 객체를 마치 배열처럼 사용 할 수 있게 해준다.
 
 ```c#
-class MyList
+using System;
+using System.Collections;
+using static System.Console;
+
+namespace UsingHashTable
+{
+    class MyList
     {
         private int[] arr;
         
@@ -298,6 +304,22 @@ class MyList
             }
         }
     }
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            MyList list = new MyList();
+            for(int i =0;i<5;i++)
+            {
+                list[i] = i; // 배열을 다루듯 인덱스를 통해 데이터를 입력
+            }
+            for (int i = 0; i < list.Length; i++)
+            {
+                Console.WriteLine(list[i]); // 데이터를 얻어올 때도 인덱스를 이용
+            }
+        }
+    }
+}
 ```
 인덱서는 프로퍼티처럼 식별자를 따로 가지지 않는다. 프로퍼티는 이름을 통해 객체 내의 데이터에 접근하게 해준다면, 인덱서는 인덱스를 통해 객체내의
 데이터에 접근하게 해준다.
