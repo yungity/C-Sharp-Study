@@ -326,7 +326,141 @@ namespace UsingHashTable
 
 프로퍼티는 객체 내의 데이터에 접근할 수 있도록 하는 통로이다. 인덱서도 동일한 기능을 하지만 차이점은 "인덱스"를 이용한다는 것이다.
 
+### foreach가 가능한 객체 만들기
+foreach 문은 Ienumerable,Ienumerator를 상속하는 형식만 지원한다. 즉 두개의 인터페이스를 상속한다면 foreach문을 사용할 수 있다는 의미이다.
+우선 Ienumerable 인터페이스가 갖고 있는 메소드는 GetEnumerator() 하나 뿐이므로 이 메소드를 구현해야 한다. 메소드를 구현할 때에는 **yield return** 문의 도움을 받아야 한다. 
+* yield return : 현재 메소드의 실행을 일시 정지 시켜놓고 호출자에게 결과를 반환하는 녀석, 메소드가 다시 호출되면, 일시 정지된 실행을 복구하여
+yield return 또는 yield break 문을 만날 때까지 나머지 작업을 실행하게 된다.
+* GetEnumerator() 메소드 : IEnumerator 인터페이스를 상속하는 클래스의 객체를 반환하면 됨
 
+```c#
+using System;
+using static System.Console;
+using System.Collections;
+
+namespace Yield
+{
+    class MyEnumerator
+    {
+        int[] numbers = { 1, 2, 3, 4 };
+
+        public IEnumerator GetEnumerator()
+        {
+            yield return numbers[0];
+            yield return numbers[1];
+            yield return numbers[2];
+            yield break; // yield break 는 GetEnumerator() 메소드를 종료 시킨다.
+            yield return numbers[3];  // 이 코드는 실행이 안됨
+        }
+    }
+    class MainApp
+    {
+            static void Main(string[] args)
+            {
+                var obj = new MyEnumerator();
+                foreach (int i in obj)
+                {
+                    WriteLine(i);
+                }
+            }
+    }
+}
+```
+
+> IEnumerator 인터페이스의 메소드 및 프로퍼티 목록
+* boolean MoveNext() : 다음 요소로 이동,  컬렉션의 끝을 지난 경우에는 false, 성공한 경우에는 true 를 반환
+* void Reset() : 컬렉션의 첫 번째 위치의 "앞"로 이동합니다. 첫 번쨰 위치가 0번이라면, Reset()을 호출하면 -1번으로 이동하는 한다. 첫번째 위치로의 이동은 MoveNext()를 호출한 다음 이루어진다.
+* Object Current(get;) : 컬렉션의 현재 요소를 반환한다.
+
+```c#
+using System;
+using static System.Console;
+using System.Collections;
+
+namespace Enumerable
+{
+    class MyList : IEnumerable, IEnumerator
+    {
+        private int[] array;
+        int position = -1; // 컬렉션의 현재 위치를 다루는 변수, 초기값은 0이 아닌 -1
+
+        public MyList()
+        {
+            array = new int[3];
+        }
+        public int this[int index]
+        {
+            get
+            {
+                return array[index];
+            }
+            set
+            {
+                if(index >= array.Length)
+                {
+                    Array.Resize<int>(ref array, index + 1);
+                    WriteLine($"Array Resized : {array.Length}");
+                }
+
+                array[index] = value;
+            }
+        }
+
+        //IEnumerator 멤버
+        public object Current //IEnumerator로부터 상속받은 Current 프로퍼티는 현재 위치의 요소를 반환
+        {
+            get
+            {
+                return array[position];
+            }
+        }
+        //IEnumerator 멤버
+        public bool MoveNext()
+        {
+            if(position == array.Length -1)
+            {
+                Reset(); // 첫번째 위치가 0이라면, Reset()을 호출해서 -1번으로 이동
+                return false;
+            }
+
+            position++;
+            return (position < array.Length);
+        }
+
+        //IEnumerator 멤버
+        public void Reset() // 요소의 위치를 첫 요소의 "앞"으로 옮깁니다.
+        {
+            position = -1;
+        }
+
+        //IEnumerable 멤버
+        public IEnumerator GetEnumerator()
+        {
+            for(int i=0;i<array.Length;i++)
+            {
+                yield return (array[i]);
+            }
+        }
+    }
+    class MainApp
+    {
+       static void Main(string[] args)
+       {
+            MyList list = new MyList();
+            for (int i = 0; i < 5; i++)
+            {
+                list[i] = i;
+            }
+            
+            foreach(int e in list)
+            {
+                WriteLine(e);
+            }
+
+        }
+    }
+}
+```
 출처 : 이것이 C#이다(저자 : 박상현 , 출판사 : 한빛미디어) CH.2 처음 만드는 C#프로그램
 
 출처 : 위키피디아
