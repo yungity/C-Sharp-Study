@@ -204,3 +204,107 @@ namespace UsingQueue
 2
 1
 ```
+
+### Hashtable
+파이썬의 사전형 데이터와 거의 동일하다. 해쉬테이블은 배열에서 인덱스를 이용해서 배열 요소에 접근하는 것에 준하는 탐색 속도로 탐색 속도가 거의 소요되지 않는다. ArrayList에서는 원하는 데이터를 찾으려면 정렬 후 이진 탐색을 하거나 순차적으로 리스트를 탐색해야 하지만 해쉬테이블은 단번에 데이터가 저장되어 있는 컬렉션 내의 주소를 계산한다. 이를 **헤싱(Hashing)** 이라고 한다.
+
+```c#
+using System;
+using System.Collections;
+using static System.Console;
+
+namespace UsingHashTable
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Hashtable ht = new Hashtable();
+            ht["하나"] = "one";
+            ht["둘"] = "two"; 
+            ht["셋"] = "three";
+
+            WriteLine(ht["하나"]);
+            WriteLine(ht["둘"]);
+            WriteLine(ht["셋"]);
+        }
+    }
+}
+```
+
+### 컬렉션을 초기화 하는 방법
+* 배열을 이용해 초기화
+ArrayList,Queue,Stack은 배열의 도움을 받아 간단하게 초기화를 할 수 있다. 이들 컬렉션의 생성자를 호출 할때 매개 변수로 배열 객체를 넘기면
+컬렉션 객체는 해당 배열을 바탕으로 내부 데이터를 채운다.
+```c#
+int[] arr = {123,456,789};
+ArrayList list = new ArrayList(arr); // 123, 456, 789
+Stack stack = new Stack(arr); // 789, 456, 123
+Queue queue = new Queue(arr); // 123, 456, 789
+```
+
+* 배열의 도움 없이 직접 컬렉션 초기자를 이용
+ArrayList만 가능하고 Stack,Queue는 사용할 수 없다.
+```c#
+ArrayList list = new ArrayList(){11,22,33};
+```
+
+* 딕셔너리 초기자(Dictionary Initializer)
+Hashtable 초기화를 할때 사용하는 방식, 컬렉션 초기자와 비슷하게 생겼다.
+```c#
+Hashtable ht = new Hashtable()
+{
+   ["하나"] = 1, // ;가 dkslfk ,를 이용하여 항목 구분
+   ["둘"] = 2,
+   ["셋"] = 3
+};
+```
+물론 컬렉션 초기자를 사용하여 초기화가 가능하다.
+```c#
+Hashtable ht = new Hashtable()
+{
+   {"하나",1},
+   {"둘",2},
+   {"셋",3}
+};
+```
+### 인덱서
+인덱서(indexer)는 인덱스(index)를 이용해서 객체 내의 데이터에 접근하게 해주는 프로퍼티라고 생각하면 된다. 객체를 마치 배열처럼 사용 할 수 있게 해준다.
+
+```c#
+class MyList
+    {
+        private int[] arr;
+        
+        public MyList()
+        {
+            arr = new int[3]; // 배열 인스턴트 생성
+        }
+        public int this[int index] // 인덱서 시작
+        {
+            get
+            {
+                return arr[index];
+            }
+
+            set
+            {
+                if(index >= arr.Length) // 만약 인덱스의 길이가 배열보다 크다면
+                {
+                    Array.Resize<int>(ref arr, index + 1); //배열의 길이 증가
+                    Console.WriteLine($"arr resized : {arr.Length}");
+                }
+                arr[index] = value;
+            }
+        }
+    }
+```
+인덱서는 프로퍼티처럼 식별자를 따로 가지지 않는다. 프로퍼티는 이름을 통해 객체 내의 데이터에 접근하게 해준다면, 인덱서는 인덱스를 통해 객체내의
+데이터에 접근하게 해준다.
+
+프로퍼티는 객체 내의 데이터에 접근할 수 있도록 하는 통로이다. 인덱서도 동일한 기능을 하지만 차이점은 "인덱스"를 이용한다는 것이다.
+
+
+출처 : 이것이 C#이다(저자 : 박상현 , 출판사 : 한빛미디어) CH.2 처음 만드는 C#프로그램
+
+출처 : 위키피디아
