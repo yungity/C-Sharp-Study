@@ -102,7 +102,7 @@ namespace CopyingArray
         }
     }
 ```
-**CopyArray<T>()의 형식 매개 변수 T에 "값 형식이어야 할 것"** 이라는 제약을 주는 방법이다.
+**CopyArray<"T">()의 형식 매개 변수 T에 "값 형식이어야 할 것"** 이라는 제약을 주는 방법이다.
   
   
 > 제약조건
@@ -133,7 +133,7 @@ namespace CopyingArray
 ```
 
 상위 코드에서 사용되던 형식 매개 변수 U로부터 상속받는 형식으로 제약 조건을 주는 예이다. 
-다음 코드의 CopyArray<T>()는 소속 클래스인 BaseArray<U>의 형식 매개변수 U로부터 T가 상속받아야 할 것을 강제한다.
+다음 코드의 CopyArray<"T">()는 소속 클래스인 BaseArray<U>의 형식 매개변수 U로부터 T가 상속받아야 할 것을 강제한다.
 
 ### 일반화 컬렉션
 지금까지 사용한 컬렉션 클래스들은 모두 Object 형식으로 기반으로 하였기에, 어떤 형식이든 간에 Object 형식을
@@ -144,8 +144,8 @@ namespace CopyingArray
 만들기 때문에 컴파일할 때 컬렉션에서 사용할 형식이 결정되고, 쓸데없는 형식 변환을 일으키지 않는다. 또한 잘못된 형식의 객체를 담게 될 위험도 피할
 수 있다.
 
-### List<T>
-List<T>클래스는 비일반화 클래스인 ArrayList와 같은 기능을 하며 사용법도 동일하다. 차이점은 List<T>클래스는 인스턴스를 만들때 형식 매개 변수로 입력한 형식 외에는 입력을 허용하지 않는다.
+### List<"T">
+List<"T">클래스는 비일반화 클래스인 ArrayList와 같은 기능을 하며 사용법도 동일하다. 차이점은 List<"T">클래스는 인스턴스를 만들때 형식 매개 변수로 입력한 형식 외에는 입력을 허용하지 않는다.
 
 ```c#
 using System;
@@ -173,8 +173,8 @@ namespace UsingGenericList
 }
 ```
 
-### Queue<T>
-Queue<T>  클래스는 형식 매개 변수를 요구하는 점만 다르고, 비일반화 클래스인 Queue와 같은 기능을 하며 사용법도 동일하다.
+### Queue<"T">
+Queue<"T">  클래스는 형식 매개 변수를 요구하는 점만 다르고, 비일반화 클래스인 Queue와 같은 기능을 하며 사용법도 동일하다.
   
 ```c#
  static void Main(string[] args)
@@ -192,8 +192,8 @@ Queue<T>  클래스는 형식 매개 변수를 요구하는 점만 다르고, �
         }
 ```
  
-### Stack<T>
-Queue<T>와 동일하다.
+### Stack<"T">
+Queue<"T">와 동일하다.
   
 ### Dictionary<TKey,TValue>
 Dictionary<TKey,TValue>는 Hashtable의 일반화 버전이다. TKey는 Key,TValue는 Value를 위한 형식이다.
