@@ -213,3 +213,6 @@ Dictionary<TKey,TValue>는 Hashtable의 일반화 버전이다. TKey는 Key,TVal
  ```
  
  ### foreach를 사용할 수 있는 일반화 클래스
+
+
+출처 : 이것이 C#이다(저자 : 박상현 , 출판사 : 한빛미디어) CH.11 일반화 프로그래밍
