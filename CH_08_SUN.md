@@ -37,7 +37,7 @@ class ConsoleLogger : ILogger
     }
 }
 
-ILogger logger = new ConsoleLogger(); //업캐스팅
+ILogger logger = new ConsoleLogger(); // 업캐스팅
 logger.WriteLog("Hello, World!");
 ```
 - 인터페이스를 상속받는 클래스에 인터페이스에 선언되어 있는 모든 구성 요소를 구현해줘야 함
