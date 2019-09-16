@@ -214,5 +214,126 @@ Dictionary<TKey,TValue>는 Hashtable의 일반화 버전이다. TKey는 Key,TVal
  
  ### foreach를 사용할 수 있는 일반화 클래스
 
+```c#
+using System;
+using static System.Console;
+using System.Collections;
+using System.Collections.Generic;
 
+namespace EnumerableGeneric
+{
+    class MyList<T> : IEnumerable<T>, IEnumerator<T>
+    {
+        private T[] array;
+        int position = -1; // 컬렉션의 현재 위치를 다루는 변수, 초기값은 0이 아닌 -1
+
+        public MyList()
+        {
+            array = new T[3];
+        }
+        public T this[int index]
+        {
+            get
+            {
+                return array[index];
+            }
+            set
+            {
+                if (index >= array.Length)
+                {
+                    Array.Resize<T>(ref array, index + 1);
+                    WriteLine($"Array Resized : {array.Length}");
+                }
+
+                array[index] = value;
+            }
+        }
+
+        public int Length
+        {
+            get { return array.Length; }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                yield return (array[i]);
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                yield return (array[i]);
+            }
+        }
+        //IEnumerator 멤버
+        public T Current //IEnumerator로부터 상속받은 Current 프로퍼티는 현재 위치의 요소를 반환
+        {
+            get
+            {
+                return array[position];
+            }
+        }
+
+        Object IEnumerator.Current
+        {
+            get { return array[position]; }
+        }
+
+        //IEnumerator 멤버
+        public bool MoveNext()
+        {
+            if (position == array.Length - 1)
+            {
+                Reset(); // 첫번째 위치가 0이라면, Reset()을 호출해서 -1번으로 이동
+                return false;
+            }
+
+            position++;
+            return (position < array.Length);
+        }
+
+        //IEnumerator 멤버
+        public void Reset() // 요소의 위치를 첫 요소의 "앞"으로 옮깁니다.
+        {
+            position = -1;
+        }
+        public void Dispose()
+        {
+
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            MyList<string> str_list = new MyList<string>();
+            str_list[0] = "abc";
+            str_list[1] = "def";
+            str_list[2] = "ghi";
+            str_list[3] = "jkl";
+            str_list[4] = "mno";
+
+            foreach (string str in str_list)
+                Console.WriteLine(str);
+            Console.WriteLine();
+
+            MyList<int> int_list = new MyList<int>();
+            int_list[0] = 0;
+            int_list[1] = 1;
+            int_list[2] = 2;
+            int_list[3] = 3;
+            int_list[4] = 4;
+
+            foreach (int no in int_list)
+                Console.WriteLine(no);
+
+        }
+    }
+}
+```
 출처 : 이것이 C#이다(저자 : 박상현 , 출판사 : 한빛미디어) CH.11 일반화 프로그래밍
