@@ -58,7 +58,7 @@ namespace interface_
         void WriteLog(string message);
     }
 
-    class ConsoleLogger : ILogger
+    class ConsoleLogger : ILogger // 콘솔에 로그를 출력하는 클래스
     {
         public void WriteLog(string message)
         {
@@ -66,7 +66,7 @@ namespace interface_
         }
     }
 
-    class FileLogger : ILogger
+    class FileLogger : ILogger // 파일로 로그를 저장하는 클래스
     {
         private StreamWriter writer;
 
@@ -223,7 +223,7 @@ namespace AbstractClass
             Console.WriteLine("AbstractBase.PublicMethodA()");
         }
 
-        public abstract void AbstractMethodA();
+        public abstract void AbstractMethodA(); // 추상메소드도 abstract 한정자를 이용해 선언
     }
 
     class Derived : AbstractBase
@@ -241,7 +241,8 @@ namespace AbstractClass
         {
             AbstractBase obj = new Derived();
             obj.AbstractMethodA();
-            obj.PublicMethodA();
+            obj.PublicMethodA(); 
+            // obj.PrivateMethod()는 protected로 선언되었기 때문에 하위 클래스에서만 사용 가능
         }
     }
 }
