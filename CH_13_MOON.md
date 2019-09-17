@@ -7,7 +7,7 @@
 - 대리자는 메소드에 의한 참조
 - 따라서, 자신이 참조할 메소드의 반환 형식과 매개 변수를 명시해줘야 함
 
-### 선언 Example
+#### 대리자 선언
 ```
 delegate int MyDelegate(int a, int b);
 ```
