@@ -48,7 +48,7 @@ Console.WriteLine(Callback(7, 5));        // 2 출력
 
 ***
  
-## Delegate Example
+### Delegate Example
 ```C#
 using System;
 
@@ -137,7 +137,7 @@ static void BubbleSort(int[] DataSet, Compare Com)
 
 ***
 
-## Using Callback Example
+### Using Callback Example
 ```C#
 using System;
 
@@ -228,7 +228,7 @@ Sorting descending...
 delegate int Compare<T>(T a, T b);
 ```
 
-## Generic Delegate Example
+### Generic Delegate Example
 ```C#
 using System;
 
@@ -305,7 +305,112 @@ mno jkl ghi def abc
 
 ***
 
+## 대리자 체인 Delegate Chain
+- 대리자 하나가 여러 메소드를 동시에(순차적으로) 참조하는 것
 
+```C#
+delegate void ThereIsAFire(string location);
+
+void Call119(string location)
+{
+    Console.WriteLine("소방서죠? 불났어요 주소는{0}", location);
+}
+
+void ShoutOut(string location)
+{
+    Console.WriteLine("피하세요! {0}에 불이 났어요!", location);
+}
+
+void Escape(string location)
+{
+    Console.WriteLine("{0}에서 나갑시다!", location);
+}
+
+ThereIsAFire Fire = new ThereIsAFire(Call119)         // Delegate Chain
+                  + new ThereIsAFire(ShoutOut)
+                  + new ThereIsAFire(Escape);
+                  
+               
+```
+
+### Delegate Chain Example
+```C#
+using System;
+
+namespace DelegateChains
+{
+    delegate void Notify(string message);     // Notify 대리자 선언
+
+    class Notifier    // Notify 대리자의 인스턴스 EventOccured를 가지는 클래스 Notifier 선언
+    {
+        public Notify EventOccured;
+    }
+
+    class EventListener
+    {
+        private string name;
+        public EventListener(string name)
+        {
+            this.name = name;
+        }
+
+        public void SomethingHappend(string message)
+        {
+            Console.WriteLine($"{name}.SomethingHappened : {message}");
+        }
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Notifier notifier = new Notifier();
+            EventListener listener1 = new EventListener("Listener1");
+            EventListener listener2 = new EventListener("Listener2");
+            EventListener listener3 = new EventListener("Listener3");
+
+            notifier.EventOccured += listener1.SomethingHappend;   // Delegate Chain 만들기
+            notifier.EventOccured += listener2.SomethingHappend;
+            notifier.EventOccured += listener3.SomethingHappend;
+            notifier.EventOccured("You've got mail.");
+
+            Console.WriteLine();
+
+            notifier.EventOccured -= listener2.SomethingHappend;   // Chain 끊기
+            notifier.EventOccured("Download complete.");
+
+            Console.WriteLine();
+
+            notifier.EventOccured = new Notify(listener2.SomethingHappend)   // Delegate Chain 만들기
+                                  + new Notify(listener3.SomethingHappend);
+            notifier.EventOccured("Nuclear launch detected.");
+
+            Console.WriteLine();
+
+            Notify notify1 = new Notify(listener1.SomethingHappend);
+            Notify notify2 = new Notify(listener2.SomethingHappend);
+
+            notifier.EventOccured =
+                (Notify)Delegate.Combine( notify1, notify2);   // Delegate.Combine() 메소드를 이용한 Chain 만들기
+            notifier.EventOccured("Fire!!");
+
+            Console.WriteLine();
+
+            notifier.EventOccured = 
+                (Notify)Delegate.Remove( notifier.EventOccured, notify2);   // Remove() 메소드를 이용한 Chain 끊기               
+            notifier.EventOccured("RPG!");
+        }
+    }
+}
+
+```
+
+
+```
+Listener1.SomethingHappened : You've got mail.
+Listener2.SomethingHappened : You've got mail.
+Listener3.SomethingHappened : You've got mail.
+```
 
 
  
