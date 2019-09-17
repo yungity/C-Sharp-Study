@@ -201,6 +201,7 @@ absract class 추상클래스 이름
 - 인스턴스를 가질 수 없다. 
 - new 키워드로 자체적으로 초기화를 할 수 없다.
 - 추상 메소드를 가질 수 있다. (추상클래스에서 추상메소드 한정자는 public, protected, internal, protected internal 중 하나)
+- 추상 프로퍼티를 가질 수 있다.
 ### ★추상클래스와 인터페이스의 차이점★
 - 추상클래스는 구현된 멤버를 포함할 수 있다.
 - 인터페이스는 멤버의 접근지정자를 선언할 수 없다.
@@ -223,12 +224,12 @@ namespace AbstractClass
             Console.WriteLine("AbstractBase.PublicMethodA()");
         }
 
-        public abstract void AbstractMethodA(); // 추상메소드도 abstract 한정자를 이용해 선언
+        public abstract void AbstractMethodA(); // 추상메소드 / 추상 프로퍼티 : abstract 한정자를 이용해 선언
     }
 
     class Derived : AbstractBase
     {
-        public override void AbstractMethodA() //★ 추상클래스의 추상메소드 구현 시 override로 구현 ★
+        public override void AbstractMethodA() //★ 추상클래스의 추상메소드 / 추상 프로퍼티 구현 시 override로 구현 ★
         {
             Console.WriteLine("Derived.AbstractMethodA()");
             PrivateMethodA();
