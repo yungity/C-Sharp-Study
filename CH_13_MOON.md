@@ -608,5 +608,30 @@ namespace EventTest
 ```
 
 
+***
 
+#### 대리자와 이벤트의 차이?
+- 이벤트는 외부에서 직접 사용할 수 없다는 점!
+
+```C#
+delegate void EventHandler(string message);
+
+class MyNotifier
+{
+     public event EventHandler SomethingHappened;
+     //...
+}
+
+class MainApp
+{
+     static void Main(string[] args)
+     {
+          MyNotifier noti = new MyNotifier();
+          noti.SomethingHappened("테스트");      // Error! 이벤트는 객체 외부에서 직접 호출이 불가
+     }
+}
+```
+
+#### 대리자는 Callback 용도
+#### 이벤트는 객체의 상태 변화나 사건 발생을 알리는 용도
 
