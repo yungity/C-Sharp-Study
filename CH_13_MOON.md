@@ -406,12 +406,151 @@ namespace DelegateChains
 ```
 
 
+***
+
+## 익명 메소드 Anonymous Method
+- 이름이 없는 메소드
+- 자신을 참조할 대리자의 형식과 동일한 형식으로 선언
+- 에를 들어, 대리자에서 int 형식의 매개 변수를 세 개 받도록 선언했다면, 익명 메소드도 역시 동일하게 매개 변수를 받도록 구현해야 함
+```C#
+delegate int Calculate(int a, int b);
+
+public static void Main()
+{
+    Calculate Calc;
+    
+    Calc = delegate(int a, int b)       // 익명 메소드 구현
+           {
+                 return a+b;
+           };
+           
+    Console.WriteLine(Calc(3, 4));      // 익명 메소드 호출
+}
 ```
-Listener1.SomethingHappened : You've got mail.
-Listener2.SomethingHappened : You've got mail.
-Listener3.SomethingHappened : You've got mail.
+
+#### 익명 메소드는 언제 사용?
+- 예를 들어 대리자가 참조할 메소드를 넘겨야 할 일이 생겼는데, 이 메소드가 두 번 다시 사용할 일이 없다고 판단되면 그 때 익명 메소드를 사용
+
+
+
+### Anonymous Method Example
+```C#
+using System;
+
+namespace AnonymouseMethod
+{
+    delegate int Compare(int a, int b);
+
+    class MainApp
+    {
+        static void BubbleSort(int[] DataSet, Compare Comparer)
+        {
+            int i = 0;
+            int j = 0;
+            int temp = 0;
+
+            for (i = 0; i < DataSet.Length - 1; i++)
+            {
+                for (j = 0; j < DataSet.Length - (i + 1); j++)
+                {
+                    if (Comparer(DataSet[j], DataSet[j + 1]) > 0)
+                    {
+                        temp = DataSet[j + 1];
+                        DataSet[j + 1] = DataSet[j];
+                        DataSet[j] = temp;
+                    }
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            int[] array = { 3, 7, 4, 2, 10 };
+
+            Console.WriteLine("Sorting ascending...");
+            BubbleSort(array, delegate(int a, int b)       // Anonymous Method
+                              {
+                                if (a > b)
+                                    return 1;
+                                else if (a == b)
+                                    return 0;
+                                else
+                                    return -1;
+                              });
+
+            for (int i = 0; i < array.Length; i++)
+                Console.Write($"{array[i]} ");
+
+            int[] array2 = { 7, 2, 8, 10, 11 };
+            Console.WriteLine("\nSorting descending...");
+            BubbleSort(array2, delegate(int a, int b)       // Anonymous Method
+                               {
+                                 if (a < b)
+                                     return 1;
+                                 else if (a == b)
+                                     return 0;
+                                 else
+                                     return -1;
+                               });
+
+            for (int i = 0; i < array2.Length; i++)
+                Console.Write($"{array2[i]} ");
+
+            Console.WriteLine();
+        }
+    }
+}
+
 ```
 
 
- 
+***
+
+## 이벤트 : 객체에 일어난 사건 알리기
+- 특정 사건이 일어났을 때 알려주는 객체를 만들 때 사용하는 것이 이벤트(Event)
+
+```C#
+// Step 1 - 대리자를 선언 (클래스 안, 밖 가능)
+delegate void EventHandler(string message);
+
+
+// Step 2 - 대리자의 인스턴스를 event 한정자로 수식해서 선언
+class MyNotifier
+{
+     public event EventHandler SomethingHappened;
+     public void DoSomething(int number)
+     {
+          int temp = number % 10;
+          
+          if (temp != 0 && temp % 3 ==0)
+          {
+               SomethingHappened(number));
+          }
+     }
+}
+
+// Step 3 - 이벤트 핸들러 작성, 등록, 호출
+class MainApp
+{
+     static public void MyHandler(string message)
+     {
+          Console.WriteLine(message);
+     }
+     
+     static void Main(string[] args)
+     {
+          MyNotifier notifier = new MyNotifier();
+          notifier.SomethingHappened += new EventHandler(MyHandler);   // 이벤트 핸들러 등록
+          
+          for(int i=1; i<30; i++)
+          {
+               notifier.DoSomething(i);   // 이벤트 핸들러 호출
+          }
+     }
+}
+
+
+
+```
+
 
