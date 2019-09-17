@@ -370,7 +370,13 @@ namespace UsingHashTable
                 arr[index] = value;
             }
         }
+        
+        public int Length
+        {
+            get { return arr.Length; }
+        }
     }
+    
     class MainApp
     {
         static void Main(string[] args)
