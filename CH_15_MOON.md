@@ -16,7 +16,7 @@
 
 ***
 
-### Example : 키가 175 미만인 데이터만 추출
+#### Example : 키가 175 미만인 데이터만 추출
 ```C#
 
 // 클래스 선언
@@ -182,15 +182,94 @@ namespace SimpleLinq
 
 ```
 
+```
+김태희, 62.094
+하하, 67.203
+고현정, 67.596
+```
+
+***
 
 
+## 여러 개의 데이터 원본에 질의하기
+- 여러 개의 데이터 원본에 접근하는 쿼리?
+- LINQ는 기본적으로 데이터 원본에 접근하기 위해 from 절을 사용
+- 여러 개의 데이터 원본에 접근하려면 <b>from 문을 중첩해서 사용하면 됨</b>
+
+#### Example
+```C#
+
+// 클래스 선언
+class Class
+{
+    public string Name {get; set;}
+    public int[] Score {get; set;}  // 주목! 배열임
+}
+
+// 클래스를 바탕으로 배열 하나를 선언
+Class[] arrClass = 
+{
+    new Class(){Name="연두반", Score=new int[]{99, 80, 70, 24}},
+    new Class(){Name="분홍반", Score=new int[]{60, 45, 87, 72}},
+    new Class(){Name="파랑반", Score=new int[]{92, 30, 85, 94}},
+    new Class(){Name="노랑반", Score=new int[]{94, 88, 0, 15}}
+};
+
+// LINQ - fromfrom
+var classes = from c in arrClass        // 첫 번째 데이터 원본
+                  from s in c.Score     // 두 번째 데이터 원본
+                  where s < 60
+              select new {c.Name, Lowest=s};
+
+```
 
 
+#### From From Example
+```C#
+using System;
+using System.Linq;
 
+namespace FromFrom
+{
+    class Class
+    {
+        public string Name { get; set; }
+        public int[]  Score { get; set; }
+    }
 
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Class[] arrClass = 
+            {
+                new Class(){Name="연두반", Score=new int[]{99, 80, 70, 24}},
+                new Class(){Name="분홍반", Score=new int[]{60, 45, 87, 72}},
+                new Class(){Name="파랑반", Score=new int[]{92, 30, 85, 94}},
+                new Class(){Name="노랑반", Score=new int[]{90, 88, 0, 17}}
+            };
 
+            var classes = from c in arrClass
+                          from s in c.Score
+                          where s < 60
+                          orderby s
+                          select new { c.Name, Lowest = s};
 
+            foreach (var c in classes )
+                Console.WriteLine($"낙제 : {c.Name} ({c.Lowest})");
+        }
+    }
+}
 
+```
+
+```
+낙제 : 노랑반 (0)
+낙제 : 노랑반 (17)
+낙제 : 연두반 (24)
+낙제 : 파랑반 (30)
+낙제 : 분홍반 (45)
+```
 
 
 
