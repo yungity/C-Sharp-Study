@@ -135,4 +135,49 @@ Action 대리자는 Func 대리자와 거의 똑같지만, 반환 형식이 없�
 
 ```
 int result = 0;
-Action<int> act2 = (x) => result = x * x; // 람다식 밖에 선언한 result에 x*x
+Action<int> act2 = (x) => result = x * x; // 람다식 밖에 선언한 result에 결과 값을 저장한다.
+```
+
+<details>
+<summary>예시 코드</summary>
+<div markdown="1">
+
+```c#
+using System;
+
+namespace ActionTest
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Action act1 = () => Console.WriteLine("Action()");
+            act1();
+
+            int result = 0;
+            Action<int> act2 = (x) => result = x * x;
+
+            act2(3);
+            Console.WriteLine($"result : {result}");
+
+            Action<double, double> act3 = (x, y) =>
+             {
+                 double pi = x / y;
+                 Console.WriteLine($"Action<T1,T2>({x},{y}) : {pi}");
+             };
+            act3(22.0, 7.0);
+        }
+    }
+}
+```
+
+</div>
+</details>
+
+### 식 트리
+
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/ext.png">
+식 트리는 자료구조의 트리와 동일한 구조이지만 이진트리로 구성되어 있다.
+식 트리란, 식을 트리로 표현한 자료 구조를 말하며 식 트리로 표현된 식은 트리의 잎 노드부터 계산해서 루트까지 올라가면 전체 식의 결과를
+얻을 수 있다.
+
