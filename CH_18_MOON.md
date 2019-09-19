@@ -178,6 +178,78 @@ Stream stream4 = new FileStream("d.dat", FileMode.Truncate);              // 파
 Stream stream5 = new FileStream("e.dat", FileMode.Append);                // 덧붙이기 모드로 열기
 ```
 
+***
+
+### FileStream 클래스 (For Write)
+- 파일에 데이터를 기록하기 위해 Stream 클래스로부터 물려받은 다음 <b>두 가지 메소드를 오버라이딩</b> 하고 있음
+```C#
+public override void Write(
+    byte[] array,   // 쓸 데이터가 담긴 byte 배열
+    int offset,     // byte 배열 내의 시작 오프셋
+    int count       // 기록할 데이터의 총 길이 (단위는 바이트)
+);
+
+public override void WriteByte( byte value );
+```
+- byte 혹은 byte 배열만 입력이 가능
+- 이를 위해 각종 데이터 형식을 byte 배열로 바꿔주는 <b>BitConverter 클래스를 제공</b>
+
+
+#### long 형식의 데이터를 파일에 기록하는 예제
+```C#
+long someValue = 0x123456789ABCDEF0;
+
+// 파일 스트림 생성
+Stream outStream = new FileStream("a.dat", FileMode.Create);
+
+// long -> byte 배열
+byte[] wBytes = BitConverter.GetBytes(someValue);
+
+// 변환한 byte 배열을 파일 스트림을 통해 파일에 기록
+outStream.Write(wBytes, 0, wBytes.Length);
+
+// 파일 스트림 닫기
+outStream.Close();
+```
+
+***
+
+### FileStream 클래스 (For Read)
+- Write와 같이 Read에서도 두 가지 메소드를 Override
+
+```C#
+public override int Read(
+    byte[] array,   // 읽을 데이터가 담긴 byte 배열
+    int offset,     // byte 배열 내의 시작 오프셋
+    int count       // 읽을 데이터의 총 길이 (단위는 바이트)
+);
+
+public override int ReadByte();
+```
+
+#### File에서 데이터를 long 형식으로 읽는 예제 
+```C#
+byte[] rBytes = new byte[8];
+
+// 파일 스트림 생성
+Stream inStream = new FileStream("a.dat", FileMode.Open);
+
+// rBytes의 길이만큼(8바이트) 데이터를 읽어 rBytes에 저장
+inStream.Read(rBytes, 0, rBytes.Length);
+
+// BitConverter를 이용하여 rBytes에 담겨있는 값을 long 형식으로 변환
+long readValue = BitConverter.ToInt64(rbytes, 0);
+
+// 파일 스트림 닫기
+inStream.Close();
+```
+
+***
+
+
+
+
+
 
 
 
