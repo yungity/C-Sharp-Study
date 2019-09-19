@@ -2,11 +2,10 @@
 
 ***
 
-공부한 내용들 정리하는 공간
 
-책: 이것이 C#이다: 처음부터 끝까지 입문자를 배려한 C# 입문서 (한빛미디어, 지은이: 박상현)
+### 책: 이것이 C#이다: 처음부터 끝까지 입문자를 배려한 C# 입문서 (한빛미디어, 지은이: 박상현)
 
-참여자: 윤인선, 김윤하, 이동석, 문병인  
+#### 참여자: [윤인선](https://github.com/uningsun), [김윤하](https://github.com/yungity), [이동석](https://github.com/dongseoklee1541), [문병인](https://github.com/bluein)  
 
 ***
 
