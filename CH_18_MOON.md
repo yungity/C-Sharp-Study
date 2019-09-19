@@ -528,5 +528,211 @@ namespace TextFile
 
 ```
 
+***
+
+## 객체 직렬화 : Serialization / Deserialization
+- 프로그래머가 직접 정의한 클래스나 구조체 같은 <b>복합 데이터 형식</b>을 Write & Read 하기 위한 방식
+- 복합 데이터 형식을 다루러면, 그 형식이 갖고 있는 Field의 값을 저장할 순서를 정한 후, 이 <b>순서대로 저장하고 읽는</b> 코드를 작성해야 함
+- C# 에서는 이러한 문제를 다루기 위해 <b>직렬화(Serialization)</b>를 제공
+
+#### .NET Serialization은 크게 세 가지 방식을 지원
+1. XML Serialization
+2. SoapFormatter Serialization
+3. Binary Serialization
+
+#### 이 책에서 다루는 건 Binary Serialization
+
+#### Serialization Example 
+```C#
+[Serializable]      // Seializable 선언
+class MyClass
+{
+    //...
+}
+
+Stream ws = new FileStream("a.dat", FileMode.Create);
+BinaryFormatter serializer = new BinaryFormatter();
+
+MyClass obj = new MyClass();        // 객체 생성
+
+serializer.Serialize(ws, obj);      // 직렬화!
+
+ws.Close();     // 스트림 닫기
+
+```
+
+
+#### Deserialization Example 
+```C#
+Stream rs = new FileStream("a.dat", FileMode.Open);
+BinaryFormatter deserializer = new BinaryFormatter();
+
+MyClass obj = (MyClass)deserializer.Deserialize(rs);
+rs.Close();
+```
+
+- 그냥 BinaryFormatter에게 맡기면 객체의 직렬화, 역직렬화를 알아서 해줌
+
+
+
+#### 직렬화하고 싶지 않은 Field가 있을 때?
+- 그 Field만 [NonSerialized] 애트리뷰트로 수식해주면 됨
+- 이렇게 하면 이 Field의 상태는 직렬화할 때도 저장되지 않고, 역직렬화할 때도 역시 복원되지 않음
+
+```C#
+[Serializable]
+class MyClass
+{
+    public int myField1;
+    public int myField2;
+    
+    [NonSerialized]
+    public int myField3;        // myField3 을 제외한 나머지 Field만 직렬화 수행
+    
+    public int MyField4;
+}
+
+```
+
+#### 복합 데이터 형식을 직렬화할 때 주의할 점
+- 직렬화하지 '않는' Field 뿐 아니라, 직렬화하지 <b>'못하는' Field 도 Nonserializable 애트리뷰트로 수식</b>해야 함!!
+
+```C#
+class NonserializableClass
+{
+    public int myField;
+}
+
+[Serializable]
+class MyClass
+{
+    public int myField1;
+    public int myField2;
+    
+    // NonserializableClass는 Serializable하지 않으므로, 직렬화를 수행할 때 오류가 발생!!
+    public NonserializableClass myField3;       
+    
+    public int myField4;
+}
+```
+#### 위 문제를 해결하기 위한 두 가지 해결책
+1) NonserializableClass 클래스를 Serializable 애트리뷰트로 수식하는 방법
+2) myField3을 Nonserializable 애트리뷰트로 수식하는 방법
+
+
+#### 책 Example 
+```C#
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace Serialization
+{
+    [Serializable]
+    class NameCard
+    {
+        public string Name;
+        public string Phone;
+        public int Age;
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Stream ws = new FileStream("a.dat", FileMode.Create);
+            BinaryFormatter serializer = new BinaryFormatter();
+
+            NameCard nc = new NameCard();
+            nc.Name = "박상현";
+            nc.Phone = "010-123-4567";
+            nc.Age = 33;
+
+            serializer.Serialize(ws, nc);
+            ws.Close();
+
+            Stream rs = new FileStream("a.dat", FileMode.Open);
+            BinaryFormatter deserializer = new BinaryFormatter();
+
+            NameCard nc2;
+            nc2 = (NameCard)deserializer.Deserialize(rs);
+            rs.Close();
+
+            Console.WriteLine($"Name:  {nc2.Name}");
+            Console.WriteLine($"Phone: {nc2.Phone}");
+            Console.WriteLine($"Age:   {nc2.Age}");
+        }
+    }
+}
+
+```
+
+
+***
+
+## Collection의 직렬화
+- 객체 직렬화 방식과 동일
+
+#### Serializing Collection Example
+```C#
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace SerializingCollection
+{
+    [Serializable]
+    class NameCard
+    {
+        public NameCard(string Name, string Phone, int Age)
+        {
+            this.Name = Name;
+            this.Phone = Phone;
+            this.Age = Age;
+        }
+
+        public string Name;
+        public string Phone;
+        public int Age;
+    }
+
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Stream ws = new FileStream("a.dat", FileMode.Create);
+            BinaryFormatter serializer = new BinaryFormatter();
+            
+            List<NameCard> list = new List<NameCard>();
+            list.Add(new NameCard("박상현", "010-123-4567", 33));
+            list.Add(new NameCard("김연아", "010-323-1111", 22));
+            list.Add(new NameCard("장미란", "010-555-5555", 26));
+
+            serializer.Serialize(ws, list);
+            ws.Close();
+
+            Stream rs = new FileStream("a.dat", FileMode.Open);
+            BinaryFormatter deserializer = new BinaryFormatter();
+
+            List<NameCard> list2;
+            list2 = (List<NameCard>)deserializer.Deserialize(rs);
+            rs.Close();
+
+            foreach (NameCard nc in list2)
+            {
+                Console.WriteLine(
+                    $"Name: {nc.Name}, Phone: {nc.Phone}, Age: {nc.Age}");
+            }
+        }
+    }
+}
+
+```
+
+
+
+
+
 
 
