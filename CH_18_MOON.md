@@ -367,7 +367,7 @@ Position : 9
 
 ***
 
-## 이진 데이터 처리를 위한 BinaryWriter / BinaryReader
+## 이진 데이터 처리 : BinaryWriter / BinaryReader
 - BinaryWriter / BinaryReader ?
 - 특정 데이터를 저장, 읽을 때 Byte 형식으로 변환해야 하는 불편함을 해소하기 위한 도우미 클래스
 - 이 두 클래스는 파일 처리의 도우미 역할만 하기 때문에, 이들 클래스를 이용하려면 <b>Stream으로부터 파생된 클래스의 인스턴스가 있어야 함</b>
@@ -443,7 +443,6 @@ namespace BinaryFile
 
 ```
 
-
 ```
 File size : 47 bytes
 2147483647
@@ -452,6 +451,40 @@ Good morning!
 안녕하세요!
 1.79769313486232E+308
 ```
+
+***
+
+## 텍스트 파일 처리 : StreamWriter / StreamReader
+- 텍스트 파일은 구조는 간단하지만 활용도가 높은 파일 형식
+- ASCII 인코딩에서는 <b>각 바이트가 문자 하나</b>를 나타내기 때문에, 바이트 오더의 문제도 벗어날 수 있음 (플랫폼 호환성이 높음)
+- .NET 프레임워크에서는 텍스트 파일 처리를 위한 StreamWriter / StreamReader 를 제공
+- 이 또한 Stream의 도우미 클래스
+
+
+#### Stream Writer
+```C#
+StreamWriter sw = new StreamWriter(new FileStream("a.dat", FileMode.Create));
+
+sw.Write(32);
+sw.WriteLine("Good Morning!");
+sw.WriteLine(3.14);
+
+sw.Close();
+```
+
+#### Stream Reader
+```C#
+StreamReader sr = new StreamReader(new FileStream("a.dat", FileMode.Open));
+
+while(sr.EndOfStream == false)  // EndOfStream 프로퍼티는 스트림의 끝에 도달했는지를 알려줌
+{
+    Console.WriteLine(sr.ReadLine());
+}
+
+sr.Close();
+
+```
+
 
 
 
