@@ -246,8 +246,68 @@ inStream.Close();
 
 ***
 
+#### Basic IO Example : Write & Read 
 
+```C#
+using System;
+using System.IO;
 
+namespace BasicIO
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            // Write
+            long someValue = 0x123456789ABCDEF0;
+            Console.WriteLine("{0,-1} : 0x{1:X16}", "Original Data", someValue);
+
+            Stream outStream = new FileStream("a.dat", FileMode.Create);
+            byte[] wBytes = BitConverter.GetBytes(someValue);
+
+            Console.Write("{0,-13} : ", "Byte array");
+
+            foreach (byte b in wBytes)
+                Console.Write("{0:X2} ", b);
+            Console.WriteLine();
+
+            outStream.Write(wBytes, 0, wBytes.Length);
+            outStream.Close();
+            
+            
+            // Read
+            Stream inStream = new FileStream("a.dat", FileMode.Open);
+            byte[] rbytes = new byte[8];
+            
+            int i = 0;
+            while (inStream.Position < inStream.Length)
+                rbytes[i++] = (byte)inStream.ReadByte();
+            
+            long readValue = BitConverter.ToInt64(rbytes, 0);
+
+            Console.WriteLine("{0,-13} : 0x{1:X16} ", "Read Data", readValue);
+            inStream.Close();
+        }
+    }
+}
+
+```
+
+***
+
+## 여러 개의 파일을 Write & Read 하기
+
+#### Position 프로퍼티 
+- Stream 클래스에는 Position 이라는 프로퍼티가 있음
+- Position 프로퍼티는 현재 스트림의 읽는 위치 또는 쓰는 위치를 나타냄
+- FileStream 객체를 생성할 때 Position은 0이 되고 호출 때마다 1씩 증가하는 형태
+
+#### Sequential Access
+- 따라서 여러 개의 데이터를 기록하는 일은 Write()나 WriteByte()를 이용하여 순차적으로 호출하는 것만으로도 충분 -> 순차 접근
+
+#### Random Access
+- 파일 내의 임의의 위치에 Position이 위치하도록 할 수도 있음
+- Seek() 메소드를 호출하거나, Position 프로퍼티에 직접 원하는 값을 넣으면 지정한 위치로 점프하여 읽기/쓰기가 가능
 
 
 
