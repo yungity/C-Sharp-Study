@@ -274,4 +274,79 @@ namespace ExpressionTreeViaLambda
 ```
 
 </div>
-</dtails>
+</details>
+
+### 식으로 이루어지는 멤버
+메소드,속성(인덱서),생성자,종료자의 공통된 특징은 모두 클래스의 멤버로서 본문이 중괄호{}로 만들어져 있다. 이러한 멤버의 본문을 식(Expression)만으로 구현이 가능하다. 이러한 멤버를 **"식 본문 멤버(Expression-Bodied Member)"** 라고 한다.
+
+```
+멤버 => 식;
+```
+
+<details>
+<summary>예시 코드</summary>
+<div markdown="1">
+
+```c#
+using System;
+using System.Collections.Generic;
+
+namespace ExpressionBodiedMember
+{ 
+    class FriendList
+    {
+        private List<string> list = new List<string>();
+
+        
+        public void Add(string name) => list.Add(name); // list 의 Add 메서드를 추가
+        public void Remove(string name) => list.Remove(name);
+        public void PrintAll()
+        {
+             foreach (var s in list)
+                Console.WriteLine(s);
+        }
+
+        public FriendList() => Console.WriteLine("FrindList()"); // 생성자 식으로 선언
+        ~FriendList() => Console.WriteLine("~FrindList()"); // 소멸자 식선언
+
+        // public int Capacity => list.Capacity; // 읽기 전용으로 한다면 get 도 생략할 수 있다.
+
+        public int Capacity // 속성
+        {
+            get => list.Capacity;
+            set => list.Capacity = value;
+        }
+
+        //pubilc string this[int index] => list[index]; // 읽기 전용
+        public string this[int index]
+        {
+            get => list[index];
+            set => list[index] = value;
+        }
+
+    }
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            FriendList obj = new FriendList();
+            obj.Add("Eeny");
+            obj.Add("Meeny");
+            obj.Add("Miny");
+            obj.Remove("Eeny");
+            obj.PrintAll();
+
+            Console.WriteLine($"{obj.Capacity}");
+            obj.Capacity = 10;
+            Console.WriteLine($"{obj.Capacity}");
+
+            Console.WriteLine($"{obj[0]}");
+            obj[0] = "Moe";
+            obj.PrintAll();
+        }
+    }
+}
+```
+
+</div>
+</details>
