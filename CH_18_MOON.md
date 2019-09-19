@@ -310,23 +310,148 @@ namespace BasicIO
 - Seek() 메소드를 호출하거나, Position 프로퍼티에 직접 원하는 값을 넣으면 지정한 위치로 점프하여 읽기/쓰기가 가능
 
 
+```C#
+Stream outStream = new FileStream("a.dat", FileMode.Create);
+// ...
+
+OutStream.Seek(5, SeekOrigin.Current);      // 현재 위치에서 5바이트 뒤로 이동
+OutStream.WriteByte(0x04);
+```
+
+#### Seq & Rand Example
+```C#
+using System;
+using System.IO;
+
+namespace SeqNRand
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            Stream outStream = new FileStream("a.dat", FileMode.Create);
+            Console.WriteLine($"Position : {outStream.Position}");
+
+            outStream.WriteByte(0x01);
+            Console.WriteLine($"Position : {outStream.Position}");
+
+            outStream.WriteByte(0x02);
+            Console.WriteLine($"Position : {outStream.Position}");
+
+            outStream.WriteByte(0x03);
+            Console.WriteLine($"Position : {outStream.Position}");
+
+            outStream.Seek(5, SeekOrigin.Current);
+            Console.WriteLine($"Position : {outStream.Position}");
+
+            outStream.WriteByte(0x04);
+            Console.WriteLine($"Position : {outStream.Position}");
+
+            outStream.Close();
+        }
+    }
+}
+
+```
 
 
+```
+Position : 0
+Position : 1
+Position : 2
+Position : 3
+Position : 8
+Position : 9
+```
 
 
+***
+
+## 이진 데이터 처리를 위한 BinaryWriter / BinaryReader
+- BinaryWriter / BinaryReader ?
+- 특정 데이터를 저장, 읽을 때 Byte 형식으로 변환해야 하는 불편함을 해소하기 위한 도우미 클래스
+- 이 두 클래스는 파일 처리의 도우미 역할만 하기 때문에, 이들 클래스를 이용하려면 <b>Stream으로부터 파생된 클래스의 인스턴스가 있어야 함</b>
 
 
+#### BinaryWriter
+```C#
+BinaryWriter bw = new BinaryWriter(new FileStream("a.dat", FileMode.Create));
+
+// Write()는 C#이 제공하는 모든 기본 데이터 형식에 대해 오버로딩되어 있음
+bw.Write(32);
+bw.Write("Good Morning!");
+bw.Write(3.14);
+
+bw.Close()
+```
 
 
+#### BinaryReader
+```C#
+BinaryReader br = new BinaryReader(new FileStream("a.dat", FileMode.Open));
+
+// ReadXXX() 메소드 
+int a = br.ReadInt32();
+string b = br.ReadString();
+double c = br.ReadDouble();
+
+br.Close();
+```
 
 
+#### Binary File Example : Write & Read
+```C#
+using System;
+using System.IO;
+
+namespace BinaryFile
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            // 쓰기
+            BinaryWriter bw =
+                new BinaryWriter(
+                    new FileStream("a.dat", FileMode.Create));
+
+            bw.Write(int.MaxValue);
+            bw.Write("Good morning!");
+            bw.Write(uint.MaxValue);
+            bw.Write("안녕하세요!");
+            bw.Write(double.MaxValue);
+
+            bw.Close();     // 내부 스트림을 닫음
 
 
+            // 읽기
+            BinaryReader br =
+                new BinaryReader(
+                    new FileStream("a.dat", FileMode.Open));
+
+            Console.WriteLine($"File size : {br.BaseStream.Length} bytes");
+            Console.WriteLine($"{br.ReadInt32()}");
+            Console.WriteLine($"{br.ReadString()}");
+            Console.WriteLine($"{br.ReadUInt32()}");
+            Console.WriteLine($"{br.ReadString()}");
+            Console.WriteLine($"{br.ReadDouble()}");
+
+            br.Close();     // 내부 스트림을 닫음
+        }
+    }
+}
+
+```
 
 
-
-
-
+```
+File size : 47 bytes
+2147483647
+Good morning!
+4294967295
+안녕하세요!
+1.79769313486232E+308
+```
 
 
 
