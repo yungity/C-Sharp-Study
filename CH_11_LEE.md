@@ -114,22 +114,97 @@ namespace CopyingArray
 * where T : U = T는 또 다른 형식 매개 변수 U로부터 상속받은 클래스여야 한다.
 
 ```c#
+using System;
+using System.Collections;
+using static System.Console;
+
+namespace ConstraintsOnTypeParameters
+{
+    class StructArray<T> where T : struct // T는 값 형식만 가능
+    {
+        public T[] Array { get; set; } // 인덱서
+        public StructArray(int size) // 생성자
+        {
+            Array = new T[size];
+        }
+        public int Length
+        {
+            get { return Array.Length; }
+        }
+    }
+
+    class RefArray<T> where T : class // T는 참조 형식만 가능
+    {
+        public T[] Array { get; set; } // 인덱서
+        public RefArray(int size) // 생성자
+        {
+            Array = new T[size];
+        }
+        public int Length
+        {
+            get { return Array.Length; }
+        }
+    }
+
+    class Base { }
+    class Drived : Base { }
     class BaseArray<U> where U : Base
     {
-        public U[] Array
-        {
-            get;set;
-        }
+        public U[] Array { get; set; }
         public BaseArray(int size)
         {
             Array = new U[size];
         }
+
+        public void CopyArray<T>(T[] Source) where T : U
+        {
+            Source.CopyTo(Array, 0);
+        }
+        public int Length
+        {
+            get { return Array.Length; }
+        }
     }
 
-    public void CopyArray<T>(T[] Source) where T : U
+    class MainApp
     {
-        Source.CopyTo(Array, 0);
-    }
+        public static T CreateInstance<T>() where T : new() // T 는 반드시 매개변수가 없는 생성자가 있어야 한다.
+        {
+            return new T();
+        }
+        static void Main(string[] args)
+        {
+            StructArray<int> a = new StructArray<int>(3); // Array 생성
+            a.Array[0] = 0;
+            a.Array[1] = 1;
+            a.Array[2] = 2;
+
+            for (int i = 0; i < a.Length; i++)
+                WriteLine(a.Array[i]);
+
+            RefArray<StructArray<double>> b = new RefArray<StructArray<double>>(3);
+            b.Array[0] = new StructArray<double>(5);
+            b.Array[1] = new StructArray<double>(10);
+            b.Array[2] = new StructArray<double>(1005);
+
+            WriteLine("RefArray<StructArray<double>>");
+
+            for (int i = 0; i < b.Length; i++)
+                WriteLine(b.Array[i].Array.Length);
+
+            BaseArray<Base> c = new BaseArray<Base>(3);
+            c.Array[0] = new Base();
+            c.Array[1] = new Drived();
+            c.Array[2] = CreateInstance<Base>();
+
+            BaseArray<Drived> d = new BaseArray<Drived>(3);
+            d.Array[0] = new Drived(); // Base 형식 여기에 할당 할 수 없다.
+            d.Array[1] = CreateInstance<Drived>();
+            d.Array[2] = CreateInstance<Drived>();
+
+            BaseArray<Drived> e = new BaseArray<Drived>(3);
+            e.CopyArray<Drived>(d.Array);
+        }
 ```
 
 상위 코드에서 사용되던 형식 매개 변수 U로부터 상속받는 형식으로 제약 조건을 주는 예이다. 
