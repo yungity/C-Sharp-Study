@@ -80,7 +80,8 @@ namespace DuckTyping
 
 ### RCW(Runtime Callable Wrapper)
 - .NET 언어들의 경우, RCW를 통해 COM 컴포넌트를 사용할 수 있다. COM 객체를 프로젝트 참조에 추가하면 IDE가 자동으로 tlbimp.exe를 호출해서 RCW를 만들어주고 이는 COM에 대한 프록시 역할(대리)을 해서 C#코드에서 COM API를 사용할 수 있게 해줍니다. 
-![그림3](./OOP/pic/ CH_17_YH1.jpg)
+
+![그림3](./OOP/pic/CH_17_YH1.jpg)
  
 
 - C#과 COM 사이의 상호 운용성을 좋지 않게 만든 원인
@@ -93,7 +94,7 @@ namespace DuckTyping
 ### COM 컴포넌트를 참조에 추가하는 방법
 1. 솔루션 탐색기에 ‘program.cs’대신 __‘main.cs’__ 만들어 주기
 2. 솔루션 탐색기 ‘참조’ 항목의 마우스 오른쪽 버튼에서 __[참조 추가__] 항목 선택
-3. [COM] ? [형식 라이브러리] 항목 선택
+3. [COM] - [형식 라이브러리] 항목 선택
 4. 구성 요소 목록에서 필요한 형식 라이브러리 추가
 
 <details>
