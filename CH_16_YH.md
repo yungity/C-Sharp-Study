@@ -1,59 +1,56 @@
-#16. ¸®ÇÃ·º¼Ç°ú ¾ÖÆ®¸®ºäÆ®
+# 16. ë¦¬í”Œë ‰ì…˜ê³¼ ì• íŠ¸ë¦¬ë·°íŠ¸
 
-## 16.1 ¸®ÇÃ·º¼Ç
-- __¸®ÇÃ·º¼Ç__
-: °´Ã¼ÀÇ Çü½Ä Á¤º¸¸¦ º¸´Â ±â´É, ½ÇÇà Áß °´Ã¼ÀÇ Çü½Ä ÀÌ¸§, ÇÁ·ÎÆÛÆ¼, ¸Þ¼Òµå, ÇÊµå, ÀÌº¥Æ® ¸ñ·ÏÀ» ¿­¾îº¼ ¼ö ÀÖ´Ù.
-- Çü½ÄÀ» ¾Ë ¼ö ÀÖ´Ù¸é µ¿ÀûÀ¸·Î ÀÎ½ºÅÏ½º¸¦ ¸¸µé ¼ö ÀÖ±â ¶§¹®¿¡ ±× ÀÎ½ºÅÏ½ºÀÇ ¸Þ¼Òµå È£ÃâÀÌ °¡´ÉÇÔÀ» ¶æÇÔ.
-- TypeÇü½ÄÀÌ ´ã°í ÀÖ´Â Á¤º¸: .Net¿¡¼­ »ç¿ëµÇ´Â µ¥ÀÌÅÍ Çü½ÄÀÇ ¸ðµç Á¤º¸.
-: Çü½Ä ÀÌ¸§, ¼Ò¼ÓµÇ¾î ÀÖ´Â ¾î¼Àºí¸® ÀÌ¸§, ÇÁ·ÎÆÛÆ¼ ¸ñ·Ï, ¸Þ¼Òµå ¸ñ·Ï, ÇÊµå ¸ñ·Ï, ÀÌº¥Æ® ¸ñ·Ï, ÀÌ Çü½ÄÀÌ »ó¼ÓÇÏ°í ÀÖ´Â ÀÎÅÍÆäÀÌ½ºÀÇ ¸ñ·Ï.
+## 16.1 ë¦¬í”Œë ‰ì…˜
+- __ë¦¬í”Œë ‰ì…˜__
+: ê°ì²´ì˜ í˜•ì‹ ì •ë³´ë¥¼ ë³´ëŠ” ê¸°ëŠ¥, ì‹¤í–‰ ì¤‘ ê°ì²´ì˜ í˜•ì‹ ì´ë¦„, í”„ë¡œí¼í‹°, ë©”ì†Œë“œ, í•„ë“œ, ì´ë²¤íŠ¸ ëª©ë¡ì„ ì—´ì–´ë³¼ ìˆ˜ ìžˆë‹¤.
+- í˜•ì‹ì„ ì•Œ ìˆ˜ ìžˆë‹¤ë©´ ë™ì ìœ¼ë¡œ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“¤ ìˆ˜ ìžˆê¸° ë•Œë¬¸ì— ê·¸ ì¸ìŠ¤í„´ìŠ¤ì˜ ë©”ì†Œë“œ í˜¸ì¶œì´ ê°€ëŠ¥í•¨ì„ ëœ»í•¨.
+- Typeí˜•ì‹ì´ ë‹´ê³  ìžˆëŠ” ì •ë³´: .Netì—ì„œ ì‚¬ìš©ë˜ëŠ” ë°ì´í„° í˜•ì‹ì˜ ëª¨ë“  ì •ë³´.
+: í˜•ì‹ ì´ë¦„, ì†Œì†ë˜ì–´ ìžˆëŠ” ì–´ì…ˆë¸”ë¦¬ ì´ë¦„, í”„ë¡œí¼í‹° ëª©ë¡, ë©”ì†Œë“œ ëª©ë¡, í•„ë“œ ëª©ë¡, ì´ë²¤íŠ¸ ëª©ë¡, ì´ í˜•ì‹ì´ ìƒì†í•˜ê³  ìžˆëŠ” ì¸í„°íŽ˜ì´ìŠ¤ì˜ ëª©ë¡.
 
-## 16.1.1 Object.GetType() ¸Þ¼Òµå¿Í Type Å¬·¡½º 
-### Object Çü½ÄÀÇ ¸Þ¼Òµå 
-- ¸ðµç µ¥ÀÌÅÍ Çü½ÄÀº ObjectÇü½ÄÀÌ °¡Áö°í ÀÖ´Â ´ÙÀ½ ¸Þ¼Òµå¸¦ ¹°·Á¹Þ¾Æ °®°í ÀÖ´Ù.
+## 16.1.1 Object.GetType() ë©”ì†Œë“œì™€ Type í´ëž˜ìŠ¤ 
+### Object í˜•ì‹ì˜ ë©”ì†Œë“œ 
+- ëª¨ë“  ë°ì´í„° í˜•ì‹ì€ Objectí˜•ì‹ì´ ê°€ì§€ê³  ìžˆëŠ” ë‹¤ìŒ ë©”ì†Œë“œë¥¼ ë¬¼ë ¤ë°›ì•„ ê°–ê³  ìžˆë‹¤.
 1. Equals()
 2. GetHashCode()
 3. GetType()
 4.ReferenceEquals()
 5. ToString()
 
-### GetType() ¸Þ¼Òµå
-: NETÀº ¸ðµç µ¥ÀÌÅÍ Çü½ÄÀÇ Á¶»óÀÎ Object¸¦ ÀÌ¿ë Object.GetType()¸Þ¼Òµå¸¦ ÅëÇØ Type Çü½ÄÀÇ °á°ú¸¦ ¹ÝÈ¯ÇÔ. (Type type = a.GetType();)
+### GetType() ë©”ì†Œë“œ
+: NETì€ ëª¨ë“  ë°ì´í„° í˜•ì‹ì˜ ì¡°ìƒì¸ Objectë¥¼ ì´ìš© Object.GetType()ë©”ì†Œë“œë¥¼ í†µí•´ Type í˜•ì‹ì˜ ê²°ê³¼ë¥¼ ë°˜í™˜í•¨. (Type type = a.GetType();)
 
-### Type Çü½Ä 
-Type Çü½ÄÀÇ ¸Þ¼Òµå Áß ÀÏºÎ¿Í ±× ¹ÝÈ¯ Çü½Ä (MSDN ¶óÀÌºê·¯¸®ÀÇ System.TypeÀÇ ¸Å´º¾ó Áß)
-![TypeÇü½ÄÀÇ ¸Þ¼Òµå](./OOP/pic/CH_16_YH1jpg)
+### Type í˜•ì‹ 
+Type í˜•ì‹ì˜ ë©”ì†Œë“œ ì¤‘ ì¼ë¶€ì™€ ê·¸ ë°˜í™˜ í˜•ì‹ (MSDN ë¼ì´ë¸ŒëŸ¬ë¦¬ì˜ System.Typeì˜ ë§¤ë‰´ì–¼ ì¤‘)
+
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/CH_16_YH1.jpg" width=500 />
  
 
-<details>
-<summary>¿¹Á¦ : Type Çü½ÄÀÇ ¸Þ¼Òµå (GetFields()) »ç¿ë ¿¹Á¦</summary>
-<div markdown="1">
+GetFields()) ì‚¬ìš©
 
 ```C#
 int a = 0;
 Type type = a.GetType();
-// ÇÊµåÁ¤º¸¸¦ ¸ñ·ÏÀ¸·Î[ ] ¹Þ¾Æ foreach·Î Á¢±Ù.
+// í•„ë“œì •ë³´ë¥¼ ëª©ë¡ìœ¼ë¡œ[ ] ë°›ì•„ foreachë¡œ ì ‘ê·¼.
 FieldInfo[] fields = type.GetFields();  
 foreach (FieldInfo field in fields)
-    Console.WriteLine(¡°Type:{0}, Name:{1}¡±, field.FieldType.Name, field.Name); 
+    Console.WriteLine(â€œType:{0}, Name:{1}â€, field.FieldType.Name, field.Name); 
 ```
 
-</div>
-</details>
 
-### °Ë»ö ¿É»ö ÁöÁ¤
-- ¸Å°³º¯¼ö·Î System.Reflection.BindingFlags ¿­°ÅÇüÀ» ÀÌ¿ë 
-: BindingFlags.Public, BindingFlags.NonPublic, BindingFlags.Instance, BindingFlags.Static µî
-- BindingFlags ¸Å°³ º¯¼ö¸¦ ¹ÞÁö ¾Ê´Â ¹öÀüµµ ¿À¹ö·Îµî µÇ¾îÀÖ°í ÀÌ °æ¿ì¿¡´Â public ¸â¹ö¸¸ ¹ÝÈ¯.
+### ê²€ìƒ‰ ì˜µìƒ‰ ì§€ì •
+- ë§¤ê°œë³€ìˆ˜ë¡œ System.Reflection.BindingFlags ì—´ê±°í˜•ì„ ì´ìš© 
+: BindingFlags.Public, BindingFlags.NonPublic, BindingFlags.Instance, BindingFlags.Static ë“±
+- BindingFlags ë§¤ê°œ ë³€ìˆ˜ë¥¼ ë°›ì§€ ì•ŠëŠ” ë²„ì „ë„ ì˜¤ë²„ë¡œë“± ë˜ì–´ìžˆê³  ì´ ê²½ìš°ì—ëŠ” public ë©¤ë²„ë§Œ ë°˜í™˜.
 
 ```
 int a =0;
 Type type = a.GetType();
-//public ÀÎ½ºÅÏ½º ÇÊµå Á¶È¸
-var fields1 = type.GetFields(BindingFlags.Public | BindingFlags.Instance); //FieldInfo[]·Î ¾È¹Þ°í var
+//public ì¸ìŠ¤í„´ìŠ¤ í•„ë“œ ì¡°íšŒ
+var fields1 = type.GetFields(BindingFlags.Public | BindingFlags.Instance); //FieldInfo[]ë¡œ ì•ˆë°›ê³  var
 ```
 
 <details>
-<summary>__¿¹Á¦ : Type Çü½ÄÀÇ ¸Þ¼Òµå »ç¿ë ¿¹Á¦__</summary>
+<summary> ì˜ˆì œ : Type í˜•ì‹ì˜ ë©”ì†Œë“œ ì‚¬ìš© ì˜ˆì œ </summary>
 <div markdown="1">
 
 ```
@@ -149,47 +146,48 @@ namespace GetType
 }
 ```
 
-- __ÀÎÅÍÆäÀÌ½º ¸ñ·Ï__: Type Çü½ÄÀ¸·Î ¹ÝÈ¯ ¹ÞÀº GetInterfaces()
-- __ÇÊµå ¸ñ·Ï__: FieldInfo[] Çü½ÄÀ¸·Î ¹ÝÈ¯ GetFields()
-BindingFlags ¿­°ÅÇü public, NonPublic, static, instance
-Fieldinfo ÀÇ (.Is~·Î) accessLevel : protected, public, private
-- __¸Þ¼Òµå ¸ñ·Ï__: MethodInfo[] Çü½ÄÀ¸·Î ¹ÝÈ¯ ¹ÞÀº .GetMethods()
- - ParameterInfo[] Çü½ÄÀ¸·Î ¹ÝÈ¯ ¹ÞÀº MethodInfo[] ÀÇ .GetParameters() ¸Þ¼Òµå
-- __ÇÁ·ÎÆÛÆ¼ ¸ñ·Ï__ : PropertyInfo[]Çü½ÄÀ¸·Î ¹ÝÈ¯¹ÞÀº GetProperties()
+- __ì¸í„°íŽ˜ì´ìŠ¤ ëª©ë¡__: Type í˜•ì‹ìœ¼ë¡œ ë°˜í™˜ ë°›ì€ GetInterfaces()
+- __í•„ë“œ ëª©ë¡__: FieldInfo[] í˜•ì‹ìœ¼ë¡œ ë°˜í™˜ GetFields()
+BindingFlags ì—´ê±°í˜• public, NonPublic, static, instance
+Fieldinfo ì˜ (.Is~ë¡œ) accessLevel : protected, public, private
+- __ë©”ì†Œë“œ ëª©ë¡__: MethodInfo[] í˜•ì‹ìœ¼ë¡œ ë°˜í™˜ ë°›ì€ .GetMethods()
+ - ParameterInfo[] í˜•ì‹ìœ¼ë¡œ ë°˜í™˜ ë°›ì€ MethodInfo[] ì˜ .GetParameters() ë©”ì†Œë“œ
+- __í”„ë¡œí¼í‹° ëª©ë¡__ : PropertyInfo[]í˜•ì‹ìœ¼ë¡œ ë°˜í™˜ë°›ì€ GetProperties()
 
 </div>
 </details>
 
-### __Object.GetType() ¸Þ¼Òµå ´ëÃ¼__
-- .GetType() ¸Þ¼Òµå´Â ¹Ýµå½Ã °´Ã¼ÀÇ ÀÎ½ºÅÏ½º°¡ ÀÖ¾î¾ß È£ÃâÀÌ °¡´É.( int a =0; Çß´ø °ÍÃ³·³ ÀÎ½ºÅÏ½º¸¦ ¸¸µé°í ÃÊ±âÈ­ ÇØ¾ßÇÔ)
-- µû¶ó¼­ typeof ¿¬»êÀÚ¿Í Type.GetType() ¸Þ¼Òµå¸¦ »ç¿ëÇØ¼­ Type Çü½ÄÀ» ¹ÝÈ¯ ¹ÞÀ» ¼ö ÀÖ´Ù.
-- typeof ¿¬»êÀÚ : Çü½ÄÀÇ ½Äº°ÀÚ ÀÚÃ¼¸¦ ¸Å°³ º¯¼ö·Î ¹ÞÀ½.
-- Type.GetType() ¸Þ¼Òµå : Çü½ÄÀÇ ÀüÃ¼ ÀÌ¸§À» ¸Å°³ º¯¼ö·Î ¹ÞÀ½ (¿¹, ³×ÀÓ½ºÆäÀÌ½º)
+### __Object.GetType() ë©”ì†Œë“œ ëŒ€ì²´__
+- .GetType() ë©”ì†Œë“œëŠ” ë°˜ë“œì‹œ ê°ì²´ì˜ ì¸ìŠ¤í„´ìŠ¤ê°€ ìžˆì–´ì•¼ í˜¸ì¶œì´ ê°€ëŠ¥.( int a =0; í–ˆë˜ ê²ƒì²˜ëŸ¼ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“¤ê³  ì´ˆê¸°í™” í•´ì•¼í•¨)
+- ë”°ë¼ì„œ typeof ì—°ì‚°ìžì™€ Type.GetType() ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•´ì„œ Type í˜•ì‹ì„ ë°˜í™˜ ë°›ì„ ìˆ˜ ìžˆë‹¤.
+- typeof ì—°ì‚°ìž : í˜•ì‹ì˜ ì‹ë³„ìž ìžì²´ë¥¼ ë§¤ê°œ ë³€ìˆ˜ë¡œ ë°›ìŒ.
+- Type.GetType() ë©”ì†Œë“œ : í˜•ì‹ì˜ ì „ì²´ ì´ë¦„ì„ ë§¤ê°œ ë³€ìˆ˜ë¡œ ë°›ìŒ (ì˜ˆ, ë„¤ìž„ìŠ¤íŽ˜ì´ìŠ¤)
 
 ```
 Type a = typeof(int);
 Console.WriteLine(a.FullName);
-Type b = Type.GetType(¡°System.Int32¡±);// ³×ÀÓ½ºÆäÀÌ½º¸¦ Æ÷ÇÔÇÏ´Â ÀüÃ¼ ÀÌ¸§.
+Type b = Type.GetType(â€œSystem.Int32â€);// ë„¤ìž„ìŠ¤íŽ˜ì´ìŠ¤ë¥¼ í¬í•¨í•˜ëŠ” ì „ì²´ ì´ë¦„.
 Console.WriteLine(b.FullName);
 ```
 
-## 16.1.2 ¸®ÇÃ·º¼ÇÀ» ÀÌ¿ëÇØ¼­ °´Ã¼ »ý¼ºÇÏ°í ÀÌ¿ëÇÏ±â
-- ¸®ÇÃ·º¼ÇÀ» ÀÌ¿ëÇØ¼­ Æ¯Á¤ Çü½ÄÀÇ ÀÎ½ºÅÏ½º¸¦ ¸¸µé°í, µ¥ÀÌÅÍ¸¦ ÇÒ´çÇÏ¸ç, ¸Þ¼Òµå¸¦ È£ÃâÇÑ´Ù.
-- __ÀåÁ¡__ : ÄÚµå ¾È¿¡¼­ ·±Å¸ÀÓ¿¡ Æ¯Á¤ Çü½ÄÀÇ ÀÎ½ºÅÏ½º¸¦ ¸¸µé ¼ö ÀÖ´Ù.
-: ¿ì¸®´Â Á¶±Ý ´õ ÇÁ·Î±×·¥ÀÌ µ¿ÀûÀ¸·Î µ¿ÀÛÇÒ ¼ö ÀÖµµ·Ï ±¸¼ºÇÒ ¼ö ÀÖ´Ù.
+## 16.1.2 ë¦¬í”Œë ‰ì…˜ì„ ì´ìš©í•´ì„œ ê°ì²´ ìƒì„±í•˜ê³  ì´ìš©í•˜ê¸°
+- ë¦¬í”Œë ‰ì…˜ì„ ì´ìš©í•´ì„œ íŠ¹ì • í˜•ì‹ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“¤ê³ , ë°ì´í„°ë¥¼ í• ë‹¹í•˜ë©°, ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•œë‹¤.
+- __ìž¥ì __ : ì½”ë“œ ì•ˆì—ì„œ ëŸ°íƒ€ìž„ì— íŠ¹ì • í˜•ì‹ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“¤ ìˆ˜ ìžˆë‹¤.
+: ìš°ë¦¬ëŠ” ì¡°ê¸ˆ ë” í”„ë¡œê·¸ëž¨ì´ ë™ì ìœ¼ë¡œ ë™ìž‘í•  ìˆ˜ ìžˆë„ë¡ êµ¬ì„±í•  ìˆ˜ ìžˆë‹¤.
 
-### 1. µ¿ÀûÀ¸·Î ÀÎ½ºÅÏ½º »ý¼º
-- __System.Activator Å¬·¡½º__
-: ¸®ÇÃ·º¼ÇÀ» ÀÌ¿ëÇØ Æ¯Á¤Çü½ÄÀÇ µ¿Àû ÀÎ½ºÅÏ½º »ý¼ºÇÒ ¶§ ÇÊ¿ä.
+### 1. ë™ì ìœ¼ë¡œ ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
+- __System.Activator í´ëž˜ìŠ¤__
+: ë¦¬í”Œë ‰ì…˜ì„ ì´ìš©í•´ íŠ¹ì •í˜•ì‹ì˜ ë™ì  ì¸ìŠ¤í„´ìŠ¤ ìƒì„±í•  ë•Œ í•„ìš”.
+
 - __Activator.CreateInstance()__ 
-: ÀÎ½ºÅÏ½º¸¦ ¸¸µé°íÀÚ ÇÏ´Â Çü½ÄÀÇ Type °´Ã¼(__typeof( )__)¸¦ ¸Å°³ º¯¼ö·Î ÁÖ¸é ÀÎ½ºÅÏ½º¸¦ »ý¼ºÇÏ¿© ¹ÝÈ¯ÇÔ.
+: ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë§Œë“¤ê³ ìž í•˜ëŠ” í˜•ì‹ì˜ Type ê°ì²´(__typeof( )__)ë¥¼ ë§¤ê°œ ë³€ìˆ˜ë¡œ ì£¼ë©´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ìƒì„±í•˜ì—¬ ë°˜í™˜í•¨.
 
 ```
 object a = Activator.CreateInstance(typeof(int));
-//object Çü½Ä
+//object í˜•ì‹
 ```
 
-- __Activator.CreateInstance() ÀÏ¹ÝÈ­ ¹öÀü__
+- __Activator.CreateInstance() ì¼ë°˜í™” ë²„ì „__
 
 ```
 List<int> list = Activator.CreateInstance<List<int>>();
@@ -205,17 +203,22 @@ Profile profile = (Profile)Activator.CreateInstance( type);
 }
 
 ```
-### 2. µ¿ÀûÀ¸·Î °´Ã¼ÀÇ ÇÁ·ÎÆÛÆ¼¿¡ °ª ÇÒ´ç
+### 2. ë™ì ìœ¼ë¡œ ê°ì²´ì˜ í”„ë¡œí¼í‹°ì— ê°’ í• ë‹¹
 
-- __PropertyInfo Å¬·¡½º__
-: Type.GetProperties()ÀÇ ¹ÝÈ¯ Çü½Ä
-- PropertyInfo Å¬·¡½ºÀÇ SetValue(), GetValue() ¸Þ¼Òµå
-: °ª È£Ãâ, ÇÒ´ç
-- __Type.GetProperties() ¸Þ¼Òµå__ : ±× Çü½ÄÀÇ ¸ðµç ÇÁ·ÎÆÛÆ¼¸¦ PropertyInfo Çü½ÄÀÇ ¹è¿­·Î ¹ÝÈ¯
-- __Type.GetProperty() ¸Þ¼Òµå__ : Æ¯Á¤ ÀÌ¸§ÀÇ ÇÁ·ÎÆÛÆ¼¸¦ Ã£¾Æ ±× ÇÁ·ÎÆÛÆ¼ÀÇ Á¤º¸¸¦ ´ãÀº ÇÏ³ªÀÇ PropertyInfo °´Ã¼¸¸À» ¹ÝÈ¯.
+- __PropertyInfo í´ëž˜ìŠ¤__
+: Type.GetProperties()ì˜ ë°˜í™˜ í˜•ì‹
+
+- PropertyInfo í´ëž˜ìŠ¤ì˜ SetValue(), GetValue() ë©”ì†Œë“œ
+: ê°’ í˜¸ì¶œ, í• ë‹¹
+
+- __Type.GetProperties() ë©”ì†Œë“œ__ 
+: ê·¸ í˜•ì‹ì˜ ëª¨ë“  í”„ë¡œí¼í‹°ë¥¼ PropertyInfo í˜•ì‹ì˜ ë°°ì—´ë¡œ ë°˜í™˜
+
+- __Type.GetProperty() ë©”ì†Œë“œ__ 
+: íŠ¹ì • ì´ë¦„ì˜ í”„ë¡œí¼í‹°ë¥¼ ì°¾ì•„ ê·¸ í”„ë¡œí¼í‹°ì˜ ì •ë³´ë¥¼ ë‹´ì€ í•˜ë‚˜ì˜ PropertyInfo ê°ì²´ë§Œì„ ë°˜í™˜.
 
 <details>
-<summary> ¿¹Á¦ : µ¿ÀûÀ¸·Î ¸Þ¼Òµå È£Ãâ </summary>
+<summary> ì˜ˆì œ : ë™ì ìœ¼ë¡œ ë©”ì†Œë“œ í˜¸ì¶œ </summary>
 <div markdown="1">
 
 ```C#
@@ -229,35 +232,35 @@ static void Main()
 Type type = typeof(Profile);
 Profile profile = (Profile)Activator.CreateInstance( type );
 
-    profile.Name = ¡°·ùÇöÁø¡±
-profile.Phone = ¡°010-1234-5678¡±
+    profile.Name = â€œë¥˜í˜„ì§„â€
+profile.Phone = â€œ010-1234-5678â€
     
-MethodInfo method = type.GetMethod(¡°Print¡±);
+MethodInfo method = type.GetMethod(â€œPrintâ€);
 method.Invoke( profile, null );
 
-Propertyinfo name = type.GetProperty(¡°Name¡±);
-PropertyInfo phone = type.GetProperty( ¡°Phone¡± );
+Propertyinfo name = type.GetProperty(â€œNameâ€);
+PropertyInfo phone = type.GetProperty( â€œPhoneâ€ );
 
-name.SetValue ( profile, ¡°¹ÚÂùÈ£¡±, null);
-phone.SetValue( profile, ¡°123-4567¡±, null);
+name.SetValue ( profile, â€œë°•ì°¬í˜¸â€, null);
+phone.SetValue( profile, â€œ123-4567â€, null);
 
-Console.WriteLine(¡°{0}, {1}¡±, name.GetValue( profile, null ), phone.GetValue( profile, null));
+Console.WriteLine(â€œ{0}, {1}â€, name.GetValue( profile, null ), phone.GetValue( profile, null));
 }
 ```
 
-- PropertyInfo Å¬·¡½º´Â ÇÁ·ÎÆÛÆ¼ »Ó¸¸ ¾Æ´Ï¶ó ÀÎµ¦¼­ÀÇ Á¤º¸µµ ´ãÀ» ¼ö ÀÖ´Ù. 
-__.SetValue¿Í GetValueÀÇ ¸¶Áö¸· ¸Å°³ º¯¼ö__ 
-: ÀÎµ¦¼­ÀÇ ÀÎµ¦½º¸¦ À§ÇÑ ÀÚ¸®.
+- PropertyInfo í´ëž˜ìŠ¤ëŠ” í”„ë¡œí¼í‹° ë¿ë§Œ ì•„ë‹ˆë¼ ì¸ë±ì„œì˜ ì •ë³´ë„ ë‹´ì„ ìˆ˜ ìžˆë‹¤. 
+__.SetValueì™€ GetValueì˜ ë§ˆì§€ë§‰ ë§¤ê°œ ë³€ìˆ˜__ 
+: ì¸ë±ì„œì˜ ì¸ë±ìŠ¤ë¥¼ ìœ„í•œ ìžë¦¬.
 
 </div></details>
 
 
 
-- __MethodInfo Å¬·¡½ºÀÇ Invoke() ¸Þ¼Òµå__
-: MethodInfoÅ¬·¡½ºÀÇ µ¿ÀûÀ¸·Î ¸Þ¼Òµå¸¦ È£ÃâÇÏ´Â °ÍÀÌ °¡´É
+- __MethodInfo í´ëž˜ìŠ¤ì˜ Invoke() ë©”ì†Œë“œ__
+: MethodInfoí´ëž˜ìŠ¤ì˜ ë™ì ìœ¼ë¡œ ë©”ì†Œë“œë¥¼ í˜¸ì¶œí•˜ëŠ” ê²ƒì´ ê°€ëŠ¥
 
 <details>
-<summary> ¿¹Á¦ : µ¿ÀûÀ¸·Î ¸Þ¼Òµå È£Ãâ </summary>
+<summary> ì˜ˆì œ : ë™ì ìœ¼ë¡œ ë©”ì†Œë“œ í˜¸ì¶œ </summary>
 <div markdown="1">
 
 ```C#
@@ -267,23 +270,23 @@ public string Name { get; set; }
 public string Phone { get; set; }
 Public void Print()
 {
-Console.Writeline(¡°{0}, {1}¡±, Name, Phone)
+Console.Writeline(â€œ{0}, {1}â€, Name, Phone)
 }
 }
 static void Main()
 {
 Type type = typeof(Profile);
 Profile profile = (Profile)Activator.CreateInstance( type );
-    profile.Name = ¡°·ùÇöÁø¡±
-profile.Phone = ¡°010-1234-5678¡±
+    profile.Name = â€œë¥˜í˜„ì§„â€
+profile.Phone = â€œ010-1234-5678â€
     
-MethodInfo method = type.GetMethod(¡°Print¡±);
+MethodInfo method = type.GetMethod(â€œPrintâ€);
 method.Invoke( profile, null );
 }
 </div></details>
 
 <details>
-<summary> ¿¹Á¦ : µ¿ÀûÀ¸·Î ÇÁ·ÎÆÛÆ¼¿¡ °ªÀ» ±â·Ï, È£Ãâ </summary>
+<summary> ì˜ˆì œ : ë™ì ìœ¼ë¡œ í”„ë¡œí¼í‹°ì— ê°’ì„ ê¸°ë¡, í˜¸ì¶œ </summary>
 <div markdown="1">
 
 ```C#
@@ -334,11 +337,11 @@ namespace DynamicInstance
             PropertyInfo nameProperty = type.GetProperty("Name");
             PropertyInfo phoneProperty = type.GetProperty("Phone");
 
-            object profile = Activator.CreateInstance(type, "¹Ú»óÇö", "512-1234");            
+            object profile = Activator.CreateInstance(type, "ë°•ìƒí˜„", "512-1234");            
             methodInfo.Invoke(profile, null);
 
             profile = Activator.CreateInstance(type);            
-            nameProperty.SetValue(profile, "¹ÚÂùÈ£", null);            
+            nameProperty.SetValue(profile, "ë°•ì°¬í˜¸", null);            
             phoneProperty.SetValue(profile, "997-5511", null);
 
             Console.WriteLine("{0}, {1}",
@@ -351,38 +354,47 @@ namespace DynamicInstance
 
 </div></details>
 
-## 16.1.3 Çü½Ä ³»º¸³»±â
-¸®ÇÃ·º¼ÇÀ» ÀÌ¿ëÇØ ÇÁ·Î±×·¥ ½ÇÇà Áß¿¡ »õ·Î¿î Çü½ÄÀ» ¸¸µé¾î ³¾ ¼ö ÀÖ´Â ±â´É.
-### ¸®ÇÃ·º¼Ç¿¡¼­ÀÇ emit
-= ÇÁ·Î±×·¥ÀÌ ½ÇÇà Áß¿¡ ¸¸µé¾î³½ »õ Çü½ÄÀ» CLRÀÇ ¸Þ¸ð¸®¿¡ ¡°³»º¸³½´Ù¡±
-### Emit ³×ÀÓ½ºÆäÀÌ½º Á¦°øÇÏ´Â Å¬·¡½ºµé
-: ÄÚµå¸¦ ¸¸µç´Ù´Â ¶æ¿¡¼­ ¡°~Builder¡±ÀÇ ²ÃÀÇ ÀÌ¸§À» °®°í ÀÖ´Ù.
+## 16.1.3 í˜•ì‹ ë‚´ë³´ë‚´ê¸°
+ë¦¬í”Œë ‰ì…˜ì„ ì´ìš©í•´ í”„ë¡œê·¸ëž¨ ì‹¤í–‰ ì¤‘ì— ìƒˆë¡œìš´ í˜•ì‹ì„ ë§Œë“¤ì–´ ë‚¼ ìˆ˜ ìžˆëŠ” ê¸°ëŠ¥.
+### ë¦¬í”Œë ‰ì…˜ì—ì„œì˜ emit
+= í”„ë¡œê·¸ëž¨ì´ ì‹¤í–‰ ì¤‘ì— ë§Œë“¤ì–´ë‚¸ ìƒˆ í˜•ì‹ì„ CLRì˜ ë©”ëª¨ë¦¬ì— â€œë‚´ë³´ë‚¸ë‹¤â€
+### Emit ë„¤ìž„ìŠ¤íŽ˜ì´ìŠ¤ ì œê³µí•˜ëŠ” í´ëž˜ìŠ¤ë“¤
+: ì½”ë“œë¥¼ ë§Œë“ ë‹¤ëŠ” ëœ»ì—ì„œ â€œ~Builderâ€ì˜ ê¼´ì˜ ì´ë¦„ì„ ê°–ê³  ìžˆë‹¤.
 
-### »õ·Î¿î Çü½ÄÀ» ¸¸µå´Â ¼ø¼­ (Çü½Ä = Type)
-1. System.AppDomain Å¬·¡½º·Î AssemblyBuilder °´Ã¼ ¸¸µé±â : __DefineDynamicAssembly()__·Î ¾î¼Àºí¸® ¸¸µé±â
-2. __DefineDynamicModule()__ ¸Þ¼Òµå·Î »ý¼ºÇÑ ¾î¼Àºí¸® ¾È¿¡ ¸ðµâ ¸¸µé±â
-3. ModuleBuilderÀÇ __DefineType()__¸Þ¼Òµå·Î »ý¼ºÇÑ ¸ðµâ ¾È¿¡ Å¬·¡½º(Çü½Ä) ¸¸µé±â
-4. TypeBuilder Å¬·¡½ºÀÇ __DefineMethod()__ ¸Þ¼Òµå·Î »ý¼ºÇÑ Å¬·¡½º ¾È¿¡ ¸Þ¼Òµå ²®µ¥±â ¸¸µé±â/ PropertyBuilder Å¬·¡½ºÀÇ __DefineProperty()__³ª ÇÁ·ÎÆÛÆ¼ ²®µ¥±â ¸¸µé±â 
-:¸Å°³º¯¼ö·Î (¡°ÀÌ¸§¡±, MethodAttribute, ¹ÝÈ¯Çü½Ä, ¸Å°³ º¯¼ö)°¡ ÇÊ¿ä
-[¸Þ¼Òµå define : MethodAttributes.Public, ÇÁ·ÎÆÛÆ¼ define : MethodAttributes.HasDefault »ç¿ëÇßÀ½
-ÇÁ·ÎÆÛÆ¼ÀÇ Set/Get ¸Þ¼ÒµåÀÇ defineÀº Æ¯º°ÇÑ Attriibutes »ç¿ë ( MethodAttributes.Public | MethodAttribures.SpecialName | MethodAttributes.HideBySif ) ]
-5. MethodBuilder Å¬·¡½ºÀÇ __GetILGenerator()__¸¦ ÅëÇØ IlGenerator°´Ã¼ ¸¸µé±â 
-6. ILGenerator °´Ã¼ÀÇ __.Emit__ ÀÌ¿ë ÇØ¼­ ¸Þ¼Òµå°¡ ½ÇÇàÇÒ ÄÚµå(IL ¸í·É¾î) Ã¤¿ì±â
-(OpCodes.Ldc_I4, i) : 32ºñÆ® Á¤¼ö ( I )¸¦ °è»ê ½ºÅØ¿¡ ³ÖÀ½
-(OpCodes.Add) : °è»ê½ºÅØ¿¡ ´ã°Ü ÀÖ´Â µÎ°³ÀÇ °ªÀ» ²¨³»¼­ ´õÇÑÈÄ °á°ú¸¦ ´Ù½Ã °è»ê ½ºÅÃ¿¡ ³Ö±â
-(OpCodes.Ldarg_i) : ÀÎµ¦½º i¿¡ ÀÖ´Â ÀÎ¼ö¸¦ °è»ê ½ºÅÃÀ¸·Î ·Îµå
-(OpCOdes.Ldfld, FieldBuilder °´Ã¼) ÇöÀç °è»ê ½ºÅÃ¿¡ ÂüÁ¶°¡ ÀÖ´Â °³Ã¼¿¡¼­ ÇÊµåÀÇ °ªÀ» Ã£À½.
-(OpCodes.Stfld, FieldBuilder °´Ã¼) °³Ã¼ ÂüÁ¶³ª Æ÷ÀÎÅÍÀÇ ÇÊµå¿¡ ÀúÀåµÈ °ªÀ» »õ °ªÀ¸·Î ¹Ù²Þ
-(OpCodes.Ret) : ½ºÅÃ¿¡ ÀÖ´Â °ªÀ» ¹ÝÈ¯
-- ildasm ¸í·É¾î·Î C#¿¡¼­ ÄÚµå¸¦ Â¥¼­ Á¶È¸ÇØº¸¸é ILÄÚµå¸¦ º¼ ¼ö ÀÖ´Ù.
-7. Type °´Ã¼¿¡¼­ __CreateType()__ ¸Þ¼Òµå·Î Çü½Ä(Å¬·¡½º)¸¦ CLR¿¡°Ô ³»º¸³»±â
-// »õ·Î ¸¸µç Çü½Ä »ç¿ë
-8. __.CreateInstance()__ ÀÌ¿ëÇØ¼­ ÀÎ½ºÅÏ½º¸¦ µ¿ÀûÀ¸·Î »ý¼º (object Çü½ÄÀÇ °´Ã¼)
-9. __GetType().GetMethod()__ ÀÌ¿ëÇØ¼­ methodIfo °´Ã¼ ¸¸µé±â
-10. methodInfo °´Ã¼ÀÇ .Invoke()ÀÌ¿ëÇØ¼­ ¸Þ¼Òµå »ç¿ë
+### ìƒˆë¡œìš´ í˜•ì‹ì„ ë§Œë“œëŠ” ìˆœì„œ (í˜•ì‹ = Type)
+1. System.AppDomain í´ëž˜ìŠ¤ë¡œ AssemblyBuilder ê°ì²´ ë§Œë“¤ê¸° : __DefineDynamicAssembly()__ë¡œ ì–´ì…ˆë¸”ë¦¬ ë§Œë“¤ê¸°
+
+2. __DefineDynamicModule()__ ë©”ì†Œë“œë¡œ ìƒì„±í•œ ì–´ì…ˆë¸”ë¦¬ ì•ˆì— ëª¨ë“ˆ ë§Œë“¤ê¸°
+
+3. ModuleBuilderì˜ __DefineType()__ë©”ì†Œë“œë¡œ ìƒì„±í•œ ëª¨ë“ˆ ì•ˆì— í´ëž˜ìŠ¤(í˜•ì‹) ë§Œë“¤ê¸°
+
+4. TypeBuilder í´ëž˜ìŠ¤ì˜ __DefineMethod()__ ë©”ì†Œë“œë¡œ ìƒì„±í•œ í´ëž˜ìŠ¤ ì•ˆì— ë©”ì†Œë“œ ê»ë°ê¸° ë§Œë“¤ê¸°/ PropertyBuilder í´ëž˜ìŠ¤ì˜ __DefineProperty()__ë‚˜ í”„ë¡œí¼í‹° ê»ë°ê¸° ë§Œë“¤ê¸° 
+:ë§¤ê°œë³€ìˆ˜ë¡œ (â€œì´ë¦„â€, MethodAttribute, ë°˜í™˜í˜•ì‹, ë§¤ê°œ ë³€ìˆ˜)ê°€ í•„ìš”
+- ë©”ì†Œë“œ define : MethodAttributes.Public, í”„ë¡œí¼í‹° define : MethodAttributes.HasDefault ì‚¬ìš©í–ˆìŒ
+- í”„ë¡œí¼í‹°ì˜ Set/Get ë©”ì†Œë“œì˜ defineì€ íŠ¹ë³„í•œ Attriibutes ì‚¬ìš© : ( MethodAttributes.Public | MethodAttribures.SpecialName | MethodAttributes.HideBySif )
+
+5. MethodBuilder í´ëž˜ìŠ¤ì˜ __GetILGenerator()__ë¥¼ í†µí•´ IlGeneratorê°ì²´ ë§Œë“¤ê¸° 
+
+6. ILGenerator ê°ì²´ì˜ __.Emit__ ì´ìš© í•´ì„œ ë©”ì†Œë“œê°€ ì‹¤í–‰í•  ì½”ë“œ(IL ëª…ë ¹ì–´) ì±„ìš°ê¸°
+(OpCodes.Ldc_I4, i) : 32ë¹„íŠ¸ ì •ìˆ˜ ( I )ë¥¼ ê³„ì‚° ìŠ¤í…ì— ë„£ìŒ
+(OpCodes.Add) : ê³„ì‚°ìŠ¤í…ì— ë‹´ê²¨ ìžˆëŠ” ë‘ê°œì˜ ê°’ì„ êº¼ë‚´ì„œ ë”í•œí›„ ê²°ê³¼ë¥¼ ë‹¤ì‹œ ê³„ì‚° ìŠ¤íƒì— ë„£ê¸°
+(OpCodes.Ldarg_i) : ì¸ë±ìŠ¤ iì— ìžˆëŠ” ì¸ìˆ˜ë¥¼ ê³„ì‚° ìŠ¤íƒìœ¼ë¡œ ë¡œë“œ
+(OpCOdes.Ldfld, FieldBuilder ê°ì²´) í˜„ìž¬ ê³„ì‚° ìŠ¤íƒì— ì°¸ì¡°ê°€ ìžˆëŠ” ê°œì²´ì—ì„œ í•„ë“œì˜ ê°’ì„ ì°¾ìŒ.
+(OpCodes.Stfld, FieldBuilder ê°ì²´) ê°œì²´ ì°¸ì¡°ë‚˜ í¬ì¸í„°ì˜ í•„ë“œì— ì €ìž¥ëœ ê°’ì„ ìƒˆ ê°’ìœ¼ë¡œ ë°”ê¿ˆ
+(OpCodes.Ret) : ìŠ¤íƒì— ìžˆëŠ” ê°’ì„ ë°˜í™˜
+- ildasm ëª…ë ¹ì–´ë¡œ C#ì—ì„œ ì½”ë“œë¥¼ ì§œì„œ ì¡°íšŒí•´ë³´ë©´ ILì½”ë“œë¥¼ ë³¼ ìˆ˜ ìžˆë‹¤.
+
+7. Type ê°ì²´ì—ì„œ __CreateType()__ ë©”ì†Œë“œë¡œ í˜•ì‹(í´ëž˜ìŠ¤)ë¥¼ CLRì—ê²Œ ë‚´ë³´ë‚´ê¸°
+
+// ìƒˆë¡œ ë§Œë“  í˜•ì‹ ì‚¬ìš©
+8. __.CreateInstance()__ ì´ìš©í•´ì„œ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë™ì ìœ¼ë¡œ ìƒì„± (object í˜•ì‹ì˜ ê°ì²´)
+
+9. __GetType().GetMethod()__ ì´ìš©í•´ì„œ methodIfo ê°ì²´ ë§Œë“¤ê¸°
+
+10. methodInfo ê°ì²´ì˜ .Invoke()ì´ìš©í•´ì„œ ë©”ì†Œë“œ ì‚¬ìš©
 
 <details>
-<summary>¿¹Á¦ : »õ·Î¿î Çü½ÄÀ» ¸¸µé°í ÀÎ½ºÅÏ½º¸¦ µ¿ÀûÀ¸·Î »ý¼ºÇØ »ç¿ë</summary>
+<summary>ì˜ˆì œ : ìƒˆë¡œìš´ í˜•ì‹ì„ ë§Œë“¤ê³  ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë™ì ìœ¼ë¡œ ìƒì„±í•´ ì‚¬ìš©</summary>
 <div markdown="1">
 
 ```C#
@@ -406,8 +418,8 @@ namespace EmitTest
             MethodBuilder newMethod = newType.DefineMethod(
                 "Calculate",
                 MethodAttributes.Public,
-                typeof(int),    // ¹ÝÈ¯ Çü½Ä
-                new Type[0]);   // ¸Å°³ º¯¼ö
+                typeof(int),    // ë°˜í™˜ í˜•ì‹
+                new Type[0]);   // ë§¤ê°œ ë³€ìˆ˜
 
             ILGenerator generator = newMethod.GetILGenerator();
 
@@ -431,51 +443,52 @@ namespace EmitTest
 ```
 </div></details>
 
-## 16.2 ¾ÖÆ®¸®ºäÆ®
-: ¾ÖÆ®¸®ºäÆ®´Â ÄÚµå¿¡ ´ëÇÑ ºÎ°¡ Á¤º¸¸¦ ±â·ÏÇÏ°í ÀÐÀ» ¼ö ÀÖ´Â ±â´É
-- ÁÖ¼®°úÀÇ Â÷ÀÌ : ÄÄÇ»ÅÍ°¡ ÀÐ´Â °Í.
+## 16.2 ì• íŠ¸ë¦¬ë·°íŠ¸
+: ì• íŠ¸ë¦¬ë·°íŠ¸ëŠ” ì½”ë“œì— ëŒ€í•œ ë¶€ê°€ ì •ë³´ë¥¼ ê¸°ë¡í•˜ê³  ì½ì„ ìˆ˜ ìžˆëŠ” ê¸°ëŠ¥
+- ì£¼ì„ê³¼ì˜ ì°¨ì´ : ì»´í“¨í„°ê°€ ì½ëŠ” ê²ƒ.
 
-## 16.2.1 ¾ÖÆ®¸®ºäÆ® »ç¿ëÇÏ±â
-- »ç¿ë Çü½Ä
+## 16.2.1 ì• íŠ¸ë¦¬ë·°íŠ¸ ì‚¬ìš©í•˜ê¸°
+- ì‚¬ìš© í˜•ì‹
 
 ```C#
-[ ¾ÖÆ®¸®ºäÆ®_ÀÌ¸§( ¾ÖÆ®¸®ºäÆ®_¸Å°³º¯¼ö) ]
-public void Mymethod() { ¡¦ }
+[ ì• íŠ¸ë¦¬ë·°íŠ¸_ì´ë¦„( ì• íŠ¸ë¦¬ë·°íŠ¸_ë§¤ê°œë³€ìˆ˜) ]
+public void Mymethod() { â€¦ }
 ```
 
-### .NET ÇÁ·¹ÀÓ¿öÅ©¿¡¼­ ±âº»ÀûÀ¸·Î Á¦°øÇÏ´Â ¾ÖÆ®¸®ºäÆ® 
-- [Obsolete] : ½ÇÇà ½Ã °æ°íÃ¢¿¡ ¸Þ¼Òµå¸¦ Ãâ·ÂÇÒ ¶§ »ç¿ë
+### .NET í”„ë ˆìž„ì›Œí¬ì—ì„œ ê¸°ë³¸ì ìœ¼ë¡œ ì œê³µí•˜ëŠ” ì• íŠ¸ë¦¬ë·°íŠ¸ 
+- [Obsolete] : ì‹¤í–‰ ì‹œ ê²½ê³ ì°½ì— ë©”ì†Œë“œë¥¼ ì¶œë ¥í•  ë•Œ ì‚¬ìš©
 
 ``` 
-[Obsolete( ¡° ¡¦ ¡° ) ]
+[Obsolete( â€œ â€¦ â€œ ) ]
 ```
 
-- [DILImport] : ³×ÀÌÆ¼ºê DIL¿¡ ÀÖ´Â ÇÔ¼ö¸¦ È£ÃâÇÒ ¶§ »ç¿ë
-- [Conditional] : Á¶°ÇºÎ ¸Þ¼Òµå ½ÇÇàÀ» ÁöÁ¤ÇÒ ¶§ »ç¿ë.
+- [DILImport] : ë„¤ì´í‹°ë¸Œ DILì— ìžˆëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•  ë•Œ ì‚¬ìš©
+- [Conditional] : ì¡°ê±´ë¶€ ë©”ì†Œë“œ ì‹¤í–‰ì„ ì§€ì •í•  ë•Œ ì‚¬ìš©.
 
-## 16.2.2 È£ÃâÀÚ Á¤º¸ ¾ÖÆ®¸®ºäÆ®
-: È£ÃâÀÚÀÇ Á¤º¸¸¦ ¹ÝÈ¯ÇØÁÜ. ¸Þ¼ÒµåÀÇ È£ÃâÀÚ ÀÌ¸§, È£ÃâÀÚ ¸Þ¼Òµå°¡ Á¤ÀÇµÇ¾î ÀÖ´Â ¼Ò½º ÆÄÀÏ °æ·Î, ¼Ò½º ÆÄÀÏ ³»ÀÇ Çà ¹øÈ£ µîÀ» ¹ÝÈ¯ ¹Þ¾Æ »ç¿ëÇÒ ¼ö ÀÖ´Ù.
-¸Þ¼ÒµåÀÇ ¸Å°³ º¯¼ö¿¡ »ç¿ë
-![È£ÃâÀÚ ¾ÖÆ®¸®ºäÆ®µé](./OOP/pic/CH_16_YH2.jpg)
+## 16.2.2 í˜¸ì¶œìž ì •ë³´ ì• íŠ¸ë¦¬ë·°íŠ¸
+: í˜¸ì¶œìžì˜ ì •ë³´ë¥¼ ë°˜í™˜í•´ì¤Œ. ë©”ì†Œë“œì˜ í˜¸ì¶œìž ì´ë¦„, í˜¸ì¶œìž ë©”ì†Œë“œê°€ ì •ì˜ë˜ì–´ ìžˆëŠ” ì†ŒìŠ¤ íŒŒì¼ ê²½ë¡œ, ì†ŒìŠ¤ íŒŒì¼ ë‚´ì˜ í–‰ ë²ˆí˜¸ ë“±ì„ ë°˜í™˜ ë°›ì•„ ì‚¬ìš©í•  ìˆ˜ ìžˆë‹¤.
+ë©”ì†Œë“œì˜ ë§¤ê°œ ë³€ìˆ˜ì— ì‚¬ìš©
+
+<img src = "./OOP/pic/CH_16_YH2.jpg" width="500" />
  
 
-## 16.2.3 ³»°¡ ¸¸µå´Â ¾ÖÆ®¸®ºäÆ®
-¾ÖÆ®¸®ºäÆ®µµ ÇÏ³ªÀÇ Å¬·¡½ºÀÌ±â ¶§¹®¿¡ »ç¿ëÀÚ°¡ ÇÊ¿ä¿¡ ÀÇÇØ ¸¸µé ¼ö ÀÖ´Ù. 
-- ¸ðµç ¾ÖÆ®¸®ºäÆ®´Â __System.Attribute Å¬·¡½º__·ÎºÎÅÍ »ó¼ÓÀ» ¹Þ¾Æ ¸¸µê.
+## 16.2.3 ë‚´ê°€ ë§Œë“œëŠ” ì• íŠ¸ë¦¬ë·°íŠ¸
+ì• íŠ¸ë¦¬ë·°íŠ¸ë„ í•˜ë‚˜ì˜ í´ëž˜ìŠ¤ì´ê¸° ë•Œë¬¸ì— ì‚¬ìš©ìžê°€ í•„ìš”ì— ì˜í•´ ë§Œë“¤ ìˆ˜ ìžˆë‹¤. 
+- ëª¨ë“  ì• íŠ¸ë¦¬ë·°íŠ¸ëŠ” __System.Attribute í´ëž˜ìŠ¤__ë¡œë¶€í„° ìƒì†ì„ ë°›ì•„ ë§Œë“¦.
 
 ### System.AttributeUsage()
-: ¾ÖÆ®¸®ºäÆ®°¡ ¾î¶² ´ë»óÀ» ¼³¸íÇÒÁö, ÀÌ ¾ÖÆ®¸®ºäÆ®¸¦ Áßº¹ÇØ¼­ »ç¿ëÇÒ ¼ö ÀÖ´ÂÁöÀÇ ¿©ºÎ ¼³¸í(¾ÖÆ®¸®ºäÆ®ÀÇ ¾ÖÆ®¸®ºäÆ®)
-### ¸Å°³º¯¼ö
-- __Ã¹¹øÂ° ¸Å°³º¯¼ö__ : Attribute Target
-: Áö±Ý ¼±¾ðÇÏ°í ÀÖ´Â ¾ÖÆ®¸®ºäÆ®ÀÇ ¼³¸í ´ë»óÀÌ ¹«¾ùÀÎÁö ³ªÅ¸³¿.
-³í¸®ÇÕ ¿¬»êÀÚ¸¦ ÀÌ¿ëÇØ °áÇÕµµ °¡´É
-- __¿É¼Ç__ : 
-__AllowMultiple__ = True : ¾ÖÆ®¸®ºäÆ®ÀÇ Áßº¹ »ç¿äÀ» °¡´ÉÇÏ°Ô ÇÔ.
+: ì• íŠ¸ë¦¬ë·°íŠ¸ê°€ ì–´ë–¤ ëŒ€ìƒì„ ì„¤ëª…í• ì§€, ì´ ì• íŠ¸ë¦¬ë·°íŠ¸ë¥¼ ì¤‘ë³µí•´ì„œ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ”ì§€ì˜ ì—¬ë¶€ ì„¤ëª…(ì• íŠ¸ë¦¬ë·°íŠ¸ì˜ ì• íŠ¸ë¦¬ë·°íŠ¸)
+### ë§¤ê°œë³€ìˆ˜
+- __ì²«ë²ˆì§¸ ë§¤ê°œë³€ìˆ˜__ : Attribute Target
+: ì§€ê¸ˆ ì„ ì–¸í•˜ê³  ìžˆëŠ” ì• íŠ¸ë¦¬ë·°íŠ¸ì˜ ì„¤ëª… ëŒ€ìƒì´ ë¬´ì—‡ì¸ì§€ ë‚˜íƒ€ëƒ„.
+ë…¼ë¦¬í•© ì—°ì‚°ìžë¥¼ ì´ìš©í•´ ê²°í•©ë„ ê°€ëŠ¥
+- __ì˜µì…˜__ : 
+__AllowMultiple__ = True : ì• íŠ¸ë¦¬ë·°íŠ¸ì˜ ì¤‘ë³µ ì‚¬ìš”ì„ ê°€ëŠ¥í•˜ê²Œ í•¨.
 
 
 <details>
-<summary> ¿¹Á¦ »ç¿ëÀÚ Á¤ÀÇ ¾ÖÆ®¸®ºäÆ®(history)¿Í »ç¿ë</summary>
-<div markdown=¡±1¡±>
+<summary> ì˜ˆì œ ì‚¬ìš©ìž ì •ì˜ ì• íŠ¸ë¦¬ë·°íŠ¸(history)ì™€ ì‚¬ìš©</summary>
+<div markdown=â€1â€>
 
 ```C#
 using System;
