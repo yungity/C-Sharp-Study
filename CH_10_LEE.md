@@ -1,5 +1,72 @@
 '이것이 C#이다'를 공부하면서 개인적으로 정리한 자료입니다.
 --------------------------------------
+### System.Array
+
+```c#
+namespace UsingHashTable
+{
+
+    class MainApp
+    {
+        private static bool CheckPassed(int score)
+        {
+            if (score >= 60)
+                return true;
+            else
+                return false;
+        }
+
+        private static void Print(int value)
+        {
+            Write($"{value} ");
+        }
+        static void Main(string[] args)
+        {
+            int[] scores = new int[] { 80, 74, 81, 90, 34 };
+
+            foreach (int score in scores)
+                Write($"{score} ");
+            WriteLine();
+
+            Array.Sort(scores); // 오름차순 정렬
+            Array.ForEach<int>(scores, new Action<int>(Print)); // ForEach()는 배열의 모든 요소에 대해 동일한 작업 수행
+            WriteLine();
+
+            WriteLine($"Number of dimensions : {scores.Rank}"); // 배열의 차원 
+            WriteLine("Binary Search: 81 is at {0}", Array.BinarySearch<int>(scores, 81)); // 이진 탐색 실행 
+            WriteLine("Linear Search : 90 is at {0}", Array.IndexOf(scores, 90)); // 90은 몇번째 인덱스에 있나요
+            WriteLine("EveryOne passed ? : {0}", Array.TrueForAll<int>(scores, CheckPassed)); // 배열의 모든 요소가 지정한 조건에 부합하는지 여부 반환
+
+            int index = Array.FindIndex<int>(scores,
+                delegate (int score)
+                {
+                    if (score < 60)
+                        return true;
+                    else
+                        return false;
+                });
+
+            scores[index] = 61;
+            WriteLine("Everyone passed ? : {0}",
+                Array.TrueForAll<int>(scores, CheckPassed));
+            
+            WriteLine($"Old length of scores : {scores.GetLength(0)}"); // 0번째 차원의 길이는 ?
+
+            Array.Resize<int>(ref scores, 10); // 배열의 인덱스 크기 조절과 0으로 초기화
+            
+            WriteLine($"New length of scores : {scores.Length}"); // 전체 배열의 길이는 ?
+
+            Array.ForEach<int>(scores, new Action<int>(Print));
+            WriteLine();
+
+            Array.Clear(scores, 3, 7); // 3~7 사이에 값을 0으로 만들어라.
+
+            Array.ForEach<int>(scores, new Action<int>(Print));
+            WriteLine();
+        }
+    }
+}
+```
 
 ### 2차원 배열
 2차원 배열을 선언하는 방법은
@@ -303,7 +370,13 @@ namespace UsingHashTable
                 arr[index] = value;
             }
         }
+        
+        public int Length
+        {
+            get { return arr.Length; }
+        }
     }
+    
     class MainApp
     {
         static void Main(string[] args)

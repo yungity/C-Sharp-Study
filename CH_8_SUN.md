@@ -20,6 +20,7 @@ interface 인터페이스 이름
 2. 구현부가 없음
 3. default : public(멤버에 어떠한 접근자/한정자도 붙이지 않음)
 4. 인스턴스를 만들 수 없음
+5. ★인터페이스는 인스턴스를 못 만들지만, 참조는 만들 수 있음★
 
 ### -class로 구현
 
@@ -57,7 +58,7 @@ namespace interface_
         void WriteLog(string message);
     }
 
-    class ConsoleLogger : ILogger
+    class ConsoleLogger : ILogger // 콘솔에 로그를 출력하는 클래스
     {
         public void WriteLog(string message)
         {
@@ -65,7 +66,7 @@ namespace interface_
         }
     }
 
-    class FileLogger : ILogger
+    class FileLogger : ILogger // 파일로 로그를 저장하는 클래스
     {
         private StreamWriter writer;
 
@@ -200,6 +201,7 @@ absract class 추상클래스 이름
 - 인스턴스를 가질 수 없다. 
 - new 키워드로 자체적으로 초기화를 할 수 없다.
 - 추상 메소드를 가질 수 있다. (추상클래스에서 추상메소드 한정자는 public, protected, internal, protected internal 중 하나)
+- 추상 프로퍼티를 가질 수 있다.
 ### ★추상클래스와 인터페이스의 차이점★
 - 추상클래스는 구현된 멤버를 포함할 수 있다.
 - 인터페이스는 멤버의 접근지정자를 선언할 수 없다.
@@ -222,12 +224,12 @@ namespace AbstractClass
             Console.WriteLine("AbstractBase.PublicMethodA()");
         }
 
-        public abstract void AbstractMethodA();
+        public abstract void AbstractMethodA(); // 추상메소드 / 추상 프로퍼티 : abstract 한정자를 이용해 선언
     }
 
     class Derived : AbstractBase
     {
-        public override void AbstractMethodA() //★ 추상클래스의 추상메소드 구현 시 override로 구현 ★
+        public override void AbstractMethodA() //★ 추상클래스의 추상메소드 / 추상 프로퍼티 구현 시 override로 구현 ★
         {
             Console.WriteLine("Derived.AbstractMethodA()");
             PrivateMethodA();
@@ -240,7 +242,8 @@ namespace AbstractClass
         {
             AbstractBase obj = new Derived();
             obj.AbstractMethodA();
-            obj.PublicMethodA();
+            obj.PublicMethodA(); 
+            // obj.PrivateMethod()는 protected로 선언되었기 때문에 하위 클래스에서만 사용 가능
         }
     }
 }
