@@ -1,7 +1,7 @@
 # Chapter 19. 스레드와 태스크
 
-<img src = "./OOP/pic/picture10.png" width = 540 height = 240>
-<img src = "./OOP/pic/picture11.png" width = 620 height = 300>
+
+
 
 <details>
 <summary> <b> 참조한 사이트</summary></b>
@@ -63,7 +63,7 @@ https://stackoverflow.com/questions/251391/why-is-lockthis-bad
 ## 19.1.1 스레드 시작하기
 - System.Threading.Thread 클래스 사용
 
----
+
 
 ```C#
 static void DoSomething() // 스레드가 실행할 메소드
@@ -86,6 +86,9 @@ static void Main(string[] args)
 <img src = "./OOP/pic/picture3.png" width = 600 height = 250>
 
 - t1.Start()를 호출하는 시점 : CLR이 실제 스레드를 생성, 즉 메모리에 적재되는 시점
+
+
+---
 
 <details>
 <summary> <b>예제 : BasicThread </summary></b>
@@ -831,4 +834,439 @@ namespace WaitPulse
 - 대체로 I D D I I D D I I ... 순서. 중간에 튀는 경우도 있음. 이에 대한 부분이 궁금해 찾아보며, 운영체제에서 스레드를 처리하는 부분 공부가 필요함을 느낌. 다음 주제로 운영체제를 선택
 
 <br><br>
-## 19.2 Task와 Task<TResult>, 그리고 Parallel
+
+# 19.2 Task와 Task< TResult >, 그리고 Parallel
+- Task, Task<T> : ThreadPool(이미 존재하는 스레드 풀에서 사용 가능한 작업 스레드를 할당 받아 사용하는 방식)로부터 스레드를 가져와 비동기 작업을 실행
+    - 스레드풀 방식 - 1) ThreadPool, 2) 비동기 델리게이트, 3) Task, 4) Task<T>, 5) Background Worker 클래스
+
+- <b>동기 코드(Synchronous)</b> : 메소드를 호출한 뒤에 이 메소드의 실행이 <b>완전히 종료(반환)</b>되어야만, 다음 메소드를 호출할 수 있음.
+- <b>비동기 코드(Asynchronous)</b> : 메소드를 호출한 뒤에 메소드의 종료를 기다리지 않고 바로 다음 코드를 실행.
+- 멀티 CPU -> 비동기 처리 시 병렬로 작업 스레드 실행, <b>어떤</b> 스레드가 <b>언제</b> 실행하는 지는 OS가 결정.
+
+<br><br>
+
+## 19.2.1 System.Threading.Tasks.Task 클래스
+- Task클래스 : <b>Action 대리자</b>를 넘겨 받음. 즉, 반환형을 갖지 않는 메소드와 익명 메소드, 무명 함수 등.
+- Task.Run()으로 Task의 생성과 시작을 단번에 함.
+
+---
+
+<details>
+<summary> <b>예제 : UsingTask </summary></b>
+<div>
+
+```C#
+using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+namespace UsingTask
+{
+    class MainApp
+    {
+        static void Main(string[] args)
+        {
+            string srcFile = args[0];
+
+            Action<object> FileCopyAction = (object state) =>
+            {
+                String[] paths = (String[])state;
+                File.Copy(paths[0], paths[1]);
+
+                Console.WriteLine("TaskID:{0}, ThreadID:{1}, {2} was copied to {3}",
+                    Task.CurrentId, Thread.CurrentThread.ManagedThreadId,
+                    paths[0], paths[1]);
+            };
+
+            Task t1 = new Task(
+                FileCopyAction,
+                new string[] { srcFile, srcFile + ".copy1" });
+
+            Task t2 = Task.Run(() =>
+            {
+                FileCopyAction(new string[] { srcFile, srcFile + ".copy2" });
+            });
+
+            t1.Start();
+
+            Task t3 = new Task(
+                FileCopyAction,
+                new string[] { srcFile, srcFile + ".copy3" });
+
+            t3.RunSynchronously();
+
+            t1.Wait();
+            t2.Wait();
+            t3.Wait();
+
+
+            var myTask = Task<List<int>>.Run(
+                () =>
+                {
+                    Thread.Sleep(1000);
+
+                    List<int> list = new List<int>();
+                    list.Add(3);
+                    list.Add(4);
+                    list.Add(5);
+
+                    return list;
+                }
+            );
+
+            myTask.Wait();
+
+        }
+    }
+}
+
+```
+결과
+```cmd
+C:\Users\Affinity\source\repos\ConsoleApp7\ConsoleApp7\bin\Debug>ConsoleApp7.exe D:/test.txt
+TaskID:1, ThreadID:1, D:/test.txt was copied to D:/test.txt.copy3
+TaskID:2, ThreadID:4, D:/test.txt was copied to D:/test.txt.copy1
+TaskID:3, ThreadID:3, D:/test.txt was copied to D:/test.txt.copy2
+
+```
+</div></details>
+
+
+---
+
+### 결론
+- 여러번 실행 시 copy 순서가 랜덤임을 알 수 있음.
+- task 1, 2, 3 동시에 실행 됨, 앞에 작성한 대로 어떤 스레드가 언제 실행하는지는 OS가 결정
+- 비동기 처리를 병렬적으로 작업 스레드 실행.
+
+
+<br><br>
+
+## 19.2.2 코드의 비동기 실행 결과를 주는 Task< TResult > 클래스
+- Task< TResult > : 코드의 비동기 실행 결과를 손쉽게 취합
+- <b>Func 대리자로 받고, 결과를 반환받을 수 있음</b>
+- Task< TResult >를 사용하더라도, Wait()을 호출하는 편이 좋음
+- m개의 Task, n개의 CPU가 있는 시스템에서는 각 코어당 m/n만큼 각각 소수 찾기를 한다면 작업 시간이 훨씬 줄어들음.    
+
+---
+
+<details>
+<summary> <b>예제 : TaskResult </summary></b>
+<div>
+
+```C#
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace TaskResult
+{
+    class MainApp
+    {
+        static bool IsPrime(long number)
+        {
+            if (number < 2)
+                return false;
+
+            if (number % 2 == 0 && number != 2)
+                return false;
+
+            for (long i = 2; i < number; i++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        static void Main(string[] args)
+        {
+            long from = Convert.ToInt64(args[0]);
+            long to = Convert.ToInt64(args[1]);
+            int taskCount = Convert.ToInt32(args[2]);
+
+            Func<object, List<long>> FindPrimeFunc =
+                (objRange) =>
+                {
+                    long[] range = (long[])objRange;
+                    List<long> found = new List<long>();
+
+                    for (long i = range[0]; i < range[1]; i++)
+                    {
+                        if (IsPrime(i))
+                            found.Add(i);
+                    }
+
+                    return found;
+                };
+
+            Task<List<long>>[] tasks = new Task<List<long>>[taskCount];
+            long currentFrom = from;
+            long currentTo = to / tasks.Length;
+            for (int i = 0; i < tasks.Length; i++)
+            {
+                Console.WriteLine("Task[{0}] : {1} ~ {2}",
+                    i, currentFrom, currentTo);
+
+                tasks[i] = new Task<List<long>>(FindPrimeFunc,
+                    new long[] { currentFrom, currentTo });
+                currentFrom = currentTo + 1;
+
+                if (i == tasks.Length - 2) // 마지막에서 두 번째
+                    currentTo = to;
+                else
+                    currentTo = currentTo + (to / tasks.Length);
+            }
+
+            Console.WriteLine("Please press enter to start...");
+            Console.ReadLine();
+            Console.WriteLine("Started...");
+
+            DateTime startTime = DateTime.Now;
+
+            foreach (Task<List<long>> task in tasks)
+                task.Start();
+
+            List<long> total = new List<long>();
+
+            foreach (Task<List<long>> task in tasks)
+            {
+                task.Wait();
+                total.AddRange(task.Result.ToArray());
+            }
+            DateTime endTime = DateTime.Now;
+
+            TimeSpan ellapsed = endTime - startTime;
+
+            Console.WriteLine("Prime number count between {0} and {1} : {2}",
+                                                        from, to, total.Count);
+            Console.WriteLine("Ellapsed time : {0}", ellapsed);
+        }
+    }
+}
+
+```
+결과
+```cmd
+C:\Users\Affinity\source\repos\ConsoleApp7\ConsoleApp7\bin\Debug>ConsoleApp7.exe 0 100000 1
+Task[0] : 0 ~ 100000
+Please press enter to start...
+
+Started...
+Prime number count between 0 and 100000 : 9592
+Ellapsed time : 00:00:03.9322891
+
+C:\Users\Affinity\source\repos\ConsoleApp7\ConsoleApp7\bin\Debug>ConsoleApp7.exe 0 100000 5
+Task[0] : 0 ~ 20000
+Task[1] : 20001 ~ 40000
+Task[2] : 40001 ~ 60000
+Task[3] : 60001 ~ 80000
+Task[4] : 80001 ~ 100000
+Please press enter to start...
+
+Started...
+Prime number count between 0 and 100000 : 9592
+Ellapsed time : 00:00:01.7840639
+
+```
+</div></details>
+
+---
+
+### 결론
+- 0부터 시작하는 경우 편한 코드, 일반화시켜볼 수 있을 것 같다. (to-from)/task.Length가 더 task당 같은 개수로 배정할 수 있을 것 같음.
+
+<br><br>
+
+## 19.2.3 손쉬운 병렬 처리를 가능하게 하는 Parallel 클래스
+
+- Task< TResult >, for문 등을 이용해서 구현했던 병렬 처리를 더 쉽게 구현할 수 있음.
+
+<img src = "./OOP/pic/picture10.png" width = 540 height = 240>
+
+- Parallel.For() 메소드 : SomeMethod()를 병렬 호출하며 0부터 100까지의 정수를 메소드의 매개 변수로 넘김.
+<b>-> 몇 개의 스레드를 사용할지는 Parallel 클래스가 내부적으로 판단하여 최적화</b>
+
+
+---
+
+<details>
+<summary> <b>예제 : ParallelLoop </summary></b>
+<div>
+
+```C#
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ParallelLoop
+{
+    class MainApp
+    {
+        static bool IsPrime(long number)
+        {
+            if (number < 2)
+                return false;
+
+            if (number % 2 == 0 && number != 2)
+                return false;
+
+            for (long i = 2; i < number; i++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        static void Main(string[] args)
+        {
+            long from = Convert.ToInt64(args[0]);
+            long to = Convert.ToInt64(args[1]);
+
+            Console.WriteLine("Please press enter to start...");
+            Console.ReadLine();
+            Console.WriteLine("Started...");
+
+            DateTime startTime = DateTime.Now;
+            List<long> total = new List<long>();
+
+            Parallel.For(from, to, (long i) =>
+            {
+                if (IsPrime(i))
+                    total.Add(i);
+            });
+
+            DateTime endTime = DateTime.Now;
+
+            TimeSpan ellapsed = endTime - startTime;
+
+            Console.WriteLine("Prime number count between {0} and {1} : {2}",
+                                                        from, to, total.Count);
+            Console.WriteLine("Ellapsed time : {0}", ellapsed);
+        }
+    }
+}
+
+```
+결과
+```cmd
+C:\Users\Affinity\source\repos\ConsoleApp8\ConsoleApp8\bin\Debug>ConsoleApp8.exe 0 100000
+Please press enter to start...
+
+Started...
+Prime number count between 0 and 100000 : 9591
+Ellapsed time : 00:00:01.0084033
+
+```
+</div></details>
+
+---
+
+### 결론
+- Parallel.For문 -> 다중 스레드가 병렬로 됨. from ~ to 순서대로 실행 X, but 한 번씩만 실행
+- ★ ?? 왜 9592가 안 나오고 실행할 때마다 변경되어서 나오지..? ★
+- cf. Parallel.Invoke() - 다른 task들을 병렬로 실행
+
+<br><br>
+
+# 19.3 async await
+- async 한정자 : 메소드, 이벤트 처리기, 태스크, 람다식 등을 수식하며 호출결과를 기다리지 않고 다음 코드로 이동하도록 실행 코드를 생성하게 함.
+- async 한정자의 반환 형식 - <b>Task, Task< TResult >, void</b>
+    - void : 실행하고 잊어버릴 작업 (Shoot and Forget) -> <b> async 한정자 하나만으로 완전한 비동기 코드</b>
+    - Task, Task< T > : 작업이 완료될 때까지 기다리는 메소드 -> <b> await 연산자 필요</b>, 없을 시 보통의 동기 코드처럼 동작
+- await 연산자를 만나는 곳에서 호출자에게 제어를 돌려줌
+    
+<img src = "./OOP/pic/picture11.png" width = 620 height = 300>
+
+1. 1의 흐름을 따라 문장 1이 실행되고, 2를 따라 MyMethodAysnc 메소드의 실행으로 제어가 이동.
+2. 메소드에서는 3을 따라 문장 2가 실행되고, await 연산자를 만남
+3. 이 때 CLR은 4를 따라 제어를 호출자인 Caller()에게로 이동시킴
+4. a와 b의 흐름을 동시에 실행하게 됨
+
+---
+
+<details>
+<summary> <b>예제 : Async </summary></b>
+<div>
+
+```C#
+using System;
+using System.Threading.Tasks;
+
+namespace Async
+{
+    class MainApp
+    {
+        async static private void MyMethodAsync(int count)
+        {
+            Console.WriteLine("C");
+            Console.WriteLine("D");
+
+            await Task.Run(async () =>
+            {
+                for (int i = 1; i <= count; i++)
+                {
+                    Console.WriteLine($"{i}/{count} ...");
+                    await Task.Delay(100);
+                }
+            });
+
+            Console.WriteLine("G");
+            Console.WriteLine("H");
+        }
+
+        static void Caller()
+        {
+            Console.WriteLine("A");
+            Console.WriteLine("B");
+
+            MyMethodAsync(3);
+
+            Console.WriteLine("E");
+            Console.WriteLine("F");
+        }
+
+        static void Main(string[] args)
+        {
+            Caller();
+
+            Console.ReadLine(); // 프로그램 종료 방지
+        }
+    }
+}
+```
+결과
+```cmd
+C:\Users\Affinity\source\repos\ConsoleApp8\ConsoleApp8\bin\Debug>ConsoleApp8.exe
+A
+B
+C
+D
+E
+F
+1/3 ...
+2/3 ...
+3/3 ...
+G
+H
+```
+</div></details>
+
+---
+
+### 결론
+- .Delay() : 매개변수로 입력된 시간 후 Task 객체 반환, 스레드를 블록시키지 않음. .Sleep()과 역할은 동일함(.Sleep()은 블록시킴)
+
+
+
+### 19.3.1 .NET 프레임워크가 제공하는 비동기 API 맛보기
+
+---
+
+- ~Async() 메소드 : 메소드가 실행되는 중간에도 사용자가 사용자 인터페이스에 접근하는 데 아무런 문제가 없게 함.
+- cf) Sync() 메소드는 호출하고 나면 실행이 종료될 때까지 사용자 인터페이스가 사용자에게 거의 응답을 하지 못함.
