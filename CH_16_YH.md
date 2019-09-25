@@ -3,7 +3,7 @@
 ## 16.1 리플렉션
 - __리플렉션__
 : 객체의 형식 정보를 보는 기능, 실행 중 객체의 형식 이름, 프로퍼티, 메소드, 필드, 이벤트 목록을 열어볼 수 있다.
-- __형식을 알 수 있다면 동적으로 인스턴스를 만들 수 있기 때문에 그 인스턴스의 메소드 호출이 가능함을 뜻함.__
+- 형식을 알 수 있다면 동적으로 인스턴스를 만들 수 있기 때문에 그 인스턴스의 메소드 호출이 가능함을 뜻함.
 - Type형식이 담고 있는 정보: .Net에서 사용되는 데이터 형식의 모든 정보.
 : 형식 이름, 소속되어 있는 어셈블리 이름, 프로퍼티 목록, 메소드 목록, 필드 목록, 이벤트 목록, 이 형식이 상속하고 있는 인터페이스의 목록.
 
@@ -21,12 +21,11 @@
 
 ### Type 형식 
 Type 형식의 메소드 중 일부와 그 반환 형식 (MSDN 라이브러리의 System.Type의 매뉴얼 중)
-![Type형식의 메소드](./OOP/pic/CH_16_YH1jpg)
+
+<img src="https://github.com/bluein/C-Sharp-Study/blob/master/OOP/pic/CH_16_YH1.jpg" width=500 />
  
 
-<details>
-<summary>예제 : Type 형식의 메소드 (GetFields()) 사용 예제</summary>
-<div markdown="1">
+GetFields()) 사용
 
 ```C#
 int a = 0;
@@ -37,8 +36,6 @@ foreach (FieldInfo field in fields)
     Console.WriteLine(“Type:{0}, Name:{1}”, field.FieldType.Name, field.Name); 
 ```
 
-</div>
-</details>
 
 ### 검색 옵색 지정
 - 매개변수로 System.Reflection.BindingFlags 열거형을 이용 
@@ -53,7 +50,7 @@ var fields1 = type.GetFields(BindingFlags.Public | BindingFlags.Instance); //Fie
 ```
 
 <details>
-<summary>__예제 : Type 형식의 메소드 사용 예제__</summary>
+<summary> 예제 : Type 형식의 메소드 사용 예제 </summary>
 <div markdown="1">
 
 ```
@@ -181,6 +178,7 @@ Console.WriteLine(b.FullName);
 ### 1. 동적으로 인스턴스 생성
 - __System.Activator 클래스__
 : 리플렉션을 이용해 특정형식의 동적 인스턴스 생성할 때 필요.
+
 - __Activator.CreateInstance()__ 
 : 인스턴스를 만들고자 하는 형식의 Type 객체(__typeof( )__)를 매개 변수로 주면 인스턴스를 생성하여 반환함.
 
@@ -209,10 +207,15 @@ Profile profile = (Profile)Activator.CreateInstance( type);
 
 - __PropertyInfo 클래스__
 : Type.GetProperties()의 반환 형식
+
 - PropertyInfo 클래스의 SetValue(), GetValue() 메소드
 : 값 호출, 할당
-- __Type.GetProperties() 메소드__ : 그 형식의 모든 프로퍼티를 PropertyInfo 형식의 배열로 반환
-- __Type.GetProperty() 메소드__ : 특정 이름의 프로퍼티를 찾아 그 프로퍼티의 정보를 담은 하나의 PropertyInfo 객체만을 반환.
+
+- __Type.GetProperties() 메소드__ 
+: 그 형식의 모든 프로퍼티를 PropertyInfo 형식의 배열로 반환
+
+- __Type.GetProperty() 메소드__ 
+: 특정 이름의 프로퍼티를 찾아 그 프로퍼티의 정보를 담은 하나의 PropertyInfo 객체만을 반환.
 
 <details>
 <summary> 예제 : 동적으로 메소드 호출 </summary>
@@ -360,13 +363,18 @@ namespace DynamicInstance
 
 ### 새로운 형식을 만드는 순서 (형식 = Type)
 1. System.AppDomain 클래스로 AssemblyBuilder 객체 만들기 : __DefineDynamicAssembly()__로 어셈블리 만들기
+
 2. __DefineDynamicModule()__ 메소드로 생성한 어셈블리 안에 모듈 만들기
+
 3. ModuleBuilder의 __DefineType()__메소드로 생성한 모듈 안에 클래스(형식) 만들기
+
 4. TypeBuilder 클래스의 __DefineMethod()__ 메소드로 생성한 클래스 안에 메소드 껍데기 만들기/ PropertyBuilder 클래스의 __DefineProperty()__나 프로퍼티 껍데기 만들기 
 :매개변수로 (“이름”, MethodAttribute, 반환형식, 매개 변수)가 필요
-[메소드 define : MethodAttributes.Public, 프로퍼티 define : MethodAttributes.HasDefault 사용했음
-프로퍼티의 Set/Get 메소드의 define은 특별한 Attriibutes 사용 ( MethodAttributes.Public | MethodAttribures.SpecialName | MethodAttributes.HideBySif ) ]
+- 메소드 define : MethodAttributes.Public, 프로퍼티 define : MethodAttributes.HasDefault 사용했음
+- 프로퍼티의 Set/Get 메소드의 define은 특별한 Attriibutes 사용 : ( MethodAttributes.Public | MethodAttribures.SpecialName | MethodAttributes.HideBySif )
+
 5. MethodBuilder 클래스의 __GetILGenerator()__를 통해 IlGenerator객체 만들기 
+
 6. ILGenerator 객체의 __.Emit__ 이용 해서 메소드가 실행할 코드(IL 명령어) 채우기
 (OpCodes.Ldc_I4, i) : 32비트 정수 ( I )를 계산 스텍에 넣음
 (OpCodes.Add) : 계산스텍에 담겨 있는 두개의 값을 꺼내서 더한후 결과를 다시 계산 스택에 넣기
@@ -375,10 +383,14 @@ namespace DynamicInstance
 (OpCodes.Stfld, FieldBuilder 객체) 개체 참조나 포인터의 필드에 저장된 값을 새 값으로 바꿈
 (OpCodes.Ret) : 스택에 있는 값을 반환
 - ildasm 명령어로 C#에서 코드를 짜서 조회해보면 IL코드를 볼 수 있다.
+
 7. Type 객체에서 __CreateType()__ 메소드로 형식(클래스)를 CLR에게 내보내기
+
 // 새로 만든 형식 사용
 8. __.CreateInstance()__ 이용해서 인스턴스를 동적으로 생성 (object 형식의 객체)
+
 9. __GetType().GetMethod()__ 이용해서 methodIfo 객체 만들기
+
 10. methodInfo 객체의 .Invoke()이용해서 메소드 사용
 
 <details>
@@ -456,7 +468,8 @@ public void Mymethod() { … }
 ## 16.2.2 호출자 정보 애트리뷰트
 : 호출자의 정보를 반환해줌. 메소드의 호출자 이름, 호출자 메소드가 정의되어 있는 소스 파일 경로, 소스 파일 내의 행 번호 등을 반환 받아 사용할 수 있다.
 메소드의 매개 변수에 사용
-![호출자 애트리뷰트들](./OOP/pic/CH_16_YH2.jpg)
+
+<img src = "./OOP/pic/CH_16_YH2.jpg" width="500" />
  
 
 ## 16.2.3 내가 만드는 애트리뷰트

@@ -1,14 +1,14 @@
-#17. Dynamic Çü½Ä
+# 17. Dynamic í˜•ì‹
 
-## 17.1 dynamic Çü½Ä ¼Ò°³
-: Çü½Ä °Ë»ç°¡ ÄÄÆÄÀÏÇÒ ¶§ ÀÌ·ç¾îÁöÁö ¾Ê°í ÇÁ·Î±×·¥ ½ÇÇà Áß ÀÌ·ç¾îÁö´Â ÇÏ³ªÀÇ µ¥ÀÌÅÍ Çü½Ä. (int, string °°Àº)
-- dynamic Çü½ÄÀ¸·Î ¼±¾ðµÈ °´Ã¼´Â ÀÏ´Ü ÄÄÆÄÀÏ·¯ÀÇ Çü½Ä °Ë»ç¸¦ ÇÇÇØ°¨.
+## 17.1 dynamic í˜•ì‹ ì†Œê°œ
+: í˜•ì‹ ê²€ì‚¬ê°€ ì»´íŒŒì¼í•  ë•Œ ì´ë£¨ì–´ì§€ì§€ ì•Šê³  í”„ë¡œê·¸ëž¨ ì‹¤í–‰ ì¤‘ ì´ë£¨ì–´ì§€ëŠ” í•˜ë‚˜ì˜ ë°ì´í„° í˜•ì‹. (int, string ê°™ì€)
+- dynamic í˜•ì‹ìœ¼ë¡œ ì„ ì–¸ëœ ê°ì²´ëŠ” ì¼ë‹¨ ì»´íŒŒì¼ëŸ¬ì˜ í˜•ì‹ ê²€ì‚¬ë¥¼ í”¼í•´ê°.
 
-## 17.1.1 ¿À¸® Å¸ÀÌÇÎ
-: ¾î´À Çü½ÄÀ» »ó¼Ó¹Þ´ÂÁö¿Í °ü°è¾øÀÌ °°Àº ¸Þ¼Òµå¿Í ÇÁ·ÎÆÛÆ¼¸¦ ±¸ÇöÇÑ´Ù¸é °°Àº Çü½ÄÀ¸·Î ÀÎÁ¤
+## 17.1.1 ì˜¤ë¦¬ íƒ€ì´í•‘
+: ì–´ëŠ í˜•ì‹ì„ ìƒì†ë°›ëŠ”ì§€ì™€ ê´€ê³„ì—†ì´ ê°™ì€ ë©”ì†Œë“œì™€ í”„ë¡œí¼í‹°ë¥¼ êµ¬í˜„í•œë‹¤ë©´ ê°™ì€ í˜•ì‹ìœ¼ë¡œ ì¸ì •
 
 <details>
-<summary> ¿¹Á¦ : ¿À¸®Å¸ÀÌÇÎ </summary>
+<summary> ì˜ˆì œ : ì˜¤ë¦¬íƒ€ì´í•‘ </summary>
 <div>
 
 ```C#
@@ -65,42 +65,43 @@ namespace DuckTyping
 
 </div></details>
 
-### 17.1.2 ¿À¸® Å¸ÀÌÇÎÀÇ ÀåÁ¡°ú ´ÜÁ¡
-### ÀåÁ¡ 
-- ¿À¸® Å¸ÀÌÇÎÀÇ °æ¿ì »ó¼Ó °ü°è¸¦ ÀÌ¿ëÇÏÁö ¾Ê¾Æ ÇÁ·Î±×·¥ÀÇ µ¿ÀÛ °ü·Ã ºÎºÐ¸¸ ¼öÁ¤ °¡´É 
-: Àß¸øµÈ ÀÎÅÍÆäÀÌ½º¸¦ ¼³°èÇÏ¸é ÆÄ»ý Å¬·¡½º¿Í ÇüÁ¦ Å¬·¡½º¸¦ ÀüºÎ ¼öÁ¤ÇØ¾ß ÇÑ´Ù.
+### 17.1.2 ì˜¤ë¦¬ íƒ€ì´í•‘ì˜ ìž¥ì ê³¼ ë‹¨ì 
+### ìž¥ì  
+- ì˜¤ë¦¬ íƒ€ì´í•‘ì˜ ê²½ìš° ìƒì† ê´€ê³„ë¥¼ ì´ìš©í•˜ì§€ ì•Šì•„ í”„ë¡œê·¸ëž¨ì˜ ë™ìž‘ ê´€ë ¨ ë¶€ë¶„ë§Œ ìˆ˜ì • ê°€ëŠ¥ 
+: ìž˜ëª»ëœ ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ì„¤ê³„í•˜ë©´ íŒŒìƒ í´ëž˜ìŠ¤ì™€ í˜•ì œ í´ëž˜ìŠ¤ë¥¼ ì „ë¶€ ìˆ˜ì •í•´ì•¼ í•œë‹¤.
 
-### ´ÜÁ¡
-- ¿À¸® Å¸ÀÌÇÎÀÇ °æ¿ì Á÷Á¢ ¸ðµç ¸Þ¼Òµå ¼±¾ðÀ» Ã£¾Æ¼­ ¼öÁ¤ÇØ¾ßÇÑ´Ù. 
-: ¿À¸® Å¸ÀÌÇÎÀ» »ç¿ëÇÏÁö ¾ÊÀ¸¸é Visual StudioÀÇ ¸®ÆÑÅÍ¸µ ±â´É ÀÌ¿ë ºÒ°¡
+### ë‹¨ì 
+- ì˜¤ë¦¬ íƒ€ì´í•‘ì˜ ê²½ìš° ì§ì ‘ ëª¨ë“  ë©”ì†Œë“œ ì„ ì–¸ì„ ì°¾ì•„ì„œ ìˆ˜ì •í•´ì•¼í•œë‹¤. 
+: ì˜¤ë¦¬ íƒ€ì´í•‘ì„ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ Visual Studioì˜ ë¦¬íŒ©í„°ë§ ê¸°ëŠ¥ ì´ìš© ë¶ˆê°€
 
-## 17.2 COM°ú .NET »çÀÌÀÇ »óÈ£ ¿î¿ë¼ºÀ» À§ÇÑ dynamic Çü½Ä
+## 17.2 COMê³¼ .NET ì‚¬ì´ì˜ ìƒí˜¸ ìš´ìš©ì„±ì„ ìœ„í•œ dynamic í˜•ì‹
 ### COM(Component Object Model)
-: ¸¶ÀÌÅ©·Î¼ÒÇÁÆ®ÀÇ ¼ÒÇÁÆ®¿þ¾î ÄÄÆ÷³ÍÆ® ±Ô°Ý. COM API¸¦ »ç¿ëÇÏ¸é ¿¢¼¿ ¹®¼­¸¦ ÀÐ°Å³ª ¾µ ¼ö ÀÖÀ½.
+: ë§ˆì´í¬ë¡œì†Œí”„íŠ¸ì˜ ì†Œí”„íŠ¸ì›¨ì–´ ì»´í¬ë„ŒíŠ¸ ê·œê²©. COM APIë¥¼ ì‚¬ìš©í•˜ë©´ ì—‘ì…€ ë¬¸ì„œë¥¼ ì½ê±°ë‚˜ ì“¸ ìˆ˜ ìžˆìŒ.
 
 ### RCW(Runtime Callable Wrapper)
-- .NET ¾ð¾îµéÀÇ °æ¿ì, RCW¸¦ ÅëÇØ COM ÄÄÆ÷³ÍÆ®¸¦ »ç¿ëÇÒ ¼ö ÀÖ´Ù. COM °´Ã¼¸¦ ÇÁ·ÎÁ§Æ® ÂüÁ¶¿¡ Ãß°¡ÇÏ¸é IDE°¡ ÀÚµ¿À¸·Î tlbimp.exe¸¦ È£ÃâÇØ¼­ RCW¸¦ ¸¸µé¾îÁÖ°í ÀÌ´Â COM¿¡ ´ëÇÑ ÇÁ·Ï½Ã ¿ªÇÒ(´ë¸®)À» ÇØ¼­ C#ÄÚµå¿¡¼­ COM API¸¦ »ç¿ëÇÒ ¼ö ÀÖ°Ô ÇØÁÝ´Ï´Ù. 
-![±×¸²3](./OOP/pic/ CH_17_YH1.jpg)
+- .NET ì–¸ì–´ë“¤ì˜ ê²½ìš°, RCWë¥¼ í†µí•´ COM ì»´í¬ë„ŒíŠ¸ë¥¼ ì‚¬ìš©í•  ìˆ˜ ìžˆë‹¤. COM ê°ì²´ë¥¼ í”„ë¡œì íŠ¸ ì°¸ì¡°ì— ì¶”ê°€í•˜ë©´ IDEê°€ ìžë™ìœ¼ë¡œ tlbimp.exeë¥¼ í˜¸ì¶œí•´ì„œ RCWë¥¼ ë§Œë“¤ì–´ì£¼ê³  ì´ëŠ” COMì— ëŒ€í•œ í”„ë¡ì‹œ ì—­í• (ëŒ€ë¦¬)ì„ í•´ì„œ C#ì½”ë“œì—ì„œ COM APIë¥¼ ì‚¬ìš©í•  ìˆ˜ ìžˆê²Œ í•´ì¤ë‹ˆë‹¤. 
+
+![ê·¸ë¦¼3](./OOP/pic/CH_17_YH1.jpg)
  
 
-- C#°ú COM »çÀÌÀÇ »óÈ£ ¿î¿ë¼ºÀ» ÁÁÁö ¾Ê°Ô ¸¸µç ¿øÀÎ
-1. COMÀº ¸Þ¼Òµå°¡ °á°ú¸¦ ¹ÝÈ¯ÇÒ ¶§ ½ÇÁ¦ Çü½ÄÀÌ ¾Æ´Ñ __object Çü½ÄÀ¸·Î ¹ÝÈ¯__
-: C# 4.0¿¡¼­ __dynamic µµÀÔ__ÇØ ÀÌ ¹®Á¦¸¦ ÇØ°á
-2. COMÀº ¿À¹ö·ÎµùÀ» Áö¿øÇÏÁö¾Ê°í ¸Þ¼ÒµåÀÇ ¼±ÅÃÀû ¸Å°³ º¯¼ö¿Í ±âº»°ª ¸Å°³ º¯¼ö Áö¿ø
-: C# 4.0¿¡¼­ __¼±ÅÃÀû ¸Å°³ º¯¼ö¿Í ±âº»°ª ¸Å°³ º¯¼ö Áö¿ø__À¸·Î ÇØ°á
-=¹«ÀÇ¹ÌÇÑ Çü½Ä º¯È¯°ú ÀÇ¹Ì ¾ø´Â ¸Å°³ º¯¼ö ÀÔ·ÂÀ» °£°áÇÏ°Ô ÁÙÀÏ ¼ö ÀÖ°ÔµÊ. ºñÁÖ¾ó ½ºÆ©µð¿À°¡ RCW¸¦ ¸¸µé ¶§ dynamic Çü½ÄÀÌ³ª ¼±ÅÃÀû ¸Å°³ º¯¼ö¸¦ ÀÌ¿ëÇØ¼­ ¸¸µé¾îÁÜ..
+- C#ê³¼ COM ì‚¬ì´ì˜ ìƒí˜¸ ìš´ìš©ì„±ì„ ì¢‹ì§€ ì•Šê²Œ ë§Œë“  ì›ì¸
+1. COMì€ ë©”ì†Œë“œê°€ ê²°ê³¼ë¥¼ ë°˜í™˜í•  ë•Œ ì‹¤ì œ í˜•ì‹ì´ ì•„ë‹Œ __object í˜•ì‹ìœ¼ë¡œ ë°˜í™˜__
+: C# 4.0ì—ì„œ __dynamic ë„ìž…__í•´ ì´ ë¬¸ì œë¥¼ í•´ê²°
+2. COMì€ ì˜¤ë²„ë¡œë”©ì„ ì§€ì›í•˜ì§€ì•Šê³  ë©”ì†Œë“œì˜ ì„ íƒì  ë§¤ê°œ ë³€ìˆ˜ì™€ ê¸°ë³¸ê°’ ë§¤ê°œ ë³€ìˆ˜ ì§€ì›
+: C# 4.0ì—ì„œ __ì„ íƒì  ë§¤ê°œ ë³€ìˆ˜ì™€ ê¸°ë³¸ê°’ ë§¤ê°œ ë³€ìˆ˜ ì§€ì›__ìœ¼ë¡œ í•´ê²°
+=ë¬´ì˜ë¯¸í•œ í˜•ì‹ ë³€í™˜ê³¼ ì˜ë¯¸ ì—†ëŠ” ë§¤ê°œ ë³€ìˆ˜ ìž…ë ¥ì„ ê°„ê²°í•˜ê²Œ ì¤„ì¼ ìˆ˜ ìžˆê²Œë¨. ë¹„ì£¼ì–¼ ìŠ¤íŠœë””ì˜¤ê°€ RCWë¥¼ ë§Œë“¤ ë•Œ dynamic í˜•ì‹ì´ë‚˜ ì„ íƒì  ë§¤ê°œ ë³€ìˆ˜ë¥¼ ì´ìš©í•´ì„œ ë§Œë“¤ì–´ì¤Œ..
 
-### COM ÄÄÆ÷³ÍÆ®¸¦ ÂüÁ¶¿¡ Ãß°¡ÇÏ´Â ¹æ¹ý
-1. ¼Ö·ç¼Ç Å½»ö±â¿¡ ¡®program.cs¡¯´ë½Å __¡®main.cs¡¯__ ¸¸µé¾î ÁÖ±â
-2. ¼Ö·ç¼Ç Å½»ö±â ¡®ÂüÁ¶¡¯ Ç×¸ñÀÇ ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°¿¡¼­ __[ÂüÁ¶ Ãß°¡__] Ç×¸ñ ¼±ÅÃ
-3. [COM] ? [Çü½Ä ¶óÀÌºê·¯¸®] Ç×¸ñ ¼±ÅÃ
-4. ±¸¼º ¿ä¼Ò ¸ñ·Ï¿¡¼­ ÇÊ¿äÇÑ Çü½Ä ¶óÀÌºê·¯¸® Ãß°¡
+### COM ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¸ì¡°ì— ì¶”ê°€í•˜ëŠ” ë°©ë²•
+1. ì†”ë£¨ì…˜ íƒìƒ‰ê¸°ì— â€˜program.csâ€™ëŒ€ì‹  __â€˜main.csâ€™__ ë§Œë“¤ì–´ ì£¼ê¸°
+2. ì†”ë£¨ì…˜ íƒìƒ‰ê¸° â€˜ì°¸ì¡°â€™ í•­ëª©ì˜ ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ì—ì„œ __[ì°¸ì¡° ì¶”ê°€__] í•­ëª© ì„ íƒ
+3. [COM] - [í˜•ì‹ ë¼ì´ë¸ŒëŸ¬ë¦¬] í•­ëª© ì„ íƒ
+4. êµ¬ì„± ìš”ì†Œ ëª©ë¡ì—ì„œ í•„ìš”í•œ í˜•ì‹ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì¶”ê°€
 
 <details>
-<summary> ¿¹Á¦ : ¿¢¼¿ ¶óÀÌºê·¯¸® ÂüÁ¶ ÇÏ±â </summary>
-<div markdown=¡±1¡±>
+<summary> ì˜ˆì œ : ì—‘ì…€ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì°¸ì¡° í•˜ê¸° </summary>
+<div markdown=â€1â€>
 
-¡°Microsoft Excel 16.0 Object Library¡± Çü½Ä ¶óÀÌºê·¯¸®¿¡ Ãß°¡ ÈÄ ¡®main.cs¡¯¿¡ ÄÚµå ÀÛ¼º
+â€œMicrosoft Excel 16.0 Object Libraryâ€ í˜•ì‹ ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¶”ê°€ í›„ â€˜main.csâ€™ì— ì½”ë“œ ìž‘ì„±
 
 ```C#
 using System;
@@ -163,11 +164,11 @@ namespace COMInterop
             string savePath = System.IO.Directory.GetCurrentDirectory();
             string[,] array = new string[,] 
             { 
-                { "³ú¸¦ ÀÚ±ØÇÏ´Â ¾Ë°í¸®Áò", "2009" }, 
-                { "³ú¸¦ ÀÚ±ØÇÏ´Â C# 4.0",   "2011" },
-                { "³ú¸¦ ÀÚ±ØÇÏ´Â C# 5.0",   "2013" },
-                { "³ú¸¦ ÀÚ±ØÇÏ´Â ÆÄÀÌ½ã 3", "2016" },
-                { "ÀÌ°ÍÀÌ C#ÀÌ´Ù",          "2018" }
+                { "ë‡Œë¥¼ ìžê·¹í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜", "2009" }, 
+                { "ë‡Œë¥¼ ìžê·¹í•˜ëŠ” C# 4.0",   "2011" },
+                { "ë‡Œë¥¼ ìžê·¹í•˜ëŠ” C# 5.0",   "2013" },
+                { "ë‡Œë¥¼ ìžê·¹í•˜ëŠ” íŒŒì´ì¬ 3", "2016" },
+                { "ì´ê²ƒì´ C#ì´ë‹¤",          "2018" }
             };
 
             Console.WriteLine("Creating Excel document in old way...");
@@ -183,43 +184,43 @@ namespace COMInterop
 
 </div></details>
 
-## 17.3 µ¿Àû ¾ð¾î¿ÍÀÇ »óÈ£ ¿î¿ë¼ºÀ» À§ÇÑ dynamic Çü½Ä
-: ÆÄÀÌ½ã/·çºñÃ³·³ ½ÇÇà ½Ã ÄÚµå¸¦ ÇØ¼®ÇØ ½ÇÇàÇÏ´Â µ¿Àû ¾ð¾î Áö¿ø
+## 17.3 ë™ì  ì–¸ì–´ì™€ì˜ ìƒí˜¸ ìš´ìš©ì„±ì„ ìœ„í•œ dynamic í˜•ì‹
+: íŒŒì´ì¬/ë£¨ë¹„ì²˜ëŸ¼ ì‹¤í–‰ ì‹œ ì½”ë“œë¥¼ í•´ì„í•´ ì‹¤í–‰í•˜ëŠ” ë™ì  ì–¸ì–´ ì§€ì›
 
 ### DLR(Dynamic Language Runtime) 
-: µ¿Àû ¾ð¾î ½ÇÇà ÇÃ·§Æû, µ¿Àû ¾ð¾î¸¦ DLRÀ» ÀÌ¿ëÇØ .NET ÇÃ·§Æû À§¿¡¼­ ½ÇÇàÇÒ ¼ö ÀÖ°Ô ÇØÁÜ. (CLR À§¿¡¼­ µ¿ÀÛ)
+: ë™ì  ì–¸ì–´ ì‹¤í–‰ í”Œëž«í¼, ë™ì  ì–¸ì–´ë¥¼ DLRì„ ì´ìš©í•´ .NET í”Œëž«í¼ ìœ„ì—ì„œ ì‹¤í–‰í•  ìˆ˜ ìžˆê²Œ í•´ì¤Œ. (CLR ìœ„ì—ì„œ ë™ìž‘)
 
-![DLRÀÇ ½ÇÇà](./OOP/pic/CH_17_YH2.jpg)
+![DLRì˜ ì‹¤í–‰](./OOP/pic/CH_17_YH2.jpg)
  
 
-- µ¿Àû ¾ð¾î¿¡¼­ ¸¸µç °´Ã¼¿¡ Á¤Àû ¾ð¾î(C#/VB)ÀÇ Á¢±Ù °¡´ÉÇÏ°Ô ÇØÁÖ¾î¼­ ½ÇÇàÇÏ°í ±× °á°ú¸¦ ¹Þ¾Æ º¼ ¼ö ÀÖ´Ù. 
-- CLRÀº DLR API¸¦ ±â¹ÝÀ¸·Î ±¸ÇöµÈ µ¿Àû ¾ð¾î¶óµµ È£½ºÆÃÇÒ ¼ö ÀÖ±â ¶§¹®¿¡ ÆÄÀÌ½ã¿¡ ¾ø´Â ¶óÀÌºê·¯¸®¸¦ È£½ºÆÃÇÏ´Â ÄÚµå¸¦ È£½ºÆÃÇÒ ¼öµµ ÀÖ´Ù.
+- ë™ì  ì–¸ì–´ì—ì„œ ë§Œë“  ê°ì²´ì— ì •ì  ì–¸ì–´(C#/VB)ì˜ ì ‘ê·¼ ê°€ëŠ¥í•˜ê²Œ í•´ì£¼ì–´ì„œ ì‹¤í–‰í•˜ê³  ê·¸ ê²°ê³¼ë¥¼ ë°›ì•„ ë³¼ ìˆ˜ ìžˆë‹¤. 
+- CLRì€ DLR APIë¥¼ ê¸°ë°˜ìœ¼ë¡œ êµ¬í˜„ëœ ë™ì  ì–¸ì–´ë¼ë„ í˜¸ìŠ¤íŒ…í•  ìˆ˜ ìžˆê¸° ë•Œë¬¸ì— íŒŒì´ì¬ì— ì—†ëŠ” ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ í˜¸ìŠ¤íŒ…í•˜ëŠ” ì½”ë“œë¥¼ í˜¸ìŠ¤íŒ…í•  ìˆ˜ë„ ìžˆë‹¤.
 
-### CLR°ú DLR »çÀÌÀÇ »óÈ£ ¿î¿ë¼º ¹®Á¦ ÇØ°á
-: ¹Ì¸® Çü½Ä °Ë»ç¸¦ ÇÒ ¼ö ¾ø´Â µ¿Àû Çü½Ä ¾ð¾î¿¡¼­ ¸¸µç °´Ã¼¸¦ C#ÀÇ __dynamic Çü½Ä__À¸·Î ÇØ°á.
-- µ¿Àû Çü½Ä ¾ð¾î¿¡¼­ ¸¸µé¾îÁø °´Ã¼¸¦ dynamic Çü½ÄÀ¸·Î ¹ÞÀ½
+### CLRê³¼ DLR ì‚¬ì´ì˜ ìƒí˜¸ ìš´ìš©ì„± ë¬¸ì œ í•´ê²°
+: ë¯¸ë¦¬ í˜•ì‹ ê²€ì‚¬ë¥¼ í•  ìˆ˜ ì—†ëŠ” ë™ì  í˜•ì‹ ì–¸ì–´ì—ì„œ ë§Œë“  ê°ì²´ë¥¼ C#ì˜ __dynamic í˜•ì‹__ìœ¼ë¡œ í•´ê²°.
+- ë™ì  í˜•ì‹ ì–¸ì–´ì—ì„œ ë§Œë“¤ì–´ì§„ ê°ì²´ë¥¼ dynamic í˜•ì‹ìœ¼ë¡œ ë°›ìŒ
 
-### DLRÀÇ Å¬·¡½º
-__C# ÄÚµå¿¡¼­ µ¿Àû ¾ð¾î¸¦ È£½ºÆÃÇÏ´Âµ¥ ÇÊ¿äÇÑ Å¬·¡½º__ 
-: °Ô½ºÆ® ÄÚµå¸¦ ½ÇÇàÇÒ ¶§ ´Ù¾çÇÏ°Ô Á¶ÇÕÇØ¼­ »ç¿ë
-- __ScriptRuntime__ : µ¿Àû¾ð¾î¸¦ È£½ºÆÃÇÏ´Â __½ÃÀÛÁ¡__, Àü¿ª »óÅÂ(ÂüÁ¶µÈ ¾î¼Àºí¸®³ª Àü¿ª °´Ã¼)¸¦ ³ªÅ¸³»¸ç ÇÏ³ªÀÇ .NET AppDomain ¾È¿¡ ¿©·¯ °³ÀÇ ScriptRuntimeÀ» ¸¸µé ¼ö ÀÖ´Ù.
-- __ScriptScope__ : __³×ÀÓ½ºÆäÀÌ½º__¸¦ ³ªÅ¸³¿. È£½ºÆ®(¿©±â¼­ C#ÄÚµå)´Â ScriptScope °´Ã¼ ¾È¿¡ µ¿Àû ¾ð¾î ÄÚµå¿¡¼­ »ç¿ëÇÏ´Â __º¯¼ö__¿¡ °ªÀ» ´ëÀÔÇÏ°Å³ª ÀÐÀ» ¼ö ÀÖ´Ù.
-- __ScriptSource__ : __¼Ò½º ÄÚµå__¸¦ ÀÐ¾îµéÀÌ´Â ¿©·¯ ¸Þ¼Òµå¿Í ÀÐ¾îµéÀÎ ¼Ò½º ÄÚµå¸¦ ´Ù¾çÇÑ ¹æ¹ýÀ¸·Î ½ÇÇàÇÏ´Â ¸Þ¼ÒµåµéÀ» Á¦°ø
-- __ScriptEngine__ : ¾ð¾îÀÇ ±¸¹®À» ³ªÅ¸³»´Â ÀÏ²Û. ÄÚµå¸¦ ½ÇÇàÇÏ°í ScriptScope¿Í ScriptSource¸¦ »ý¼ºÇÏ´Â ´Ù¾çÇÑ ¹æ¹ýÀ» Á¦°ø.
-- __CompiledCode__ : __ÄÄÆÄÀÏµÈ ÄÚµå__¸¦ ³ªÅ¸³¿. ÇÑ ¹ø ÄÄÆÄÀÏ ÇØ³õ°í ¿©·¯ ¹ø ¹Ýº¹ ½ÇÇàÇÏ´Â ÄÚµå¸¦ ³ªÅ¸³»´Â µ¥ »ç¿ë.
+### DLRì˜ í´ëž˜ìŠ¤
+__C# ì½”ë“œì—ì„œ ë™ì  ì–¸ì–´ë¥¼ í˜¸ìŠ¤íŒ…í•˜ëŠ”ë° í•„ìš”í•œ í´ëž˜ìŠ¤__ 
+: ê²ŒìŠ¤íŠ¸ ì½”ë“œë¥¼ ì‹¤í–‰í•  ë•Œ ë‹¤ì–‘í•˜ê²Œ ì¡°í•©í•´ì„œ ì‚¬ìš©
+- __ScriptRuntime__ : ë™ì ì–¸ì–´ë¥¼ í˜¸ìŠ¤íŒ…í•˜ëŠ” __ì‹œìž‘ì __, ì „ì—­ ìƒíƒœ(ì°¸ì¡°ëœ ì–´ì…ˆë¸”ë¦¬ë‚˜ ì „ì—­ ê°ì²´)ë¥¼ ë‚˜íƒ€ë‚´ë©° í•˜ë‚˜ì˜ .NET AppDomain ì•ˆì— ì—¬ëŸ¬ ê°œì˜ ScriptRuntimeì„ ë§Œë“¤ ìˆ˜ ìžˆë‹¤.
+- __ScriptScope__ : __ë„¤ìž„ìŠ¤íŽ˜ì´ìŠ¤__ë¥¼ ë‚˜íƒ€ëƒ„. í˜¸ìŠ¤íŠ¸(ì—¬ê¸°ì„œ C#ì½”ë“œ)ëŠ” ScriptScope ê°ì²´ ì•ˆì— ë™ì  ì–¸ì–´ ì½”ë“œì—ì„œ ì‚¬ìš©í•˜ëŠ” __ë³€ìˆ˜__ì— ê°’ì„ ëŒ€ìž…í•˜ê±°ë‚˜ ì½ì„ ìˆ˜ ìžˆë‹¤.
+- __ScriptSource__ : __ì†ŒìŠ¤ ì½”ë“œ__ë¥¼ ì½ì–´ë“¤ì´ëŠ” ì—¬ëŸ¬ ë©”ì†Œë“œì™€ ì½ì–´ë“¤ì¸ ì†ŒìŠ¤ ì½”ë“œë¥¼ ë‹¤ì–‘í•œ ë°©ë²•ìœ¼ë¡œ ì‹¤í–‰í•˜ëŠ” ë©”ì†Œë“œë“¤ì„ ì œê³µ
+- __ScriptEngine__ : ì–¸ì–´ì˜ êµ¬ë¬¸ì„ ë‚˜íƒ€ë‚´ëŠ” ì¼ê¾¼. ì½”ë“œë¥¼ ì‹¤í–‰í•˜ê³  ScriptScopeì™€ ScriptSourceë¥¼ ìƒì„±í•˜ëŠ” ë‹¤ì–‘í•œ ë°©ë²•ì„ ì œê³µ.
+- __CompiledCode__ : __ì»´íŒŒì¼ëœ ì½”ë“œ__ë¥¼ ë‚˜íƒ€ëƒ„. í•œ ë²ˆ ì»´íŒŒì¼ í•´ë†“ê³  ì—¬ëŸ¬ ë²ˆ ë°˜ë³µ ì‹¤í–‰í•˜ëŠ” ì½”ë“œë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë° ì‚¬ìš©.
 
-### °Ô½ºÆ® ÄÚµå¸¦ ½ÇÇàÇÏ´Â ¹æ¹ý
-1. ¼Ò½º ÄÚµå __¡°ÆÄÀÏ¡±ÀÇ °æ·Î__¸¦ ³Ñ°Ü¹Þ¾Æ ½ÇÇà : ScriptRuntime 
+### ê²ŒìŠ¤íŠ¸ ì½”ë“œë¥¼ ì‹¤í–‰í•˜ëŠ” ë°©ë²•
+1. ì†ŒìŠ¤ ì½”ë“œ __â€œíŒŒì¼â€ì˜ ê²½ë¡œ__ë¥¼ ë„˜ê²¨ë°›ì•„ ì‹¤í–‰ : ScriptRuntime 
 
 ```C#
-ScriptRuntime °´Ã¼ = Python.CreateRuntime();
-dynamic result = runtime.ExecuteFile(¡°ÆÄÀÌ½ã ÆÄÀÏ.py¡±)
+ScriptRuntime ê°ì²´ = Python.CreateRuntime();
+dynamic result = runtime.ExecuteFile(â€œíŒŒì´ì¬ íŒŒì¼.pyâ€)
 ```
-2. ¹®ÀÚ¿­¿¡ ´ã±ä µ¿Àû ¾ð¾î ÄÚµå __½ÇÇà__ : ScriptEngine, ScriptScope, ScriptSource
+2. ë¬¸ìžì—´ì— ë‹´ê¸´ ë™ì  ì–¸ì–´ ì½”ë“œ __ì‹¤í–‰__ : ScriptEngine, ScriptScope, ScriptSource
 
 <details>
-<summary> ¿¹Á¦ : ironPythonÀ» ÀÌ¿ëÇÑ PythonÄÚµå ½ÇÇà</summary>
-<div markdown=¡±1¡±>
+<summary> ì˜ˆì œ : ironPythonì„ ì´ìš©í•œ Pythonì½”ë“œ ì‹¤í–‰</summary>
+<div markdown=â€1â€>
 
 ```C#
 using System;
@@ -244,15 +245,15 @@ namespace WithPython
             //     Creates a new ScriptRuntime and returns the ScriptEngine for IronPython. 
             //     If the ScriptRuntime is required it can be acquired from the Runtime property on the engine.
 
-            ScriptScope scope = engine.CreateScope(); //scope : ¹üÀ§
+            ScriptScope scope = engine.CreateScope(); //scope : ë²”ìœ„
             //     A ScriptScope is a unit of execution for code. It consists of a global Scope
             //     which all code executes in. Hosting API counterpart for Microsoft.Scripting.Hosting.ScriptScope.Scope.
 
-            scope.SetVariable("n", "¹Ú»óÇö");
+            scope.SetVariable("n", "ë°•ìƒí˜„");
             scope.SetVariable("p", "010-123-4566");
             
             ScriptSource source = engine.CreateScriptSourceFromString(
-                //ÆÄÀÌ½ã ÄÚµå ÀÌ ¾È¿¡ ÀÛ¼º.
+                //íŒŒì´ì¬ ì½”ë“œ ì´ ì•ˆì— ìž‘ì„±.
                 @"
 class NameCard :
     name = ''
@@ -267,10 +268,10 @@ class NameCard :
 
 NameCard(n, p)
 ");
-            dynamic result = source.Execute(scope);// ÆÄÀÌ½ã ÄÚµå ½ÇÇàÇÏ´Â excute ¸Þ¼Òµå¿¡ ScriptScope(ÄÚµå ½ÇÇà ´ÜÀ§) ´ã¾Æ
-            result.printNameCard();// À§ ÄÚµå¿¡¼­ È£Ãâ
+            dynamic result = source.Execute(scope);// íŒŒì´ì¬ ì½”ë“œ ì‹¤í–‰í•˜ëŠ” excute ë©”ì†Œë“œì— ScriptScope(ì½”ë“œ ì‹¤í–‰ ë‹¨ìœ„) ë‹´ì•„
+            result.printNameCard();// ìœ„ ì½”ë“œì—ì„œ í˜¸ì¶œ
 
-            Console.WriteLine("{0}, {1}", result.name, result.phone);//º¯¼ö¿¡ Á¢±Ù
+            Console.WriteLine("{0}, {1}", result.name, result.phone);//ë³€ìˆ˜ì— ì ‘ê·¼
         }
     }
 }
