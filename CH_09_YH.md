@@ -31,7 +31,7 @@ public void SetMyField( int NewValue) { myField = NewValue; };
 - 어트리뷰트(Attribute) : 프로퍼티들을 그룹(연관)지을 수 있는 정적인 속성을 의미. (코드에 대한 부가 정보를 기록하고 읽을 수 있다.)
 
 ## 9.2 메소드보다 프로퍼티
-### 프로퍼티 선언 
+### 프로퍼티 선언 ★
 : private 필드를 public 프로퍼티 선언해 접근하게 한다.
 
 - __접근자 get__ 
@@ -90,7 +90,7 @@ class MainApp
 
 
 <details>
-<summary>+ 예제 private 필드, 프로퍼티 이용 접근 </summary>
+<summary>+ 예제 private 필드, 프로퍼티 이용 접근 비교 </summary>
 <div markdown="1">
 
 ```C#
