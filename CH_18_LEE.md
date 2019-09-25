@@ -97,7 +97,7 @@ namespace Touch
             if (args.Length > 1)
                 type = args[1];
 
-            if (File.Exists(path) || Directory.Exists(path))
+            if (File.Exists(path) || Directory.Exists(path)) // 파일(폴더)가 기존에 존재할 경우 정보를 출력한다.
             {
                 if (type == "File")
                     File.SetLastWriteTime(path, DateTime.Now);
@@ -110,7 +110,7 @@ namespace Touch
                 }
                 Console.WriteLine($"Updated {path} {type}");
             }
-            else
+            else // 파일(폴더)가 없다면? 생성한다.
             {
                 if (type == "File")
                     File.Create(path).Close();
@@ -136,10 +136,12 @@ namespace Touch
 
 #### System.IO.Stream 클래스
 Stream 클래스는 그 자체로 입력 스트림,출력 스트림의 역할을 모두 할 수 있으며 파일을 읽고 쓰는 방식 역시 순차 접근 방식과 임의 접근 방식 모두를 지원하지만, Stream 클래스는 추상 클래스이기 때문에 이 클래스의 인스턴스를 직접 만들어 사용할 수는 없다. 
+
 <details>
 <summary>예시 코드</summary>
 <div markdown="1">
 
+```c#
 using System;
 using System.IO;
 
@@ -178,6 +180,7 @@ namespace BasicIO
         }
     }
 }
+```
 
 </div>
 </details>

@@ -76,7 +76,7 @@ static void DoSomething() // 스레드가 실행할 메소드
 
 static void Main(string[] args)
 {
-    Thread t1 = new Thread(new ThreadStart(DoSomething)); 1. Thread의 인스턴스 생성
+    Thread t1 = new Thread(new ThreadStart(DoSomething)); // 1. Thread의 인스턴스 생성
     
     t1.Start(); // 2. 스레드 시작
     
