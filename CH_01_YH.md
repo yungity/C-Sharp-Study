@@ -1,5 +1,7 @@
 # 1강 C#언어의 개요
 
+출처 : [나우캠퍼스 C#으로 살아남기](https://www.youtube.com/playlist?list=PLOKPEzlY4JKQNiHEQ4SDBxAFo9RDod8Tm)
+
 ## 1. C언어의 개요
 
 C언어(함수 단위) -> C++(클래스 개념 도입)-> C#(클래스 라이브러리, CLR-언어를 실행하는 모듈)
