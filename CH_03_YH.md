@@ -1,4 +1,6 @@
 # 3. 데이터형
+출처 : [나우캠퍼스 C#으로 살아남기](https://www.youtube.com/playlist?list=PLOKPEzlY4JKQNiHEQ4SDBxAFo9RDod8Tm)
+
 ## 1. 데이터형
 - C#의 데이터형은 모두 __object로부터 파생된 객체__
 __object는 IL언어에서는 System.Object형으로 CTS에 의해 정의된 형태대로 JIT컴파일러에 의해 변환되어 CLR에서 실행할 수 있게됨.__
