@@ -668,7 +668,7 @@ System.object : C#에서 모든 데이터의 최상위 클래스
                   : System.ValueType,Enum
 - __값형식__ : 모든 열거형과 System.Int32,Boolean… 등 모든 기본 제공 숫자 형식을 비롯한 모든 구조체, 사용자 정의 구조체
  
-<img src=”*/OOP/pic/CH_3_YH1.png” width = “450”>
+<img src = "./OOP/pic/CH_03_YH1.png" width="550"></img>
 
 ## 값 형식
 - System.Object를 통해 파생됨. + System.ValueType로부터 
